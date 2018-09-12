@@ -56,8 +56,8 @@ Bee models a NGS data generation process where sequencing *Experiments* such as 
 
 * Bee is not a workflow engine, instead the *Bioinformatics Applications* in bee only define mata-data driven validation and logic to build commands to trigger pipelines written in any language.
 
-[data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=737&h=310
-[infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=734&h=416
+[data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=1102&h=484
+[infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=1101&h=625
 
 [dna nexus]: https://www.dnanexus.com
 [toil]: https://github.com/DataBiosphere/toil
