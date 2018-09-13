@@ -6,21 +6,6 @@ The frontend is developed with [Vue.js], meant to be the main Frontend client fo
 
 It's served rigth out of the box, in the [django bee] project, but it can be installed as a standalone app.
 
-## Quick Start
-
-To start the frontend development server:
-
-```bash
-# If you don't have yarn installed
-brew install yarn --without-node
-
-# Install all yarn dependencies
-yarn
-
-# Start the vue-cli development server
-yarn dev
-```
-
 ## Manual Installation
 
 To consume the app:
@@ -68,6 +53,25 @@ You can configure the `window.$candy`.
 </script>
 ```
 
+## Development
+
+To start the frontend development server:
+
+```bash
+# clone the project
+git clone https://github.com/leukgen/candy
+
+# Install all yarn dependencies
+yarn install
+
+# Start the vue-cli development server
+yarn dev
+```
+
+In case you don't have [yarn] installed
+```bash
+brew install yarn --without-node
+```
 
 ## Testing
 
@@ -83,3 +87,4 @@ yarn test:unit
 [Vue.js]: https://vuejs.org/
 [django bee]: https://github.com/leukgen/django-bee
 [web-components]: https://www.sitepen.com/blog/2018/07/06/web-components-in-2018/
+[yarn]: https://yarnpkg.com/en/docs/install#mac-stable
