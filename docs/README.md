@@ -4,7 +4,7 @@
 
 ## What is it
 
-Bee is a framework to conduct bioinformatics operations at scale. It addresses the need of entities such as research labs, sequencing centers, bioinformatics cores, molecular diagnostic enterprises and pharmaceuticals to manage their genomics capital and maximize the utilization of Next Generation Sequencing assets by providing them with a modular, opensource, plug-and-play infrastructure.
+Bee is an open-source framework to conduct bioinformatics operations at scale. It addresses the need of entities such as research labs, sequencing centers, bioinformatics cores, molecular diagnostic enterprises and pharmaceuticals to manage their genomics capital and maximize the utilization of Next Generation Sequencing assets by providing them with a modular, opensource, plug-and-play infrastructure.
 
 🚀 Get up and running in 10 minutes with our [quick start guide](tutorials/quick_start)!
 
@@ -28,7 +28,12 @@ Bee is a framework to conduct bioinformatics operations at scale. It addresses t
     * Fully featured SDK for postprocessing analyses
 
 * 🚀 **Web Application**
-    * Excel forms submission
+    * User Interface to browse and manage the operations metadata
+    * Analyses tracking and results visualization
+    * Flexibility to edit and customize models
+    * Batch creation of metadata by excel file submission
+    * Single Page Application that provides a cripsy user experience
+    * Possibility to integrate third-party services like JIRA
 
 * ✅ **Plug-n-play and reliable codebase**
     * Docker-compose is the only dependency for the web application and the backend
@@ -50,7 +55,7 @@ Bee models a NGS data generation process where sequencing *Experiments* such as 
 
 ## What bee is not
 
-* Bee is not a workflow execution engine such as [toil] or [bpipe], instead an platform that trigger these engines and track their results
+* Bee is not a workflow execution engine such as [toil] or [bpipe], instead it's a platform that triggers these engines and tracks their results.
 
 * Bee is not a platform as a service (PAAS) provider such as [DNA nexus], [Seven Briges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
 
