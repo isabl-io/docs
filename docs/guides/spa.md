@@ -73,10 +73,10 @@ You can configure the `window.$candy`.
 
 
 ```bash
-// To run end-to-end tests:
+# To run end-to-end tests
 yarn test:e2e
 
-// To run the unit tests:
+# To run the unit tests
 yarn test:unit
 ```
 
