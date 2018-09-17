@@ -57,13 +57,15 @@ Bee models a NGS data generation process where sequencing *Experiments* such as 
 
 * Bee is not a workflow execution engine such as [toil] or [bpipe], instead it's a platform that triggers these engines and tracks their results.
 
-* Bee is not a platform as a service (PAAS) provider such as [DNA nexus], [Seven Briges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
+* Bee is not a platform as a service (PAAS) provider such as [DNA nexus], [Seven Bridges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
 
-* Bee is not a workflow engine, instead the *Bioinformatics Applications* in bee only define mata-data driven validation and logic to build commands to trigger pipelines written in any language.
+* Bee is not a workflow engine, instead the *Bioinformatics Applications* in bee only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
 
 [data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=1102&h=484
 [infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=1101&h=625
 
 [dna nexus]: https://www.dnanexus.com
+[seven bridges]: https://www.sevenbridges.com
+[fire cloud]: https://software.broadinstitute.org/firecloud/
 [toil]: https://github.com/DataBiosphere/toil
 [bpipe]: https://github.com/ssadedin/bpipe
