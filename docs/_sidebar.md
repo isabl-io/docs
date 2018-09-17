@@ -4,7 +4,8 @@
     * [Operational Automations](tutorials/automation)
     * [Data Import](tutorials/import)
 
-* API Guide
+* [**API Guides**](guides/)
     * [CLI](guides/cli)
     * [Frontend](guides/spa)
     * [Backend](guides/api)
+    * [Cookiecutter](guides/cookiecutter)

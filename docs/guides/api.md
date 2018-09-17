@@ -38,18 +38,43 @@ Add django-bee's URL patterns:
 
 ```python
 urlpatterns = [
-    ...
+    ...  # your stuff goes here
+
+    # Bee backend URLs
     path("api/v1/", include('bee.urls.v1')),
-    ...
+
+    # Bee frontend will catch any other url pattern not specified before.
+    url(r"^.*", views.FrontendView.as_view(template_name="frontend.html"))
     ]
 ```
 
 Make sure you include this swagger setting:
 
 ```python
+# Todo only allow certain domains from where requests to the API will be made
+# unless we want the API fully open to any request from any site.
+CORS_ORIGIN_ALLOW_ALL = True
+
+# tags shouldn't care about case
+TAGGIT_CASE_INSENSITIVE = True
+
+# make sure nested filters are not documented in swagger
 SWAGGER_SETTINGS = {
     'DEFAULT_FILTER_INSPECTORS': ["bee.inspectors.ShortParamsInspector"]
-    }
+}
+
+# required custom serializer for registration
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'bee.serializers.CustomRegisterSerializer',
+}
+
+# user bee preferences
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "bee.serializers.CustomUserDetailsSerializer"
+}
+
+# custom bee adapter for django-allauth
+ACCOUNT_ADAPTER = "bee.adapters.DefaultAccountAdapterCustom"
 ```
 
 ## Run in Development
@@ -82,6 +107,7 @@ To run the API django app:
     GOOGLE_DRIVE_DIRECTORY_ID
     GOOGLE_CREDENTIAL_PATH
     GOOGLE_CLIENT_SECRET_FILE
+    FRONT_END_URL
 
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
 [cookiecutter-djangopackage]: https://github.com/pydanny/cookiecutter-djangopackage

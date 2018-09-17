@@ -2,11 +2,13 @@
 
 # Quick Start
 
-This tutorial will walk you through installation, data import and pipelines executions.
+This tutorial will walk you through:
 
-<!-- - You will learn to:
-    - [ ] Install system locally
-    - [ ] Create super user -->
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Create projects and participants](#create-projects-and-participants)
+- [Register samples and import data](#register-samples-and-import-data)
+- [Run applications and visualize results](#run-applications-and-visualize-results)
 
 ## Prerequisites
 
@@ -14,6 +16,12 @@ This tutorial will walk you through installation, data import and pipelines exec
 - [Virtualenvwrapper] and `python>=3.6` for the Command Line Interface.
 
 ## Installation
+
+This guide will install all infrastructure components (Backend, Frontend and Command Line Interface), if you want to use them separately please refer to the [guides](guide).
+
+?> Our project template is a proud fork of [cookiecutter-django]! Many topics from their [guide] are relevant to your project.
+
+<big>Web Application</big>
 
 First install [cookiecutter] and bootstrap your project:
 
@@ -40,19 +48,11 @@ You will need to create a new user before you can access the system:
 docker-compose run --rm django python manage.py createsuperuser
 ```
 
-Now visit your browser at http://localhost:8000/ and log in!
+Visit your browser at http://localhost:8000/ and log in!
 
-?> cookiecutter-bee is a proud fork of [cookiecutter-django]! Many topics from their [guide] are relevant to your project.
+<big>Command Line Client</big>
 
-## Create project
-
-## Add samples
-
-## Import data
-
-> **Ad:** Tired of typing long commands? Install [alie] and bring aliases to the future!
-
-Lets proceed to import data for the samples we just created. First install the client:
+Lastly, install the Command Line Client:
 
 ```bash
 mkvirtualenv -p python3 my_project     # optional but strongly recommended
@@ -61,7 +61,13 @@ pip3 install bee-cli                   # install bee client
 
 ?> **Note:** use `workon` to activate a virtual environment, deactivate with `deactivate`.
 
-Now download the test data, import it and retrieve paths from API:
+## Create projects and participants
+
+## Register samples and import data
+
+> **Ad:** Tired of typing long commands? Install [alie] and bring aliases to the future!
+
+Lets proceed to import data for the samples we just created. Download the test data, import it and retrieve paths from API:
 
 ```bash
 # TODO: download test data and reference genome
@@ -79,9 +85,7 @@ bee get_sequencing_data -fi research_id__startswith quick
 
 Note that data is stored in your home directory, learn about [CLI advanced configuration] to customize functionality.
 
-## Run alignment and pipelines
-
-## Visualize results
+## Run applications and visualize results
 
 ?> You can type <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the application.
 
