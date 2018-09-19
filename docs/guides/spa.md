@@ -45,12 +45,27 @@ You can configure the `window.$candy`.
     * Type: `String`
     * Default: `''`
 
+* `name`: custom app title that is shown in the top of the app.
+    * Type: `String`
+    * Default: `''`
+
+* `logo`: custom image path that is shown as the main logo of the app.
+    * Type: `String`
+    * Default: `''`
+
 ```html
 <script>
     window.$candy = {
         apiHost: "http://my.bee.api.host"
     }
 </script>
+```
+
+In case you're running your frontend instance in a different host that the backend, you should add these settings to your django project where the [api][django bee] is running:
+
+```python
+BEE_SETTINGS['URL_FRONTEND'] = "http://your-frontend-host.com"
+CORS_ORIGIN_WHITELIST = [BEE_SETTINGS['URL_FRONTEND']]
 ```
 
 ## Development

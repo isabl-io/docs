@@ -51,10 +51,6 @@ urlpatterns = [
 Make sure you include this swagger setting:
 
 ```python
-# Todo only allow certain domains from where requests to the API will be made
-# unless we want the API fully open to any request from any site.
-CORS_ORIGIN_ALLOW_ALL = True
-
 # tags shouldn't care about case
 TAGGIT_CASE_INSENSITIVE = True
 
@@ -107,7 +103,7 @@ To run the API django app:
     GOOGLE_DRIVE_DIRECTORY_ID
     GOOGLE_CREDENTIAL_PATH
     GOOGLE_CLIENT_SECRET_FILE
-    FRONT_END_URL
+    URL_FRONTEND
 
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
 [cookiecutter-djangopackage]: https://github.com/pydanny/cookiecutter-djangopackage
