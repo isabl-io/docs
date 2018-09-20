@@ -49,7 +49,7 @@ You can configure the `window.$candy`.
     * Type: `String`
     * Default: `''`
 
-* `logo`: custom image path that is shown as the main logo of the app.
+* `logo`: custom image path that is shown as the main logo of the app. Use a square size image for better display.
     * Type: `String`
     * Default: `''`
 
@@ -63,11 +63,10 @@ You can configure the `window.$candy`.
 </script>
 ```
 
-In case you're running your frontend instance in a different host that the backend, you should add these settings to your django project where the [api][django bee] is running:
+In case you're running your frontend instance in a different host that the backend, you should add this env variable to your django project where the [api][django bee] is running:
 
-```python
-BEE_SETTINGS['URL_FRONTEND'] = "http://your-frontend-host.com"
-CORS_ORIGIN_WHITELIST = [BEE_SETTINGS['URL_FRONTEND']]
+```bash
+export URL_FRONTEND="http://your-frontend-host.com"
 ```
 
 ## Development
