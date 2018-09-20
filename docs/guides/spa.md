@@ -56,7 +56,9 @@ You can configure the `window.$candy`.
 ```html
 <script>
     window.$candy = {
-        apiHost: "http://my.bee.api.host"
+        apiHost: "http://my.bee.api.host",
+        name: "My Cool App",
+        logo: "/path/to/my/awesome/logo"
     }
 </script>
 ```
