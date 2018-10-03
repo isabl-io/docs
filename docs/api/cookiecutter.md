@@ -1,16 +1,15 @@
 
 # isabl cookiecutter
 
-[![pypi badge][pypi_badge]][pypi_base]
 [![travis badge][travis_badge]][travis_base]
 
-[Cookiecutter-bee] is a template for the creation of [bee] projects.
+[isabl cookiecutter] is a template for the creation of [isabl] projects.
 
-!> [cookiecutter-bee] is a fork of [cookiecutter-django], please note that most of their [documentation] remains relevant! Also see [troubleshooting]. For reference, we forked out at commit [4258ba9].
+!> [isabl cookiecutter] is a fork of [cookiecutter-django], please note that most of their [documentation] remains relevant! Also see [troubleshooting]. For reference, we forked out at commit [4258ba9].
 
 ## Features
 
-* [Bee] out of the box
+* [isabl] out of the box
 * For Django 2.0 & Python 3.6
 * Renders a Django project with 100% starting test coverage
 * [12-Factor] based settings via [django-environ]
@@ -38,16 +37,14 @@
 This package is a proud fork of [cookiecutter-django]. If you have differences in your preferred setup, please fork this to create your own version. **New to django?** [Two Scoops of Django] is the best dessert-themed Django reference in the universe!
 
 <!-- local -->
-[bee]: https://isabl-io.github.io/docs/#/
-[cookiecutter-bee]: https://github.com/leukgen/cookiecutter-bee
+[isabl]: https://isabl-io.github.io/docs/#/
+[isabl cookiecutter]: https://github.com/isabl-io/cookiecutter
 [contributing guidelines]: .github/CONTRIBUTING.md
 [api guide]: https://isabl-io.github.io/docs/#/guides/cookiecutter
 
 <!-- badges -->
-[pypi_badge]: https://img.shields.io/pypi/v/cookiecutter-bee.svg
-[pypi_base]: https://pypi.python.org/pypi/cookiecutter-bee
-[travis_badge]: https://img.shields.io/travis/leukgen/cookiecutter-bee.svg
-[travis_base]: https://travis-ci.org/leukgen/cookiecutter-bee
+[travis_badge]: https://img.shields.io/travis/isabl-io/cookiecutter.svg
+[travis_base]: https://travis-ci.org/isabl-io/cookiecutter
 [4258ba9]: https://github.com/pydanny/cookiecutter-django/commit/4258ba9e2ddc822953e326f98f1f74842fa0fed1
 
 <!--  -->

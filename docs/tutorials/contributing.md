@@ -20,10 +20,12 @@ This tutorial will help you set up a **full Development environment** with all c
 
 ## RESTful API
 
+[![api issue badge][issue_api_badge]][issue_api_base]
+[![api pullr badge][pullr_api_badge]][pullr_api_base]
+
 <div style="text-align: right">
 
-[![api issue badge][issue_api_badge]][issue_api_base]
-[![api pullr badge][pullr_api_badge]][pullr_api_base]</div>
+</div>
 
 1. Clone locally:
 

@@ -6,7 +6,7 @@
 
 ## JIRA Integration
 
-Bee projects can bee linked to [JIRA]. From all [issue types], tickets are created as [epics] for 2 reasons: **1.** sequencing projects usually take couple of months to complete hence can be divided into multiple [sprints]; **2.** Epics enable the use of JIRA [boards]. In order to start using [JIRA] with bee, add the following configuration to your django settings:
+`isabl` projects can be linked to [JIRA]. From all [issue types], tickets are created as [epics] for 2 reasons: **1.** sequencing projects usually take couple of months to complete hence can be divided into multiple [sprints]; **2.** Epics enable the use of JIRA [boards]. In order to start using [JIRA] with isabl, add the following configuration to your django settings:
 
 ```python
 BEE_SETTINGS["JIRA_SETTINGS"] = {
@@ -16,9 +16,9 @@ BEE_SETTINGS["JIRA_SETTINGS"] = {
         "API2_URL": "https://my.jira.org",   # JIRA URL (required)
         "AUTH": (None, None),                # user username and password (required; don't include this in git!)
         "PROJECT_ID": "10200",               # JIRA project ID (required)
-        "URL_FIELD": "customfield_1",        # URL field id to update JIRA with bee's project URL
-        "PROJECT_FIELD": "customfield_2",    # Integer field id to update JIRA with bee's project primary key
-        "GROUP_FIELD": "customfield_3",      # String field id to update JIRA with bee's project group name
+        "URL_FIELD": "customfield_1",        # URL field id to update JIRA with isabl's project URL
+        "PROJECT_FIELD": "customfield_2",    # Integer field id to update JIRA with isabl's project primary key
+        "GROUP_FIELD": "customfield_3",      # String field id to update JIRA with isabl's project group name
         },
 }
 ```

@@ -29,8 +29,8 @@ First install [cookiecutter] and bootstrap your project:
 # cookiecutter is an utility that creates projects from templates
 pip install cookiecutter
 
-# now we bootstrap from bee's cookiecutter
-cookiecutter https://github.com/leukgen/cookiecutter-bee
+# now we bootstrap from the cookiecutter
+cookiecutter https://github.com/isabl-io/cookiecutter
 ```
 
 Lets proceed to build and run the application:
@@ -55,8 +55,8 @@ Visit your browser at http://localhost:8000/ and log in!
 Lastly, install the Command Line Client:
 
 ```bash
-mkvirtualenv -p python3 my_project     # optional but strongly recommended
-pip3 install bee-cli                   # install bee client
+mkvirtualenv -p python3 my_project       # optional but strongly recommended
+pip3 install isabl-cli                   # install client
 ```
 
 ?> **Note:** use `workon` to activate a virtual environment, deactivate with `deactivate`.
@@ -74,13 +74,13 @@ Lets proceed to import data for the samples we just created. Download the test d
 curl
 
 # import data for test samples
-bee import_data \
+isbl import_data \
     -di quick_start_data               `# provide data location ` \
     -fi research_id__startswith quick  `# filter samples to be imported ` \
     -id research_id                    `# match files with experiment's research id`
 
 # retrieve new data locations from api
-bee get_sequencing_data -fi research_id__startswith quick
+isbl get_sequencing_data -fi research_id__startswith quick
 ```
 
 Note that data is stored in your home directory, learn about [CLI advanced configuration] to customize functionality.
@@ -103,4 +103,4 @@ Note that data is stored in your home directory, learn about [CLI advanced confi
 [cookiecutter]: https://github.com/audreyr/cookiecutter
 [alie]: https://github.com/jsmedmar/alie
 [cookiecutter-django]: https://github.com/pydanny/cookiecutter-django
-[cookiecutter-bee]: https://github.com/leukgen/cookiecutter-bee
+[cookiecutter]: https://github.com/isabl-io/cookiecutter

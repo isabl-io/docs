@@ -24,7 +24,7 @@ Follow this steps to use [isabl-api] as a reusable django application.
         'allauth',
         'allauth.account',
         'taggit',
-        'bee'
+        'isabl_api'
         ...
     ]
     ```
@@ -51,21 +51,21 @@ Follow this steps to use [isabl-api] as a reusable django application.
 
     # make sure nested filters are not documented in swagger
     SWAGGER_SETTINGS = {
-        'DEFAULT_FILTER_INSPECTORS': ["bee.inspectors.ShortParamsInspector"]
+        'DEFAULT_FILTER_INSPECTORS': ["isabl_api.inspectors.ShortParamsInspector"]
     }
 
     # required custom serializer for registration
     REST_AUTH_REGISTER_SERIALIZERS = {
-        'REGISTER_SERIALIZER': 'bee.serializers.CustomRegisterSerializer',
+        'REGISTER_SERIALIZER': 'isabl_api.serializers.CustomRegisterSerializer',
     }
 
-    # user bee preferences
+    # user preferences
     REST_AUTH_SERIALIZERS = {
-        "USER_DETAILS_SERIALIZER": "bee.serializers.CustomUserDetailsSerializer"
+        "USER_DETAILS_SERIALIZER": "isabl_api.serializers.CustomUserDetailsSerializer"
     }
 
-    # custom bee adapter for django-allauth
-    ACCOUNT_ADAPTER = "bee.adapters.DefaultAccountAdapterCustom"
+    # custom adapter for django-allauth
+    ACCOUNT_ADAPTER = "isabl_api.adapters.DefaultAccountAdapterCustom"
 
     # required to support login in the browsable API
     REST_FRAMEWORK = {

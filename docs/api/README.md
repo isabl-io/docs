@@ -21,15 +21,15 @@ A Django reusable app with a fully featured RESTful API designed to support bioi
 - [Get started with a development environment in 10 minutes](tutorials/contributing)
 - [Check out the cookiecutter guide](api/cookiecutter)
 
-[codecov_badge]: https://codecov.io/gh/leukgen/django-bee/branch/master/graph/badge.svg
-[codecov_base]: https://codecov.io/gh/leukgen/django-bee
-[gitter_badge]: https://badges.gitter.im/leukgen/django-bee/Lobby.svg
-[gitter_base]: https://gitter.im/leukgen/django-bee
-[pypi_badge]: https://img.shields.io/pypi/v/django-bee.svg
-[pypi_base]: https://pypi.python.org/pypi/django-bee
-[pyup_badge]: https://pyup.io/repos/github/leukgen/django-bee/shield.svg
-[pyup_base]: https://pyup.io/repos/github/leukgen/django-bee/
-[travis_badge]: https://img.shields.io/travis/leukgen/django-bee/master.svg
-[travis_base]: https://travis-ci.org/leukgen/django-bee
+[codecov_badge]: https://codecov.io/gh/isabl-io/isabl_api/branch/master/graph/badge.svg
+[codecov_base]: https://codecov.io/gh/isabl-io/isabl_api
+[gitter_badge]: https://badges.gitter.im/isabl-io/isabl_api/Lobby.svg
+[gitter_base]: https://gitter.im/isabl-io/isabl_api
+[pypi_badge]: https://img.shields.io/pypi/v/isabl_api.svg
+[pypi_base]: https://pypi.python.org/pypi/isabl_api
+[pyup_badge]: https://pyup.io/repos/github/isabl-io/isabl_api/shield.svg
+[pyup_base]: https://pyup.io/repos/github/isabl-io/isabl_api/
+[travis_badge]: https://img.shields.io/travis/isabl-io/isabl_api/master.svg
+[travis_base]: https://travis-ci.org/isabl-io/isabl_api
 [black_badge]: https://img.shields.io/badge/code%20style-black-000000.svg
 [black_base]: https://github.com/ambv/black
