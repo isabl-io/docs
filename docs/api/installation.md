@@ -77,16 +77,6 @@ Follow this steps to use [isabl-api] as a reusable django application.
     }
     ```
 
-<!-- JIRA -->
-[jira]: https://www.atlassian.com/software/jira
-[issue types]: https://confluence.atlassian.com/adminjiracloud/issue-types-844500742.html
-[epics]: https://www.atlassian.com/agile/project-management/epics
-[sprints]: https://confluence.atlassian.com/jirasoftwarecloud/planning-sprints-764478112.html
-[boards]: https://confluence.atlassian.com/jirasoftwarecloud/what-is-a-board-764477964.html
-[project id]: https://confluence.atlassian.com/jirakb/how-to-get-project-id-from-the-jira-user-interface-827341414.html
-[custom fields]: https://confluence.atlassian.com/adminjiraserver/adding-a-custom-field-938847222.html
-[custom field id]: https://confluence.atlassian.com/jirakb/how-to-find-id-for-custom-field-s-744522503.html
-
 <!-- local -->
 [isabl-api]: https://github.com/isabl-io/api
 [10 minutes]: contributing
