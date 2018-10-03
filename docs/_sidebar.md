@@ -1,4 +1,8 @@
-* [**Tutorials**](tutorials/)
+* [**Overview**](README)
+
+<hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
+
+* [**Tutorials**](tutorials/quick_start)
     * [Quick Start](tutorials/quick_start)
     * [Writing new Applications](tutorials/apps)
     * [Operational Automations](tutorials/automation)
@@ -15,5 +19,10 @@
 <hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
 
 * [**CLI Guide**](cli/)
-    * [Frontend](guides/spa)
     * [Backend](guides/api)
+
+<hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
+
+* [**Web Guide**](web/)
+    * [Installation](web/installation)
+    * [Settings](web/settings)
