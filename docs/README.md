@@ -1,10 +1,10 @@
-# Bee
+# isabl
 
 > Bioinformatics operations at scale.
 
 ## What is it
 
-Bee is an open-source framework to conduct bioinformatics operations at scale. It addresses the need of entities such as research labs, sequencing centers, bioinformatics cores, molecular diagnostic enterprises and pharmaceuticals to manage their genomics capital and maximize the utilization of Next Generation Sequencing assets by providing them with a modular, opensource, plug-and-play infrastructure.
+`isabl` is an open-source framework to conduct bioinformatics operations at scale. It addresses the need of entities such as research labs, sequencing centers, bioinformatics cores, molecular diagnostic enterprises and pharmaceuticals to manage their genomics capital and maximize the utilization of Next Generation Sequencing assets by providing them with a modular, opensource, plug-and-play infrastructure.
 
 🚀 Get up and running in 10 minutes with our [quick start guide](tutorials/quick_start)!
 

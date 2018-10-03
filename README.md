@@ -1,7 +1,5 @@
-# Bee Guide
+# isabl docs
 
-This repo contains the documentation and guides for the [Bee Project].
+Documentation and guides for the [`isabl`] infrastructure.
 
-Guide is available here: https://leukgen.github.io/guide
-
-[Bee Project]: https://github.com/leukgen/django-bee
+[`isabl`]: https://isabl-io.github.io/docs

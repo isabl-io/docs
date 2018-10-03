@@ -1,5 +1,5 @@
 
-# cookiecutter-bee
+# isabl cookiecutter
 
 [![pypi badge][pypi_badge]][pypi_base]
 [![travis badge][travis_badge]][travis_base]
@@ -38,10 +38,10 @@
 This package is a proud fork of [cookiecutter-django]. If you have differences in your preferred setup, please fork this to create your own version. **New to django?** [Two Scoops of Django] is the best dessert-themed Django reference in the universe!
 
 <!-- local -->
-[bee]: https://leukgen.github.io/guide/#/
+[bee]: https://isabl-io.github.io/docs/#/
 [cookiecutter-bee]: https://github.com/leukgen/cookiecutter-bee
 [contributing guidelines]: .github/CONTRIBUTING.md
-[api guide]: https://leukgen.github.io/guide/#/guides/cookiecutter
+[api guide]: https://isabl-io.github.io/docs/#/guides/cookiecutter
 
 <!-- badges -->
 [pypi_badge]: https://img.shields.io/pypi/v/cookiecutter-bee.svg

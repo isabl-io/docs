@@ -1,6 +1,6 @@
 ![logo](_media/logo.png ':size=80x100')
 
-# bee guide <small>0.1.0</small>
+# isabl <small>0.1.0</small>
 
 [![api badge][api_badge]][api_base]
 [![cli badge][cli_badge]][cli_base]
@@ -12,12 +12,12 @@
 * Create and run bioinformatics applications at scale
 * Fully featured RESTful API and web application
 
-[GitHub](https://github.com/leukgen/django-bee/)
-[Get Started](#bee)
+[GitHub](https://github.com/isabl-io/)
+[Get Started](#isabl)
 
-[api_base]: https://img.shields.io/badge/bee-0.1.0-blue.svg
-[api_badge]: https://img.shields.io/badge/bee-0.1.0-blue.svg
+[api_base]: https://img.shields.io/badge/api-0.1.0-blue.svg
+[api_badge]: https://img.shields.io/badge/api-0.1.0-blue.svg
 [cli_base]: https://img.shields.io/badge/cli-0.1.0-blue.svg
 [cli_badge]: https://img.shields.io/badge/cli-0.1.0-blue.svg
-[spa_base]: https://img.shields.io/badge/candy-0.1.0-blue.svg
-[spa_badge]: https://img.shields.io/badge/candy-0.1.0-blue.svg
+[spa_base]: https://img.shields.io/badge/web-0.1.0-blue.svg
+[spa_badge]: https://img.shields.io/badge/web-0.1.0-blue.svg

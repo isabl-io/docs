@@ -1,4 +1,5 @@
 - Repos
-  - [👾 Backend](https://github.com/leukgen/django-bee)
-  - [🚀 Frontend](https://github.com/leukgen/django-bee)
-  - [🤖 CLI](https://github.com/leukgen/django-bee)
+  - [⚙️ api](https://github.com/isabel-io/api)
+  - [🚀 web](https://github.com/isabel-io/web)
+  - [🤖 cli](https://github.com/isabel-io/cli)
+  - [👾 apps](https://github.com/isabl-io/apps)
