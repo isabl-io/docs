@@ -2,7 +2,7 @@
 
 # Contributing
 
-This tutorial will help you set up a full development environment with all components of the `isabl` infrastructure.
+This tutorial will help you set up a **full Development environment** with all components of the `isabl` infrastructure.
 
 - [RESTful API](#restful-api)
     - [Create a superuser](#create-a-superuser)
@@ -28,6 +28,7 @@ This tutorial will help you set up a full development environment with all compo
 1. Clone locally:
 
         git clone git@github.com:isabl-io/api.git
+        cd api
 
 1. Build containers:
 
@@ -68,6 +69,7 @@ Since tests were run inside a container, we need to combine the coverages to see
 1. Clone locally:
 
         git clone git@github.com:isabl-io/cli.git
+        cd cli
 
 1. Install with pip, it is strongly recommended to install in a [virtual environment]:
 
@@ -93,6 +95,7 @@ Since tests were run inside a container, we need to combine the coverages to see
 1. Clone locally:
 
         git clone git@github.com:isabl-io/apps.git
+        cd apps
 
 1. Install with pip, please make sure the [client](#command-line-client) is installed in the same environment:
 
@@ -121,6 +124,7 @@ Since tests were run inside a container, we need to combine the coverages to see
 1. Clone locally:
 
         git clone git@github.com:isabl-io/web.git
+        cd web
 
 1. Install yarn:
 
@@ -128,7 +132,7 @@ Since tests were run inside a container, we need to combine the coverages to see
 
 1. Install dependencies:
 
-        yarn
+        yarn install
 
 1. Start the react development server:
 
@@ -175,11 +179,15 @@ Since tests were run inside a container, we need to combine the coverages to see
 
 1. Submit a pull request through the GitHub website.
 
-### Formatting python projects
+### Formatting projects
 
-Formatting with [black] is required for `api`, `cli` and `apps`, simply run:
+Python Projects are formatted with [black]. Is required for `api`, `cli` and `apps`, simply run:
 
     pip install black && black .
+
+Project `web` is formatted following the [Vue style guide][vue-style-guide]. For this one, simply run:
+
+    yarn lint
 
 ### Bumping version of PyPi
 
@@ -242,3 +250,4 @@ We use emojis to quickly categorize commits and pull requests. These are some co
 [virtualenvwrapper]: hhttps://virtualenvwrapper.readthedocs.io/en/latest/
 [zen of python]: https://www.python.org/dev/peps/pep-0020/#the-zen-of-python
 [docsify]: https://docsify.js.org/#/quickstart
+[vue-style-guide]: https://vuejs.org/v2/style-guide/
