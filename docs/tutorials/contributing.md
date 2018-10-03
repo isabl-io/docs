@@ -55,8 +55,8 @@ Now you can login in the frontend at http://localhost:8000 (there won't be much 
 
 Since tests were run inside a container, we need to combine the coverages to see the html report:
 
-        alias opencov="mv .coverage .coverage.tmp && coverage combine && coverage html && open htmlcov/index.html"
-        pip install coverage && opencov
+    alias opencov="mv .coverage .coverage.tmp && coverage combine && coverage html && open htmlcov/index.html"
+    pip install coverage && opencov
 
 ## Command Line Client
 
