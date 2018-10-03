@@ -1,4 +1,4 @@
-![logo](_media/logo.png ':size=80x100')
+![logo](_media/logo.png ':size=100x100')
 
 # isabl <small>0.1.0</small>
 
