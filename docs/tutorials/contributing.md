@@ -185,8 +185,8 @@ Formatting with [black] is required for `api`, `cli` and `apps`, simply run:
 
 Following the [semantic versioning] guidelines and  update the `VERSION` file before creating a PR, for instance:
 
-    echo v0.1.0 > isabel_api/VERSION
-    git add isabel_api/VERSION
+    echo v0.1.0 > isabl_api/VERSION
+    git add isabl_api/VERSION
     git commit -m ":gem: bump to version 0.1.0"
 
 ### Emoji reference
@@ -218,15 +218,15 @@ We use emojis to quickly categorize commits and pull requests. These are some co
 [issue_web_badge]: https://img.shields.io/github/issues/isabl-io/web.svg
 [issue_web_base]: https://github.com/isabl-io/docs/issues
 [pullr_api_badge]: https://img.shields.io/github/issues-pr/isabl-io/api.svg
-[pullr_api_base]: https://github.com/isabel-io/api/compare
+[pullr_api_base]: https://github.com/isabl-io/api/compare
 [pullr_apps_badge]: https://img.shields.io/github/issues-pr/isabl-io/apps.svg
-[pullr_apps_base]: https://github.com/isabel-io/apps/compare
+[pullr_apps_base]: https://github.com/isabl-io/apps/compare
 [pullr_cli_badge]: https://img.shields.io/github/issues-pr/isabl-io/cli.svg
-[pullr_cli_base]: https://github.com/isabel-io/cli/compare
+[pullr_cli_base]: https://github.com/isabl-io/cli/compare
 [pullr_web_badge]: https://img.shields.io/github/issues-pr/isabl-io/web.svg
-[pullr_web_base]: https://github.com/isabel-io/web/compare
+[pullr_web_base]: https://github.com/isabl-io/web/compare
 [pullr_docs_badge]: https://img.shields.io/github/issues-pr/isabl-io/docs.svg
-[pullr_docs_base]: https://github.com/isabel-io/docs/compare
+[pullr_docs_base]: https://github.com/isabl-io/docs/compare
 
 <!-- links -->
 [coverage]:https://coverage.readthedocs.io
