@@ -59,7 +59,7 @@ This project is not a:
 
 * workflow execution engine such as [toil] or [bpipe], instead it's a platform that triggers these engines and tracks their results.
 * platform as a service (PAAS) provider such as [DNA nexus], [Seven Bridges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
-* workflow engine, instead the *Bioinformatics Applications* in `isabl` only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
+* workflow language, instead the *Bioinformatics Applications* in `isabl` only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
 
 [data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=1102&h=484
 [infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=1101&h=625
