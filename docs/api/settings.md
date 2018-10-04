@@ -9,7 +9,7 @@
 `isabl` projects can be linked to [JIRA]. From all [issue types], tickets are created as [epics] for 2 reasons: **1.** sequencing projects usually take couple of months to complete hence can be divided into multiple [sprints]; **2.** Epics enable the use of JIRA [boards]. In order to start using [JIRA] with isabl, add the following configuration to your django settings:
 
 ```python
-BEE_SETTINGS["JIRA_SETTINGS"] = {
+ISABL_SETTINGS["JIRA_SETTINGS"] = {
     "<group_primary_key>": { ... },          # custom per group JIRA server configuration, see `default`
     "active": False,                         # toggle to activate/deactivate the integration
     "default": {                             # default jira server config (required)

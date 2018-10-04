@@ -28,3 +28,5 @@ To manually consume the app:
     </body>
 </html>
 ```
+
+Custom settings are passed to the web app through the `window.$isabl` object. See [settings](web/settings)
