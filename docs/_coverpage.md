@@ -1,6 +1,6 @@
 ![logo](_media/logo.png ':size=100x100')
 
-# isabl <small>0.1.0</small>
+# isabl <small>🚧 work in progress! </small>
 
 [![api badge][api_badge]][api_base]
 [![cli badge][cli_badge]][cli_base]

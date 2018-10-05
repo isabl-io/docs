@@ -7,6 +7,7 @@
     * [Writing new Applications](tutorials/apps)
     * [Operational Automations](tutorials/automation)
     * [Data Import](tutorials/import)
+    * [Production Deployment](tutorials/deployment)
     * [Contributing Guide](tutorials/contributing)
 
 <hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
