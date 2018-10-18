@@ -12,7 +12,7 @@ Single Page Application that provides a cripsy user experience for:
 
 * Search, browse and inspect information from the existing models in the database: `Projects`, `Analyses`, `Individuals`, `Samples`, `Experiments`, `Submissions`.
 * Submission of excel files to create metadata for individuals/samples/experiments by batch.
-* Visualize in a Graph Tree the relatiopnships between individuals/samples/experiments.
+* Visualize in a Graph Tree the relationships between individuals/samples/experiments.
 * Track analyses and visualize results.
 * Use third-party services like JIRA that are integrated in the User Interface.
 * Authenticated role-based access control to create, view, edit and customize information.
