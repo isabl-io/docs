@@ -1,6 +1,6 @@
 # Register new Applications
 
-`isabl` platform is agnostic of the applications you run to perform analysis to your data. In a sense that you can register any application that is accessible to run in your system, and configure `isabl-cli` to run it and track every time the application is run on the samples.
+`isabl` platform is agnostic of the applications you run to perform analysis to your data. In a sense that you can register any application that is accessible to run in your system, and configure `isabl-cli` to execute it, track its status and index the results.
 
 With `isabl-cli`, applications can be run seamlessly for projects and cohorts of samples with simple commands. And `isabl` will take care of:
 
