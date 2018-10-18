@@ -20,7 +20,8 @@
 <hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
 
 * [**CLI Guide**](cli/)
-    * [Backend](guides/api)
+    * [Register new applications](cli/applications)
+    * [Create a custom Isabl CLI](cli/customization)
 
 <hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
 

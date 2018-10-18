@@ -18,7 +18,6 @@ The cookiecutter prompts for some configuration settings, if you choose to name 
 
 ```bash
 pip install -r requirements.txt
-
 my_awesome_cli --help
 ```
 
@@ -101,7 +100,7 @@ The `_DEFAULTS` dictionary in [`isabl_cli.settings`] contains the values that ca
     * Default: `None`
 
 
-### Types of Settings {docsify-ignore}
+> ### Types of Settings {docsify-ignore}
 
 >* **String**: a regular `string`.
 

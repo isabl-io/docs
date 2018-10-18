@@ -12,7 +12,12 @@ Command Line Client and SDK for the [isabl] infrastructure.
 ## Features {docsify-ignore}
 
 * Command to import data into the file system, while linking it to the database models, and trigger automated analysis workflows.
-
+* NGS Assets Management (Permissions, Storage, Tracking)
+* Automated execution and tracking of bioinformatics applications
+* Project and patient level results automerge
+* Operational automations on data import and analyses status change
+* Dynamic retrieval of data and results using versatile queries
+* Fully featured SDK for postprocessing analyses
 
 ## Guides {docsify-ignore}
 
