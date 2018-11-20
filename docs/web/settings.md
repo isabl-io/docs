@@ -14,12 +14,58 @@ You can configure the `window.$isabl` with the following parameters:
     * Type: `String`
     * Default: ![logo](../_media/logo.png ':size=18x18')
 
+* `jira`: activate the jira card in the projects view. If the jira endpoint is available from the api, it will show the current tickets for each project.
+    * Type: `Boolean`
+    * Default: false
+
+* `customFields`: every detail info for each model shown in the frontend can be customized, by overwritting the specific key of a fields object. Available fields can be seen [here](). Learn more on how to create [custom fields]().
+
 ```html
 <script>
+
+    const customFields = {
+        // overwrite 2 of the fields of the analysis panel
+        analysisFields: {
+            // Add a new formatter for status
+            status: {
+                section: 'Analysis Details',
+                verboseName: 'Status',
+                field: 'status',
+                formatter: value => {
+                    if (value === 'SUCEEDED') {
+                        return 'DONE!'
+                    } else if (value === 'FAILED') {
+                        return 'OOPS...'
+                    } else {
+                        return value
+                    }
+                }
+            },
+            // Make notes not editable
+            notes: {
+                section: 'Analysis Details',
+                verboseName: 'Notes',
+                field: 'notes',
+                editable: false
+            }
+        },
+        // display a new custom field for project that exist in the db.
+        // Use http://<api-host>/admin/ to create custom fields.
+        projectFields: {
+            section: 'Project Details',
+            verboseName: 'IRB Consent',
+            field: 'custom_fields.irb_consent',
+            editable: true,
+            apiPermission: 'change_project'
+        }
+    }
+
     window.$isabl = {
         apiHost: "http://my.isabl.api.host",
         name: "My Cool App",
-        logo: "/path/to/my/awesome/logo"
+        logo: "/path/to/my/awesome/logo",
+        jira: true,
+        customFields
     }
 </script>
 ```
