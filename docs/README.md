@@ -1,14 +1,12 @@
 !> **Attention** Work in progress! repos will be released after publication 🚧
 
-# isabl
+# Isabl
 
-> Bioinformatics operations at scale.
+Isabl is an open source plug-n-play framework for scalable bioinformatics operations with support for metadata management and automated data processing. It is composed of an individual-centric and extensible relational database (Isabl-db), a comprehensive RESTful API (Isabl-api), a Command Line Client (Isabl-cli), and a front end single page web application (Isabl-web).
 
-## What is it
+## Quick Start
 
-`isabl` is an open-source framework to conduct bioinformatics operations at scale. It addresses the need of entities such as research labs, sequencing centers, bioinformatics cores, molecular diagnostic enterprises and pharmaceuticals to manage their genomics capital and maximize the utilization of Next Generation Sequencing assets by providing them with a modular, opensource, plug-and-play infrastructure.
-
-🚀 Get up and running in 10 minutes with our [quick start guide](tutorials/quick_start)!
+Take a tour with our 10 minutes [quick start guide](tutorials/quick_start)!
 
 ## Features
 
@@ -55,19 +53,31 @@
 
 ![data model]
 
-## What isabl is not
+## Similar projects
+
+* [The Genome Modeling System]
+* [SeqWare]
+* [QuickNGS]
+* [HTS-flow]
+
+## What Isabl is not
 
 This project is not a:
 
-* workflow execution engine such as [toil] or [bpipe], instead it's a platform that triggers these engines and tracks their results.
-* platform as a service (PAAS) provider such as [DNA nexus], [Seven Bridges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
+* Workflow Management System such as [toil], [bpipe], istead Isabl facilitates automated deployment and databasing of data processing pipelines.
+* Platform as a Service (PAAS) provider such as [DNA nexus], [Seven Bridges] or [Fire Cloud], instead an information system that could potentially feed in metadata and data to these services.
+* A Server Workbench such as [Galaxy] or Pegasus, instead of being configuration friendly, Isabl is designed to conduct systematic analyses automatedly and in a standardized way with as little human input as possible.
 * workflow language, instead the *Bioinformatics Applications* in `isabl` only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
 
-[data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=1102&h=484
-[infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=1101&h=625
-
-[dna nexus]: https://www.dnanexus.com
-[seven bridges]: https://www.sevenbridges.com
-[fire cloud]: https://software.broadinstitute.org/firecloud/
-[toil]: https://github.com/DataBiosphere/toil
 [bpipe]: https://github.com/ssadedin/bpipe
+[data model]: https://docs.google.com/drawings/d/e/2PACX-1vTfH_lsxbY2RtIS56F_r3FFQEdC1JghHWU5HWG3J5-TLo59FMKuFWIgBaHdJaNO1L-2muoVLIPxWFwg/pub?w=1102&h=484
+[dna nexus]: https://www.dnanexus.com
+[fire cloud]: https://software.broadinstitute.org/firecloud/
+[galaxy]: https://usegalaxy.org/
+[hts-flow]: https://github.com/arnaudceol/htsflow
+[infrastructure]: https://docs.google.com/drawings/d/e/2PACX-1vQF28gk8NrZ8nZXi7w8trxHWZRc-j-hWYec3UWdNbXY1WAgT8SNMIZX3B5KEaQ7iEPVzpfj2HAmIpwu/pub?w=1101&h=625
+[quickngs]: http://bifacility.uni-koeln.de/quickngs/web/
+[seqware]: https://seqware.github.io/
+[seven bridges]: https://www.sevenbridges.com
+[the genome modeling system]: https://github.com/genome/gms
+[toil]: https://github.com/DataBiosphere/toil
