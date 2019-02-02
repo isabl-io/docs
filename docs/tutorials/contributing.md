@@ -1,20 +1,20 @@
-<div style="text-align: right"> ⏱ **tutorial time**: 20 minutes </div>
+<div style="text-align: right"> ⏱ <b>tutorial time:</b> 20 minutes </div>
 
 # Contributing
 
 This tutorial will help you set up a **full Development environment** with all components of the `isabl` infrastructure.
 
 - [RESTful API](#restful-api)
-    - [Create a superuser](#create-a-superuser)
-    - [Coverage report](#coverage-report)
+  - [Create a superuser](#create-a-superuser)
+  - [Coverage report](#coverage-report)
 - [Command Line Client](#command-line-client)
 - [Applications](#applications)
 - [Frontend](#frontend)
 - [Documentation](#documentation)
 - [Contribute with Github](#contribute-with-github)
-    - [Formatting python projects](#formatting-python-projects)
-    - [Bumping version of PyPi](#bumping-version-of-pypi)
-    - [Emoji reference](#emoji-reference)
+  - [Formatting projects](#formatting-projects)
+  - [Bumping version of PyPi](#bumping-version-of-pypi)
+  - [Emoji reference](#emoji-reference)
 
 ?> 📘 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. `isabl` could always use more documentation, whether as part of the READMES, in docstrings, or even on the web in blog posts articles, and such. Also, bet you've read the [Zen Of Python].
 
