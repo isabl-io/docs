@@ -20,6 +20,7 @@ A Django reusable app with a fully featured RESTful API designed to support bioi
 - [Install as a Django reusable application](api/installation)
 - [Get started with a development environment in 10 minutes](tutorials/contributing)
 - [Check out the cookiecutter guide](api/cookiecutter)
+- [How to query with filters](cli/filters)
 
 [codecov_badge]: https://codecov.io/gh/isabl-io/isabl_api/branch/master/graph/badge.svg
 [codecov_base]: https://codecov.io/gh/isabl-io/isabl_api

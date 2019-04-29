@@ -16,6 +16,7 @@
     * [Installation](api/installation)
     * [Settings](api/settings)
     * [Cookiecutter](api/cookiecutter)
+    * [Filters and Schema](api/filters)
 
 <hr style="height: 5px; border: 0px solid #D6D6D6; border-top-width: 1px;" />
 
