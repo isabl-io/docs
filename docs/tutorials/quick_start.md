@@ -1,6 +1,6 @@
 <div style="text-align: right"> ⏱ <b>tutorial time:</b> 10 minutes </div>
 
-# Quick Start
+# 10 minutes to Isabl
 
 Welcome to Isabl's 10 minute demo. This tutorial will walk you through:
 
