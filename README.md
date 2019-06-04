@@ -1,6 +1,8 @@
 # Overview
 
-Isabl is an open source plug-n-play framework for scalable bioinformatics operations with support for metadata management and automated data processing. It is composed of an individual-centric and extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-api\), a Command Line Client \(Isabl-cli\), and a front end single page web application \(Isabl-web\).
+Isabl is a plug-and-play open-source framework for scalable bioinformatics operations designed to support automated processing and management of NGS assets and their metadata. Isabl's patient centric model enables advanced integrations with multinomial data types and linkage to other institutional information systems such as clinical databases and visualization interfaces.
+
+![It is composed of an extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-API\), a Command Line Client \(Isabl-CLI\), and a front end single page web application \(Isabl-web\)](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
 
 ### Quick Start
 
