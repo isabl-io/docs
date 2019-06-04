@@ -3,4 +3,5 @@
 * [Overview](README.md)
 * [Quick Start](quick-start.md)
 * [Register Metadata](data-model.md)
+* [Import Data](import-data.md)
 
