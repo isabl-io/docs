@@ -4,9 +4,7 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
 
 ![It is composed of an extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-API\), a Command Line Client \(Isabl-CLI\), and a front end single page web application \(Isabl-web\)](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
 
-### Quick Start
-
-Take a tour with our 10 minutes [quick start guide](quick-start.md)! 
+{% page-ref page="quick-start.md" %}
 
 ### Features
 
@@ -23,10 +21,10 @@ Take a tour with our 10 minutes [quick start guide](quick-start.md)!
 
   * NGS Assets Management \(Permissions, Storage, Tracking\)
   * Automated execution and tracking of bioinformatics applications
-  * Project and patient level results automerge
+  * Project and patient level results auto-merge
   * Operational automations on data import and analyses status change
   * Dynamic retrieval of data and results using versatile queries
-  * Fully featured SDK for postprocessing analyses
+  * Fully featured SDK for post-processing analyses
 
 * 🚀 **Web Application**
 
@@ -34,7 +32,7 @@ Take a tour with our 10 minutes [quick start guide](quick-start.md)!
   * Analyses tracking and results visualization
   * Flexibility to edit and customize models
   * Batch creation of metadata by excel file submission
-  * Single Page Application that provides a cripsy user experience
+  * Single Page Application that provides a crispy user experience
   * Possibility to integrate third-party services like JIRA
 
 * ✅ **Plug-n-play and reliable codebase**
@@ -45,10 +43,10 @@ Take a tour with our 10 minutes [quick start guide](quick-start.md)!
 
 ### Similar projects
 
-* [The Genome Modeling System](https://github.com/genome/gms)
-* [SeqWare](https://seqware.github.io/)
-* [QuickNGS](http://bifacility.uni-koeln.de/quickngs/web/)
-* [HTS-flow](https://github.com/arnaudceol/htsflow) a framework for the management and analysis of NGS data.
+* [The Genome Modeling System](https://github.com/genome/gms) _Genome Institute at Washington University platform._
+* [SeqWare](https://seqware.github.io/) _analyze massive genomics datasets._
+* [QuickNGS](http://bifacility.uni-koeln.de/quickngs/web/) _efficient high-throughput data analysis of Next-Generation Sequencing data._
+* [HTS-flow](https://github.com/arnaudceol/htsflow) _a framework for the management and analysis of NGS data._
 
 ### What Isabl is not
 
