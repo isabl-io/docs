@@ -64,7 +64,7 @@ Visit your browser at http://localhost:8000/ and log in!
 
 Creating a project in Isabl is as simple as adding a title. You can also specify optional fields:
 
-**GIF TODO** <!-- ![create project gif](../_media/gifs/create_project.gif) -->
+**GIF TODO** <!-- ![create project gif](../_media/create_project.gif) -->
 
 ## Register samples
 
@@ -78,7 +78,7 @@ demo-cli python3.6 assets/metadata/create_choices.py
 
 Proceed to add samples from the frontend:
 
-**GIF TODO** <!-- ![create project gif](../_media/gifs/add_samples.gif) -->
+**GIF TODO** <!-- ![create project gif](../_media/add_samples.gif) -->
 
 We can also review metadata at the command line:
 
