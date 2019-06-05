@@ -51,6 +51,10 @@ Isabl is a modular infrastructure with four main components: \(1\) an individual
 
 RESTful API capabilities are documented with Swagger \([https://swagger.io](https://swagger.io)\) and Redoc \([https://github.com/Rebilly/ReDoc](https://github.com/Rebilly/ReDoc)\) following OpenAPI specifications \([https://www.openapis.org](https://www.openapis.org/)\). Importantly, Isabl's metadata infrastructure is decoupled and agnostic of compute and data storage environments \(e.g. local, cluster, cloud\). This functionality separates dependencies and fosters interoperability across compute environments.
 
+![](https://docs.google.com/drawings/d/e/2PACX-1vTLYVgPubPSlSgyUahpZ3fOT-p9lmrMet5qCl1klS2VzEnFIE4zLW0WK3cDZaCgAmwcsa3Ta-J9ujdG/pub?w=889&h=667)
+
+
+
 ### Data Model
 
 **I**sabl's relational model maps workflows for data provenance, processing, and governance. Metadata is captured across the following thematic categories: \(1\) project, individual and sample level attributes; \(2\) sequencing data properties including experimental technique, sequencing technology, and related parameters \(e.g. read length\); \(3\) analytical workflows to include a complete audit trail of versioned algorithms, related execution parameters, reference files, analyses status tracking, and results deposition; \(4\) data governance information for management of system and data  access across stakeholders.
