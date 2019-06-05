@@ -1,3 +1,7 @@
+---
+description: 'Features summary, infrastructure overview, and why Isabl.'
+---
+
 # Home
 
 Isabl is a plug-and-play open-source framework for scalable bioinformatics operations designed to support automated processing and management of NGS assets and their metadata. Isabl's patient centric model enables advanced integrations with multinomial data types and linkage to other institutional information systems such as clinical databases and visualization interfaces.
@@ -41,11 +45,15 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
 
 ### Infrastructure
 
-It is composed of an extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-API\), a Command Line Client \(Isabl-CLI\), and a front end single page web application \(Isabl-web\).
+Isabl is a modular infrastructure with four main components: \(1\) an individual-centric and extensible relational database \(Isabl-db\); \(2\) a comprehensive RESTful API \(Isabl-api\) used to support integration with data processing environments and enterprise systems \(e.g. clinical databases, visualization platforms\); \(3\) a Command Line Client \(CLI; Isabl-cli\) used to manage NGS assets and deploy bioinformatics applications; \(4\) a front end single page web application \(Isabl-web\) with system wide queries enabled. 
 
 ![Isabl Infrastructure](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
 
+RESTful API capabilities are documented with Swagger \([https://swagger.io](https://swagger.io)\) and Redoc \([https://github.com/Rebilly/ReDoc](https://github.com/Rebilly/ReDoc)\) following OpenAPI specifications \([https://www.openapis.org](https://www.openapis.org/)\). Importantly, Isabl's metadata infrastructure is decoupled and agnostic of compute and data storage environments \(e.g. local, cluster, cloud\). This functionality separates dependencies and fosters interoperability across compute environments.
+
 ### Data Model
+
+**I**sabl's relational model maps workflows for data provenance, processing, and governance. Metadata is captured across the following thematic categories: \(1\) project, individual and sample level attributes; \(2\) sequencing data properties including experimental technique, sequencing technology, and related parameters \(e.g. read length\); \(3\) analytical workflows to include a complete audit trail of versioned algorithms, related execution parameters, reference files, analyses status tracking, and results deposition; \(4\) data governance information for management of system and data  access across stakeholders.
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vTG3QBMOtwM5DhpFG07iQFj0SA0J7CE4e8Xd3ZJcpJy24EiDu9HbGomqslNFgqV3rauJ-z_VU-SY-ja/pub?w=1305&h=791)
 
