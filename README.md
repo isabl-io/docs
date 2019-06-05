@@ -1,8 +1,6 @@
-# Overview
+# Home
 
 Isabl is a plug-and-play open-source framework for scalable bioinformatics operations designed to support automated processing and management of NGS assets and their metadata. Isabl's patient centric model enables advanced integrations with multinomial data types and linkage to other institutional information systems such as clinical databases and visualization interfaces.
-
-![It is composed of an extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-API\), a Command Line Client \(Isabl-CLI\), and a front end single page web application \(Isabl-web\)](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
 
 {% page-ref page="quick-start.md" %}
 
@@ -40,6 +38,35 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
   * The Command Line Interface is a portable pip installable package
   * Continuously Integrated with +98 % coverage across all codebase
   * isabl is upgradable, no need to fork out from codebase
+
+### Infrastructure
+
+It is composed of an extensible relational database \(Isabl-db\), a comprehensive RESTful API \(Isabl-API\), a Command Line Client \(Isabl-CLI\), and a front end single page web application \(Isabl-web\).
+
+![Isabl Infrastructure](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
+
+### Data Model
+
+![](https://docs.google.com/drawings/d/e/2PACX-1vTG3QBMOtwM5DhpFG07iQFj0SA0J7CE4e8Xd3ZJcpJy24EiDu9HbGomqslNFgqV3rauJ-z_VU-SY-ja/pub?w=1305&h=791)
+
+### Why Isabl
+
+Isabl ensures that all bioinformatics operations follow the DATA reproducibility checklist \(Documentation, Automation, Traceability, and Autonomy\), whilst guarantees that assets are managed according to the FAIR principles \(Findable, Interoperable, Accessible, Reusable\).
+
+![](https://docs.google.com/drawings/d/e/2PACX-1vRCagXfy-ubxEHKL3GOSTTEGE1g9hWk1Ic0yTx3tWsBJHWSIfO5Y2Hcu0wTeBtb3mA1DeEXKw4c1fBd/pub?w=1216&h=810)
+
+Here are some reasons why you may want to use Isabl:
+
+* You don't have a +10 engineers group but do have hundreds of samples
+* You'll rather not have your data managed by postdocs, PhD students
+* Crosslink samples from different cohorts
+* Answer new questions using existing data
+* Full log and audit trail of your informatics operations
+* Automatically merge results as new samples are added to big cohorts
+* You want to have programmatic access to the entire data capital
+* Seamlessly run reproducible pipelines across your projects
+
+{% embed url="https://www.youtube.com/watch?v=L1JhVqZ3oBY" %}
 
 ### Similar projects
 
