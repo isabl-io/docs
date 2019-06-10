@@ -231,6 +231,18 @@ Let's get some stats for our experiments with a quality control [application](ht
 isabl apps-grch37 qc-data-0.1.0 -fi identifier.icontains demo --commit
 ```
 
+This quality control application has defined logic to merge results at a project and individual level. Upon completion of analyses execution, Isabl automatically runs the auto-merge logic:
+
+![A short message is displayed at the end of the run indicating merge analyses are being run.](.gitbook/assets/image%20%281%29.png)
+
+Isabl-web can render multiple types of results, in this case we will check at HTML reports. Results for our `qc-data` application are available at an _experiment_, _individual_, and _project_ level. In this example we are looking at the _project-level_ auto-merge analysis:
+
+![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web_project_level_analysis.gif)
+
+{% hint style="info" %}
+[Applications](writing-applications.md) can define any custom logic to merge analyses.
+{% endhint %}
+
 ### Multi-experiment Analyses
 
 Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example [this implementation of _Strelka_](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl_apps/apps/strelka/apps.py#L15) uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, let's try:
@@ -253,24 +265,6 @@ You can retrieve registered results for the analysis, for instance the _indels_ 
 isabl get-results -fi name STRELKA --result-key indels
 ```
 
-This quality control application has defined logic to merge results at a project and individual level. Upon completion of analyses execution, Isabl automatically runs the auto-merge logic:
-
-![A short message is displayed at the end of the run indicating merge analyses are being run.](.gitbook/assets/image%20%281%29.png)
-
-Isabl-web can render multiple types of results, in this case we will check at HTML reports. Results for our `qc-data` application are available at an _experiment_, _individual_, and _project_ level. In this example we are looking at the _project-level_ auto-merge analysis:
-
-![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web_project_level_analysis.gif)
-
-{% hint style="info" %}
-[Applications](writing-applications.md) can define any custom logic to merge analyses.
-{% endhint %}
-
-```bash
-isabl get-outdirs -fi name STRELKA
-```
-
-Lastly, lets check the indels VCFs through the web portal:
-
 {% hint style="info" %}
 To find out what other results are available use: 
 
@@ -284,6 +278,12 @@ isabl get-results --app-results 5
 {% endhint %}
 
 Furthermore, you can get paths for any instance in the database using `get-paths`:
+
+```bash
+isabl get-outdirs -fi name STRELKA
+```
+
+Lastly, lets check the indels VCFs through the web portal:
 
 ![](.gitbook/assets/web_visualize_vcf.gif)
 
