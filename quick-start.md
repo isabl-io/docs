@@ -55,7 +55,7 @@ You can type `demo-compose down` to stop the application.
 You will need to create a new user before you can access the system:
 
 ```bash
-demo-django createsuperuser
+demo-django createsuperuser --username admin --email admin@mskcc.org
 ```
 
 Visit your browser at [http://localhost:8000/](http://localhost:8000/) and log in!
