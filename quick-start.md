@@ -4,7 +4,7 @@ description: '⏱ tutorial time: 10 minutes'
 
 # Quick Start
 
-Welcome to Isabl's 10 minute demo. This tutorial will walk you through installation, meta data registration, data import, and automated data processing.
+Welcome to the _10 Minutes to Isabl_ guide! This tutorial will walk you through installation, meta data registration, data import, and automated data processing.
 
 ### Prerequisites
 
@@ -35,14 +35,14 @@ demo-compose build
 Now we can run the application in the background:
 
 ```bash
-demo-compose -d up
+demo-compose up -d
 ```
 
 {% hint style="info" %}
 You can type `demo-compose down` to stop the application.
 {% endhint %}
 
-You will need to create a new user before you can access the system, on a new console run:
+You will need to create a new user before you can access the system:
 
 ```bash
 demo-django createsuperuser
@@ -58,7 +58,7 @@ Visit your browser at [http://localhost:8000/](http://localhost:8000/) and log i
 
 Creating a project in Isabl is as simple as adding a title. You can also specify optional fields:
 
-**GIF TODO** 
+![Hover over the menu and click in the + icon to add a new project.](.gitbook/assets/web_create_project.gif)
 
 ### Register samples
 
@@ -72,9 +72,19 @@ demo-cli python3.6 assets/metadata/create_choices.py
 New options can also be easily created using the admin site: [http://localhost:8000/admin/](http://localhost:8000/admin/)
 {% endhint %}
 
-Proceed to add samples from the frontend:
+We will use _Excel submissions_ to register samples through the web interface. To do so, the demo project comes with a pre-filled metadata form available at:
 
-**GIF TODO** 
+```bash
+open assets/metadata/demo_submission.xlsm
+```
+
+{% hint style="info" %}
+When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. By the way, Isabl has multiple mechanisms for metadata ingestion! Learn more [here](data-model.md).
+{% endhint %}
+
+Now let's proceed to submit this excel form:
+
+![Click the + icon on the project panel header to add new samples.](.gitbook/assets/web_submit_form.gif)
 
 We can also review metadata at the command line:
 
@@ -86,7 +96,7 @@ isabl get-metadata experiments --fx
 Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
 {% endhint %}
 
-### Index reference data
+### **Import** reference data
 
 Given that `isabl-cli` will move our test data, let's copy original assets into a _staging_ directory:
 
@@ -202,7 +212,7 @@ Applications can define any custom logic to merge analyses.
 
 ### Multi-experiment analyses
 
-Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example this implementation of strelka uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, lets try:
+Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example this implementation of strelka uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, let's try:
 
 ```bash
 isabl get-metadata experiments -f system_id
