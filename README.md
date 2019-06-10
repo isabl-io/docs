@@ -47,7 +47,7 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
 
 Isabl is a modular infrastructure with four main components: \(1\) an individual-centric and extensible relational database \(Isabl-db\); \(2\) a comprehensive RESTful API \(Isabl-api\) used to support integration with data processing environments and enterprise systems \(e.g. clinical databases, visualization platforms\); \(3\) a Command Line Client \(CLI; Isabl-cli\) used to manage NGS assets and deploy bioinformatics applications; \(4\) a front end single page web application \(Isabl-web\) with system wide queries enabled. 
 
-![Isabl Infrastructure](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
+![Isabl is composed of a patient centric relational model, a web-based metadata architecture, and a command line client.](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=998&h=712)
 
 RESTful API capabilities are documented with Swagger \([https://swagger.io](https://swagger.io)\) and Redoc \([https://github.com/Rebilly/ReDoc](https://github.com/Rebilly/ReDoc)\) following OpenAPI specifications \([https://www.openapis.org](https://www.openapis.org/)\). Importantly, Isabl's metadata infrastructure is decoupled and agnostic of compute and data storage environments \(e.g. local, cluster, cloud\). This functionality separates dependencies and fosters interoperability across compute environments.
 

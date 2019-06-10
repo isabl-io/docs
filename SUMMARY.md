@@ -8,5 +8,6 @@
 * [Operational Automations](operational-automations.md)
 * [Writing Applications](writing-applications.md)
 * [Production Deployment](production-deployment.md)
+* [Isabl Settings](isabl-settings.md)
 * [Contributing Guide](contributing-guide.md)
 
