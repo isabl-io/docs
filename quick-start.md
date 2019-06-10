@@ -15,7 +15,7 @@ Welcome to the _10 Minutes to Isabl_ guide! This tutorial will walk you through 
 Let's start by clone the demo:
 
 ```bash
-git clone https://github.com/isabl-io/demo.git && cd demo
+git clone https://github.com/isabl-io/demo.git --recurse-submodules && cd demo
 ```
 
 Next, source a simple initiation profile:
