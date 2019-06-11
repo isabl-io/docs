@@ -1,8 +1,49 @@
 # Production Deployment
 
-{% hint style="warning" %}
-Check the original `cookiecutter-django` [deployment documentation](https://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) to learn about AWS deployment, Supervisor Examples, Sentry configuration, and more. If you are deploying on an **intranet**, please see the HTTPS is on by default section.
+### Isabl Cookiecutter
+
+[Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a template to create production-ready [Isabl](https://isabl-io.github.io/docs/#/) projects.
+
+{% hint style="info" %}
+[Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django), please note that most of their [documentation](https://cookiecutter-django.readthedocs.io/en/latest/) remains relevant! Also see [troubleshooting](https://cookiecutter-django.readthedocs.io/en/latest/troubleshooting.html). For reference, we forked out at commit [4258ba9](https://github.com/pydanny/cookiecutter-django/commit/4258ba9e2ddc822953e326f98f1f74842fa0fed1). If you have differences in your preferred setup, please fork [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) to create your own version. **New to Django?** [Two Scoops of Django](http://twoscoopspress.com/products/two-scoops-of-django-1-11) is the best dessert-themed Django reference in the universe!
 {% endhint %}
+
+#### Features
+
+* [Isabl](https://isabl-io.github.io/docs/#/) out of the box
+* For Django 2.0 & Python 3.6
+* Renders a Django project with 100% starting test coverage
+* [12-Factor](http://12factor.net/) based settings via [django-environ](https://github.com/joke2k/django-environ)
+* Secure by default with SSL.
+* Optimized development and production settings
+* Registration via [django-allauth](https://github.com/pennersr/django-allauth)
+* Send emails via [Anymail](https://github.com/anymail/django-anymail) \(using [Mailgun](http://www.mailgun.com/) by default, but switchable\)
+* Media storage using Amazon S3
+* [Docker-compose](https://github.com/docker/compose) for development and production \(using [Caddy](https://caddyserver.com/) with [LetsEncrypt](https://letsencrypt.org/) support\)
+* [Procfile](https://devcenter.heroku.com/articles/procfile) for deploying to Heroku
+* Run tests with `py.test`
+* Customizable PostgreSQL version
+* [Celery](http://www.celeryproject.org/) with [Flower](https://github.com/mher/flower)
+* **optional** - Serve static files from Amazon S3 or [Whitenoise](https://whitenoise.readthedocs.io/)
+* **optional** - Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
+
+#### Constraints
+
+* Only maintained 3rd party libraries are used.
+* Uses PostgreSQL everywhere \(9.2+\)
+* Environment variables for configuration \(This won't work with Apache/mod\_wsgi except on AWS ELB\).
+
+### Bootstrap Your Django Project
+
+In order to get started run:
+
+```bash
+# install cookiecutter
+pip install cookiecutter 
+
+# then bootstrap the project
+cookiecutter https://github.com/isabl-io/cookiecutter-api
+```
 
 ### Understanding the Docker Compose Setup
 
@@ -18,6 +59,10 @@ Provided you have opted for Celery \(via setting `use_celery` to `y`\) there are
 * `celeryworker` running a Celery worker process;
 * `celerybeat` running a Celery beat process;
 * `flower` running [Flower](https://github.com/mher/flower) \(for more info, check out [CeleryFlower](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#celeryflower) instructions for local environment\).
+
+{% hint style="info" %}
+Check the original `cookiecutter-django` [deployment documentation](https://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) to learn about AWS deployment, Supervisor Examples, Sentry configuration, and more. If you are deploying on an **intranet**, please see the HTTPS is on by default section.
+{% endhint %}
 
 ### Configuring the Stack
 
@@ -107,4 +152,81 @@ To see how your containers are doing run:
 ```text
 docker-compose -f production.yml ps
 ```
+
+### Isabl CLI in Production
+
+In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
+
+```bash
+pip install isabl-cli
+```
+
+Then you need to export the API URL:
+
+{% code-tabs %}
+{% code-tabs-item title="~/.bash\_profile" %}
+```bash
+export ISABL_API_URL="https://isabl.mskcc.org/api/v1/"
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+By doing this you will have access to Isabl's command line interface:
+
+```bash
+isabl --help
+```
+
+### Configuring Isabl CLI Settings
+
+Isabl CLI settings can be provided by configuring a Django variable:
+
+{% code-tabs %}
+{% code-tabs-item title="settings.py" %}
+```python
+ISABL_SETTINGS = {
+    "CLIENT_SETTINGS": {
+        "INSTALLED_APPLICATIONS": [
+            "isabl_apps.apps.bwa_mem.apps.BwaMemGRCh37",
+            "isabl_apps.apps.qc_data.apps.QualityControlGRCh37",
+        ],
+    },
+}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+A better approach however is to create a client object from the admin site, e.g. [https://isabl.mskcc.org/admin/isabl\_api/client/add/](https://isabl.mskcc.org/admin/isabl_api/client/add/), and exporting the object's primary key \(or slug\):
+
+{% code-tabs %}
+{% code-tabs-item title="~/.bash\_profile" %}
+```bash
+export ISABL_CLIENT_ID="<replace with client primary key>"
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+Once done, you can configure the your Isabl CLI from the admin site by updating the `settings` field of your client object.
+
+### Custom Isabl CLI Logic and Applications
+
+The CLI packages aims to be as flexible and customizable as possible, so that several functions can be replaced, or new commands can be added. The best way of doing this is using the [cookiecutter-cli](https://github.com/isabl-io/cookiecutter-cli), which generates a python project from which [Isabl CLI](https://github.com/isabl-io/cli) can be extended:
+
+```text
+cookiecutter https://github.com/isabl-io/cookiecutter-cli
+```
+
+### Wrap Up and Next Steps
+
+With a production-ready instance of Isabl you are now ready to write new applications:
+
+{% page-ref page="writing-applications.md" %}
+
+Learn more about Isabl customization:
+
+{% page-ref page="isabl-settings.md" %}
+
+Or contribute new features to Isabl!
+
+{% page-ref page="contributing-guide.md" %}
 
