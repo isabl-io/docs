@@ -94,7 +94,7 @@ When prompted to allow _macros_, say yes. This will enable you to toggle between
 
 Now let's proceed to submit this excel form:
 
-![Click the + icon on the project panel header to add new samples.](.gitbook/assets/web_submit_form.gif)
+![Click the + button in the project panel header to add new samples.](.gitbook/assets/web_submit_form%20%281%29.gif)
 
 We can also review metadata at the command line:
 
