@@ -10,6 +10,11 @@ Welcome to the _10 Minutes to Isabl_ guide! This tutorial will walk you through 
 This tutorial is tailored for _engineers_ learning about Isabl. If you are an end-user \(i.e. analyst, project manager\), you are very welcome to follow this tutorial! But we also recommend you to explore the [Retrieve Data](retrieve-data.md) and [Register Metadata](data-model.md) guides.
 {% endhint %}
 
+{% hint style="info" %}
+* Join us on [Gitter](https://gitter.im/isabl-io/community) if you have questions
+* Submit an [issue](https://github.com/isabl-io/demo/issues/new) 🐛 if you are having  problems with this guide
+{% endhint %}
+
 ### Intro to Isabl
 
 Checkout the documentation [home](./) page for an intro to Isabl.
