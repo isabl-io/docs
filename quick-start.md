@@ -39,13 +39,6 @@ Next, source a simple initiation profile:
 source .demo-profile
 ```
 
-{% hint style="info" %}
-If you are **redoing** the tutorial, we recommend to:
-
-* remove `demo` and clone it again
-* remove the Postgres volume:`docker volume rm isabl_demo_local_postgres_data` 
-{% endhint %}
-
 ### Installation
 
 Build and run the application \(this might take a few minutes\):
