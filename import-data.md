@@ -80,10 +80,10 @@ All registration mechanisms are configurable and can be customized by providing 
 
 | Setting Name | Default |
 | :--- | :--- |
-| DATA\_IMPORTER | isabl\_cli.data.LocalDataImporter |
-| REFERENCE\_GENOME\_IMPORTER | isabl\_cli.data.LocalReferenceGenomeImporter |
-| REFERENCE\_DATA\_IMPORTER | isabl\_cli.data.LocalReferenceDataImporter |
-| BED\_IMPORTER | isabl\_cli.data.LocalBedImporter |
+| **DATA\_IMPORTER** | isabl\_cli.data.LocalDataImporter |
+| **REFERENCE\_GENOME\_IMPORTER** | isabl\_cli.data.LocalReferenceGenomeImporter |
+| **REFERENCE\_DATA\_IMPORTER** | isabl\_cli.data.LocalReferenceDataImporter |
+| **BED\_IMPORTER** | isabl\_cli.data.LocalBedImporter |
 
 Although only local storage is supported at the time of writing, Isabl-CLI capability can be extrapolated to cloud solutions including integration with cloud workbenches such as Arvados.
 
