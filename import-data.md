@@ -1,4 +1,4 @@
-# Import Data
+# Importing Data
 
 Isabl-CLI enables tracking and managing of NGS data, as well as reference resources that are a function of a _genome assembly_ or a _sequencing technique_.
 

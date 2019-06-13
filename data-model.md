@@ -2,7 +2,7 @@
 description: '⏱ tutorial time: 10 minutes'
 ---
 
-# Register Metadata
+# Registering Metadata
 
 ### Isabl Data Model
 
