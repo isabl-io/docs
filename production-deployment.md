@@ -1,6 +1,6 @@
 # Production Deployment
 
-### Isabl Cookiecutter
+## Isabl Cookiecutter
 
 [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a template to create production-ready [Isabl](https://isabl-io.github.io/docs/#/) projects.
 
@@ -8,7 +8,7 @@
 [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django), please note that most of their [documentation](https://cookiecutter-django.readthedocs.io/en/latest/) remains relevant! Also see [troubleshooting](https://cookiecutter-django.readthedocs.io/en/latest/troubleshooting.html). For reference, we forked out at commit [4258ba9](https://github.com/pydanny/cookiecutter-django/commit/4258ba9e2ddc822953e326f98f1f74842fa0fed1). If you have differences in your preferred setup, please fork [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) to create your own version. **New to Django?** [Two Scoops of Django](http://twoscoopspress.com/products/two-scoops-of-django-1-11) is the best dessert-themed Django reference in the universe!
 {% endhint %}
 
-#### Features
+### Features
 
 * [Isabl](https://isabl-io.github.io/docs/#/) out of the box
 * For Django 2.0 & Python 3.6
@@ -27,13 +27,13 @@
 * **optional** - Serve static files from Amazon S3 or [Whitenoise](https://whitenoise.readthedocs.io/)
 * **optional** - Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 
-#### Constraints
+### Constraints
 
 * Only maintained 3rd party libraries are used.
 * Uses PostgreSQL everywhere \(9.2+\)
 * Environment variables for configuration \(This won't work with Apache/mod\_wsgi except on AWS ELB\).
 
-### Bootstrap Your Django Project
+## Bootstrap Your Django Project
 
 In order to get started run:
 
@@ -153,7 +153,24 @@ To see how your containers are doing run:
 docker-compose -f production.yml ps
 ```
 
-### Isabl CLI in Production
+### Mounting a Remote Data Directory
+
+Its likely that the data resides in a different server than the web application. To make results available for the web server you may want to consider `sshfs`:
+
+```text
+sshfs \
+    -o nonempty \
+    -o follow_symlinks \
+    -o IdentityFile=/path/to/id_rsa \
+    -o allow_other \
+    $USER@<remote-server>:/remote/path /remote/path
+```
+
+{% hint style="info" %}
+Note that we are mounting `/remote/path` to `/remote/path` so that the paths pushed by **Isabl CLI** match those available in the web server. Also note that you may need to restart the docker compose services after mounting this directory.
+{% endhint %}
+
+## Isabl CLI in Production
 
 In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
 
