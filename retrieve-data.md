@@ -2,7 +2,7 @@
 description: The ultimate guide for data analysts using Isabl.
 ---
 
-# Retrieve Data
+# Retrieving Data
 
 ## Introduction to Filters
 
