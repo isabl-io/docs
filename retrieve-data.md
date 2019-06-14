@@ -6,9 +6,13 @@ description: "\uD83E\uDD13 The ultimate guide for data analysts using Isabl!"
 
 ## **Isabl Web**
 
-### **Searching**
+Isabl Web is a great tool to retrieve information and understand the state of affairs within the system. Simply type something in the search bar to retrieve instances across multiple schemas:
+
+![](.gitbook/assets/search.gif)
 
 ### **Projects Detail Panel**
+
+The projects detail panel 
 
 ### **The Samples View**
 
@@ -337,7 +341,7 @@ ii.delete_instance("analyses", analysis.pk)
 ```
 
 {% hint style="danger" %}
-_With great power, comes..._ yeah you know it. Just don't screw up.
+_With great power, comes..._ yeah you know it. Just be careful.
 {% endhint %}
 
 ### Isabl SDK Utils
