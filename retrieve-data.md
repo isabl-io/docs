@@ -101,13 +101,29 @@ Here are some common and  useful filters for Isabl.
 
 #### Limit vs Count Limit
 
+The filter `count_limit` enables you to limit the total number of instances that will be retrieved. For example to get the output directory for the first 10 successful analyses you could do:
+
+```bash
+isabl get-outdirs -fi status SUCCEEDED -fi count_limit 10
+```
+
+On the other side, `limit` will determine how many instances should be retrieved at the same time. For example, the following command would retrieve paths to _all_ successful analyses in batches of 10000:
+
+```bash
+
+```
+
 #### Has BAM File
 
-#### Analysis Status
+To get for example all experiments that have a BAM file for `GRCh37` you could do:
+
+```python
+experiments = ii.experiments(has_bam_for="GRCh37")
+```
 
 ## Isabl Command Line Client
 
-**TODO:** Quick intro to filters in the command line
+Filters in the command line are usually provided using the `-fi` or `--filters` flags.
 
 ### Get Count
 
