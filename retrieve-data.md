@@ -4,6 +4,18 @@ description: "\uD83E\uDD13 The ultimate guide for data analysts using Isabl!"
 
 # Retrieving Data
 
+## **Isabl Web**
+
+### **Searching**
+
+### **Projects Detail Panel**
+
+### **The Samples View**
+
+### **Accessing Raw Data**
+
+### Analyses Results
+
 ## Introduction to Filters
 
 **Filters** enable you to subset the data of your interest. For example you can use filters to retrieve all the BAM files of a given project, or get all VCFs from a given variant calling application. Filters are _field-value_ pairs and can be used both in the Command Line and within Python. Check out this examples:
@@ -214,49 +226,112 @@ You can retrieve the application primary key from the front end.
 
 ## Isabl Software Development Kit
 
-### Importing Isabl CLI
+Importantly, `isabl-cli` can also be used as a Software Development Kit within python:
 
+{% code-tabs %}
+{% code-tabs-item title="Try from an ipython session" %}
+```python
+import isabl_cli as ii  # ii stands for `isabl interactive` 😎
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
+{% hint style="info" %}
+If you are using `ipython`, use `?` to get help on a method \(e.g. `ii.get_instances?`\)
+{% endhint %}
 
-### Isabl Dict
+### Getting Instances
 
-TODO: talk about munch
+To get started, we can retrieve specific instances from the database:
 
-### Get Instance
+```python
+# retrieve an experiment with a system id (primary keys also work)
+experiment = ii.Experiment("DEM_10000_T01_01_TD1")
 
-**TODO:** `Experiment, Analysis, Assembly`
+# we can also get an analysis using it's primary key (we'll limit retrieved fields)
+analysis = ii.Analysis(10235, fields="status,application")
 
-### Get Instances
+# same thing for assemblies
+assembly = ii.Assembly("GRCh37")
+```
 
-**TODO:** `get_experiments, get_analyses, get_projects`
+{% hint style="info" %}
+These instances are [`Munch`](https://github.com/Infinidat/munch), in other words they are dot-dicts \(like javascript\). So you can do both `analysis["status"]` or `analysis.status`.
+{% endhint %}
 
-### Get Instances Count
+A more general way to retrieve _any_ object in the database is using `get_instance`:
 
-### Create Instance
+```python
+project = ii.get_instance("projects", 100)  # the signature is (endpoint, identifier)
+```
 
-### Patch Instance
+Some examples of things you can do with these instances:
 
-### Delete Instance
+```python
+# get the target experiment or tumor
+target = analysis.targets[0]
 
-### Get Trees
+# print the experiment sample class
+print(experiment.sample.sample_class)
 
-### CLI Utils
+# see available analysis fields
+print(analysis.keys())
 
-#### **chunks**
+# see all available data
+print(vars(assembly))
+```
 
-#### **retry\_request**
+To get multiple instances you can do:
 
-#### **api\_request**
+```python
+# get all TUMOR experiments in project 102
+experiments = ii.get_experiments(projects=102, sample__sample_class="TUMOR")
 
-## **Isabl Web**
+# get the first 10 SUCCEEDED analyses in the same project
+analyses = ii.get_experiments(projects=102, status="SUCCEEDED", count_limit=10)
 
-### **Searching**
+# get all the projects where I'm the owner
+projects = ii.get_projects(owner__startswith="besuhof")
+```
 
-### **Projects Detail Panel**
+Similarly to `isabl get-count` , you can determine the number of available results for a given query:
 
-### **The Samples View**
+```python
+ii.get_instances_count("analyses", status="FAILED")
+```
 
-### **Accessing Raw Data**
+### Getting all Samples from an Individual
 
-### Analyses Results
+To retrieve all samples and experiments for a given individual:
+
+```python
+# you can also use the individual system_id 
+individual = ii.get_tree(10000)
+
+# them all samples are available at
+samples = individual.sample_set
+
+# and all experiments for a given sample
+experiments = samples[0].experiment_set
+```
+
+### 
+
+### Create, Delete, and Modify Instances
+
+Create Instance
+
+Patch Instance
+
+Delete Instance
+
+### Isabl SDK Utils
+
+Here are other useful utilities available in `isabl-cli`:
+
+| Method | Description |
+| :--- | :--- |
+| `ii.api.chunks` | Given a list of elements, return a list of chunks of `n` elements from the original list. |
+| `ii.api.api_request` | Perform an authenticated request to Isabl API. |
+| `ii.api.retry_request` | Retry an HTTP request multiple times with a delay between each failure. |
 
