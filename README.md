@@ -18,7 +18,7 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
     * _Individuals_, _samples_, sequencing _experiments_ and _cohorts_
     * _Assembly_ aware bioinformatics _applications_ and _analyses_
     * Choice models such as _diseases_, _centers_ and more
-    * **Custom fields** for all schemas
+    * **Custom fields** for all schemas!
 * 🤖 **Command Line Interface and Software Development Kit**
 
   * NGS Assets Management \(Permissions, Storage, Tracking\)
