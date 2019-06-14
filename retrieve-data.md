@@ -37,7 +37,7 @@ samples = ii.get_instances('samples', individual__species="HUMAN")
 Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` \(e.g. `samples__disease__acronym=AML`,  or a dot in the Command Line `application.name=PINDEL`\)
 {% endhint %}
 
-### Filter Modifiers
+### Filters Modifiers
 
 As indicated in the previous _hint_, filter fields can traverse [database relationships](retrieve-data.md#traversing-the-relational-model):
 
@@ -93,19 +93,17 @@ Moreover, _Datetime_ query parameters support extra lookups:
 To get a full description of all available filters please visit Isabl's Redoc API documentation by [https://isabl.mskcc.org/api/v1 ](https://isabl.mskcc.org/api/v1/)\(or replacing `isabl.mskcc.org` with your own host.\)
 {% endhint %}
 
+Another useful way to explore the relational model is by using `isabl get-metadata`
+
 ### Common Filters
+
+Here are some common and  useful filters for Isabl.
 
 #### Limit vs Count Limit
 
-### Finding Available Filters from Redoc
+#### Has BAM File
 
-Filters can be used in the api, the interactive cli or any filter option in apps, and they are a very powerful feature to make complex queries. A good understanding of the database schema and how the models are related are key to use the filters. The following UML diagram shows this database chema relationship:
-
-### Traversing the Relational Model
-
-### 
-
-### Common Filters
+#### Analysis Status
 
 ## Isabl Command Line Client
 
@@ -114,6 +112,18 @@ Filters can be used in the api, the interactive cli or any filter option in apps
 ### Get Count
 
 ### Get Metadata
+
+Another useful way to explore the relational model is by using `isabl get-metadata`:
+
+```bash
+isabl get-metadata experiments --fx
+```
+
+![](.gitbook/assets/cli_metadata.slow.gif)
+
+{% hint style="info" %}
+Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
+{% endhint %}
 
 ### Get Data
 
