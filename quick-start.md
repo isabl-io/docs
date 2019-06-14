@@ -171,6 +171,12 @@ isabl get-bed DEMO_TECHNIQUE  # retrieve BED file
 isabl get-reference GRCh37    # retrieve reference genome
 ```
 
+By means of the `--data-id` flag, the command `get-reference` also allows you to retrieve the indexes generated during import. To get a list of available files per assembly run:
+
+```bash
+isabl get-reference GRCh37 --resources
+```
+
 {% hint style="info" %}
 Learn more about importing data into Isabl [here](import-data.md).
 {% endhint %}
