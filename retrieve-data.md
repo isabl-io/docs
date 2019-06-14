@@ -344,6 +344,10 @@ Isabl Web is a great tool to retrieve information and understand the state of af
 
 ![](.gitbook/assets/web_small_search%20%281%29.gif)
 
+Multiple panels will be stacked horizontally as you request more information:
+
+![](.gitbook/assets/image%20%283%29.png)
+
 ### **Projects Detail Panel**
 
 The projects detail panel conveys all assets and stakeholders linked to a particular project:
