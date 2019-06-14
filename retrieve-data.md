@@ -110,7 +110,7 @@ isabl get-outdirs -fi status SUCCEEDED -fi count_limit 10
 On the other side, `limit` will determine how many instances should be retrieved at the same time. For example, the following command would retrieve paths to _all_ successful analyses in batches of 10000:
 
 ```bash
-
+isabl get-outdirs -fi status SUCCEEDED -fi limit 100000
 ```
 
 #### Has BAM File
