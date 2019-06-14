@@ -315,15 +315,30 @@ samples = individual.sample_set
 experiments = samples[0].experiment_set
 ```
 
-### 
+You can also retrieve multiple _trees:_
+
+```python
+individuals = ii.get_trees(projects=267)
+```
 
 ### Create, Delete, and Modify Instances
 
-Create Instance
+If you have permissions, you will be able to systematically alter instances in the database:
 
-Patch Instance
+```python
+# create a disease
+ii.create_instance("diseases", name="Osteosarcoma", acrynom="OS")
 
-Delete Instance
+# update an individual's gender
+ii.update_instance(individual.pk, gender="UNKNOWN")
+
+# delete an analysis
+ii.delete_instance("analyses", analysis.pk)
+```
+
+{% hint style="danger" %}
+_With great power, comes..._ yeah you know it. Just don't screw up.
+{% endhint %}
 
 ### Isabl SDK Utils
 
