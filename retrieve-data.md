@@ -125,12 +125,15 @@ Filters in the command line are usually provided using the `-fi` or `--filters` 
 
 | Command | Description | Example |
 | :--- | :--- | :--- |
-| `get-count` | Get count of database instances given a particular query. | `isabl get-count analyses -fi status SUCCEEDED` |
-| `get-metadata` | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. `--fields`\). | `isabl get-metadata samples -fi sample_class TUMOR -f disease`  |
-| `get-data` | This command will retrieved the _raw_ sequencing data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103`  |
-| `get-bams` | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome.  | `isabl get-bams -fi has_bam_for GRCh37` |
-| `get-reference` | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources. | `isabl get-reference GRCh37` |
-| `get-reference` |  |  |
+| **`get-count`** | Get count of database instances given a particular query. For example, how many failed analyses are in the system? | `isabl get-count analyses -fi status FAILED` |
+| **`get-metadata`** | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\). | `isabl get-metadata samples -fi sample_class TUMOR -f disease`  |
+| **`get-data`** | This command will retrieved the _raw_ sequencing data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103`  |
+| **`get-bams`** | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37` |
+| **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources. | `isabl get-reference GRCh37` |
+| **`get-bed`** | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`. | `isabl get-bed HEMEPACT --assembly GRCh37` |
+| **`get-paths`** | Retrieve the storage directory for any instance in the database. Use [`--pattern`](retrieve-data.md#retrieving-application-results) to retrieve files within those directories. | `isabl get-paths projects 102` |
+| **`get-outdirs`** | This command is a short cut of `isabl get-paths analyses`. Learn more about retrieving results [here](retrieve-data.md#retrieving-application-results). | `isabl get-outdirs -fi name PINDEL -fi status SUCCEEDED` |
+| **`get-results`** | Retrieve analyses results produced by applications. Use [`--app-results`](retrieve-data.md#retrieving-application-results)to list all available choices for a given application. | `isabl get-results -fi application.pk 1 -r command_script` |
 
 ### Dynamically Explore Metadata
 
@@ -145,6 +148,12 @@ isabl get-metadata experiments --fx
 {% hint style="info" %}
 Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
 {% endhint %}
+
+Furthermore, you can limit the amount of information you are retrieving by passing the list of fields you are interested in:
+
+```bash
+isabl get-metadata analyses -f application.name -f status
+```
 
 ### Assembly Resources
 
@@ -170,25 +179,38 @@ Then get the one you are interested in with:
 isabl get-reference GRCh37 --data-id genome_fasta_fai
 ```
 
+### Retrieving Application Results
 
+You can use `get-outdirs` within the command line to systematically explore output directories. For example:
 
-### Get Data
+```bash
+isabl get-outdirs -fi status FAILED | xargs tree -L 2
+```
 
-### Get BAM Files
+Further more you can retrieve files within those directories by using `--pattern`:
 
-### Get Reference
+```bash
+isabl get-outdirs -fi status FAILED --pattern 'head_job.*'
+```
 
-### Get BED Files
+Additionally, you can retrieve results directly registered by the application:
 
-### Get Paths
+```bash
+for i in `isabl get-results -fi status FAILED -r command_err`; do
+   echo exploring $i;
+   cat $i;
+done
+```
 
-### Get Output Directories
+To visualize what results are available for a given application run:
 
-### Get Results
+```bash
+isabl get-results --app-results <application primary key> 
+```
 
-**TODO:** mention how to use `--app-results` 
-
-
+{% hint style="info" %}
+You can retrieve the application primary key from the front end.
+{% endhint %}
 
 ## Isabl Software Development Kit
 
