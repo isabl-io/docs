@@ -123,7 +123,7 @@ experiments = ii.experiments(has_bam_for="GRCh37")
 
 ## Isabl Command Line Client
 
-Filters in the command line are usually provided using the `-fi` or `--filters` flags.
+Filters in the command line are usually provided using the `-fi` or `--filters` flags. Relations or lookups can be provided using double underscores or dots \(e.g. `application.name` or `application__name`\).
 
 ### Get Count
 
