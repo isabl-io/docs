@@ -325,7 +325,7 @@ ii.delete_instance("analyses", analysis.pk)
 ```
 
 {% hint style="danger" %}
-_With great power, comes..._ yeah you know it. Just be careful.
+_With great power, comes..._ yeah you know how it goes. Just be careful.
 {% endhint %}
 
 ### Isabl SDK Utils
