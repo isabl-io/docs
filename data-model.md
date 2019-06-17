@@ -81,7 +81,7 @@ Isabl offer different mechanisms for metadata registration.
 
 ### Register Samples with Excel
 
-TODO
+
 
 ### Register Samples with RESTful API and CLI
 
@@ -292,7 +292,7 @@ individual = ii.create_instance(
 {% endcode-tabs %}
 
 {% hint style="info" %}
-**Authentication:** For any method you may need an _Authentication Token_ that will be used in every query to the API.
+**Authentication:** For any method you need an _Authentication Token_ that will be used in every query to the API.
 {% endhint %}
 
 if using `isabl_cli` you can run: `isabl login` which will prompt you to enter your username and password. If successful, the auth token will be stored at: `~/.isabl/settings.json`
@@ -307,8 +307,4 @@ curl  -X POST  \
 ```
 
 
-
-
-
-\`\`
 

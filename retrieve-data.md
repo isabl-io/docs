@@ -1,5 +1,5 @@
 ---
-description: "\uD83E\uDD13 The ultimate guide for data analysts using Isabl!"
+description: "\U0001F913 The ultimate guide for data analysts using Isabl!"
 ---
 
 # Retrieving Data
