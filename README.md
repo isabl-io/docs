@@ -91,7 +91,7 @@ Here are some reasons why you may want to use Isabl:
 
 * Isabl is not a _Workflow Management System_ such as [toil](https://github.com/DataBiosphere/toil), [bpipe](https://github.com/ssadedin/bpipe), instead Isabl facilitates automated deployment and databasing of data processing pipelines.
 
-* Isabl is not a P_latform as a Service \(PAAS\)_ provider such as [DNA nexus](https://www.dnanexus.com), [Seven Bridges](https://www.sevenbridges.com) or [Fire Cloud](https://software.broadinstitute.org/firecloud/), instead an information system that could potentially feed in metadata and data to these services. 
+* Isabl is not a _Platform as a Service \(PAAS\)_ provider such as [DNA nexus](https://www.dnanexus.com), [Seven Bridges](https://www.sevenbridges.com) or [Fire Cloud](https://software.broadinstitute.org/firecloud/), instead an information system that could potentially feed in metadata and data to these services. 
 * Isabl differs from _Server Workbenches_ such as [Galaxy](https://usegalaxy.org/) or Pegasus, instead of being configuration friendly, Isabl is designed to conduct systematic analyses automatically and in a standardized way with as little human input as possible. 
 * Isabl is not a _Workflow Language_, instead the Bioinformatics Applications in `isabl` only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
 
