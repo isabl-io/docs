@@ -246,6 +246,6 @@ We use emojis to quickly categorize commits and pull requests. These are some co
 | 💎 | gem | bump to new version |
 
 {% hint style="info" %}
-**Tip:** To insert an emoji in mac type control+cmd+space. Alternative, type the emoji's name within two semicolons \(e.g. `:rocket:`\).
+**Tip:** To insert an emoji in mac type `control+cmd+space`. Alternative, type the emoji's name within two semicolons \(e.g. `:rocket:`\).
 {% endhint %}
 
