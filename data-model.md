@@ -81,7 +81,7 @@ Isabl offer different mechanisms for metadata registration.
 
 ### Register Samples with Excel
 
-
+TODO
 
 ### Register Samples with RESTful API and CLI
 
@@ -256,8 +256,7 @@ curl \
     -H 'Authorization: Token <your-token>' \
     http://<your-isabl-host>/api/v1/centers/MSK
 
-# Response
-# { "pk": 1, "acronym":"MSK", "name": "MEMORIAL SLOAN KETTERING", ... } 
+# Response: { "pk": 1, "acronym":"MSK", "name": "MEMORIAL SLOAN KETTERING", ... } 
 
 curl \
     -X POST \
@@ -290,6 +289,8 @@ individual = ii.create_instance(
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
+
+For more information about the available methods in the **isabl\_cli** api, see the [Isabl SDK](isabl-settings.md). 
 
 {% hint style="info" %}
 **Authentication:** For any method you need an _Authentication Token_ that will be used in every query to the API.
