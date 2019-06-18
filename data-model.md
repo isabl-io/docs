@@ -326,15 +326,13 @@ For more information about the available methods in the **isabl\_cli** api, see 
 **API Authentication:** For any method you need an _Authentication Token_ that will be used in every query to the API.
 {% endhint %}
 
+* If using `isabl_cli` you can run: `isabl login` which will prompt you to enter your username and password. If successful, the auth token will be stored at: `~/.isabl/settings.json`
+* If using _http requests_, you can run:
+
 ```bash
 curl  -X POST  \
     -d '{ "username": <your-username>, "password": <your-password> }'
     -H "Content-Type: application/json"  \
     http://<your-isabl-host>/api/v1/rest-auth/login/
 ```
-
-
-
-* If using `isabl_cli` you can run: `isabl login` which will prompt you to enter your username and password. If successful, the auth token will be stored at: `~/.isabl/settings.json`
-* If using _http requests_, you can run:
 

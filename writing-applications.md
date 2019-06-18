@@ -22,7 +22,7 @@ Important Definitions:
 
 ### A Class Based Approach 
 
-The following example shows how to register a simple tool, that is available to execute in the system by running:
+In the following working example, is shown how to register a simple tool, that is available to execute in the system by running:
 
 ```bash
 docker run papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
