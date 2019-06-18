@@ -229,15 +229,15 @@ Each result has some fields that need to be defined in order to display the resu
 
 * `frontend_type`: _Required_. It defines the type of the file and the way it should be displayed in the frontend. The following options are available:
   * `text-file`: it's shown as a raw file, and its content is streamed partially as the user requests it.
-  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. 
+  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. i.e. a VCF is a tsv. 
   * `string`: it's shown as a string and can't be downloaded.
   * `number`: it's shown as a string and can't be downloaded. 
   * `image`: rendered as images and previews are displayed in a gallery in the _Analysis_ View.
   * `html`: rendered as html in an iframe. 
   * `pdf`: is not rendered but can be opened in a new window to use the browser pdf viewer.
   * `igv_bam:<name>`:  can be streamed to visualized in an embedded IGV viewer.  
-* `description` : information about the result shown in the _Analysis_ view.
-* `verbose_name`: name displayed for the result in the results list.
+* `description` : _Required_. information about the result shown in the _Analysis_ view.
+* `verbose_name`: _Required_. name displayed for the result in the results list.
 * `optional`: if `False` and result is missing, an alert warning about the missing result will be shown.
 * `external_link`: an URL that will allow the user to browse into an external resource to get more information about the obtained result.
 
@@ -296,9 +296,84 @@ def get_dependencies(self, targets, references, settings):
 
 ### Get Analysis Results
 
+```python
+def get_analysis_results(self, analysis):
+    """
+    Get dictionary of analysis results. This function is run on completion.
+
+    Arguments:
+        analysis (dict): succeeded analysis instance.
+
+    Returns:
+        dict: a jsonable dictionary.
+    """
+    return {}
+```
+
+If your application has defined `application_results`, this method is used to store the results with their respective file paths or values, after the analysis has been ran successfully. For example:
+
+```python
+from my_utils import count_variants, plot_variants
+
+application_results = {
+    "snvs_vcf": {
+        "frontend_type": "tsv-file",
+        "description": "Mutect snvs variants.",
+        "verbose_name": "snvs vcf",
+    },
+    "snvs_count": {
+        "frontend_type": "number",
+        "description": "Total number of called variants",
+        "verbose_name": "snvs count",
+    },
+    "snvs_plot": {
+        "frontend_type": "image",
+        "description": "Distribution plot of variants",
+        "verbose_name": "snvs plot",
+    }
+}
+
+def get_analysis_results(self, analysis):
+    outdir = analysis["storage_url"]
+    snvs_file = os.path.join(outdir, "results", "snvs,vcf")
+    return {
+        "snvs_vcf": snvs_file,
+        "snvs_count": count_variants(snvs_file),
+        "snvs_plot": plot_variants(snsv_file)
+    } 
+```
+
 ### Get After Completion Status
 
+```python
+def get_after_completion_status(self, analysis):
+    """Possible values are FINISHED and IN_PROGRESS."""
+    return "FINISHED"
+```
+
+In certain cases you don't want your analyses to be marked as `SUCCEEDED` after completion, as you may want to flag them for manual review or leave them to know that you need to run an extra step on them. For these cases, you may want to flag them as `FINISHED` or `IN_PROGRESS`.
+
 ### Validate Settings
+
+```python
+def validate_settings(self, settings):
+    """Validate settings."""
+    return
+```
+
+Method to write validation for your _Application_ settings. For instance, check the settings are defined, files can be accessed, have the proper format, etc. 
+
+```python
+application_settings = {
+    "reference": "reference_data_id:genome_fasta",
+    "bedfiles_dir": NotImplemented,
+    "cores": "16",
+}
+def validate_settings(self, settings):
+    self.validate_reference_genome(settings.reference)
+    self.validate_is_dir(settings.reference)
+    assert int(settings.core) < 32
+```
 
 ## Submission of Analyses
 
