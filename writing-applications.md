@@ -20,7 +20,7 @@ Important Definitions:
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vQyGMRlI2yezwTOzWGx5kL_MS899ILuU5AwmciVx0uRWwXL2lUbbOEmyWtzi5ZeN0rjkVCnunjK_bi8/pub?w=608&h=558)
 
-### A Class Based Approach
+### A Class Based Approach 
 
 ```python
 from isabl_cli import AbstractApplication
@@ -65,38 +65,172 @@ class CowSayGRCh37(AbstractApplication):
 
 ```
 
+The following example shows the definition of an example tool, that is available in the system that we will normally run as:
+
+```bash
+docker papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
+
+# output:
+ ______________________
+< System ID DEM_H12000 >
+ ----------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+Going step by step, to create an `Isabl` _Application_, `isabl_cli` comes with an abstract class that needs some attributes and methods to be defined. 
+
+```python
+from isabl_cli import AbstractApplication
+from isabl_cli import options
+
+class CowSayGRCh37(AbstractApplication):
+
+    NAME = "COWSAY"
+    VERSION = "1.0.0"
+    ASSEMBLY = "GRCh37"
+    SPECIES = "HUMAN"
+
+    cli_help = "Cow say the System ID."
+    cli_options = [options.TARGETS]
+    application_description = cli_help
+    application_settings = {
+        "docker": "/usr/bin/docker",
+        "toil_say": "papaemmelab/toil_say:v0.1.1",
+        "toil_batch_system": "singleMachine",
+    }
+
+    def get_experiments_from_cli_options(self, **cli_options):
+        return [([i], []) for i in cli_options["targets"]]
+
+    def validate_experiments(self, targets, references):
+        self.validate_dna_only(targets + references)
+
+    def get_command(self, analysis, inputs, settings):
+        return [
+            settings.docker,
+            "run",
+            settings.toil_say,
+            "cowsay",
+            "--message",
+            f"'System ID {analysis.targets[0].system_id}'"
+            "--batchSytem",
+            settings.batchSystem          
+        ]
+```
+
 ### Versioning Applications
 
-```text
+```python
 NAME = None
 VERSION = None
 ASSEMBLY = None
 SPECIES = None
 ```
 
+Unique fields constraints that define an _Application_ in the database.
+
 ### Application Description
 
-```text
+```python
 URL = None
 application_description = ""
 ```
 
+Fields with information about the _Application_, that are shown in the frontend when an Analysis view is displayed.
+
 ### Command Line Configuration
 
-```text
+```python
 cli_help = ""
 cli_options = []
 cli_allow_force = True
 cli_allow_restart = True
 ```
 
+`Isabl` apps use [Click](https://click.palletsprojects.com/en/7.x/), that is a python library to create command line interfaces \(CLI\) tools. 
+
+* `cli_help` is the verbose description of the app when the user types `--help`.
+* The `cli_options` attribute is a list of [click.options](https://click.palletsprojects.com/en/7.x/options/), and `isabl_cli.options` comes with a bunch of predefined options to get _Experiments_ by different filter arguments.
+* By default, all apps have `--force` and `--restart` options, and `cli_allow_force` and `cli_allow_restart` are flags to opt-out from them. `--force`, allows the user to wipe an analysis' results directory and resubmit it, and `--restart` allows to resubmit it by resuming the analysis without wiping the previous data output.   
+
 ## Required Implementations
 
 ### Get Experiments From CLI Options
 
+```python
+def get_experiments_from_cli_options(self, **cli_options):
+    """
+    Must return list of target-reference experiment tuples given the parsed options.
+    Arguments:
+        cli_options (dict): parsed command line options.
+    Returns:
+        list: of (targets, references) tuples.
+    """
+    return [([], [])]
+```
+
+The `cli_options` pass input arguments that can be used to query the necessary _Experiments_ in the database, to create list of the tuples with targets and references. For example:
+
+```python
+import click
+from isabl_cli import api
+
+...
+project = click.option(
+    "--project",
+    help="project primary key",
+    required=True,
+)
+technique = click.option(
+    "--technique",
+    help="technique identifier",
+    default="WG",
+)
+
+cli_options =[technique, project]
+
+def get_experiments_from_cli_options(self, **cli_options):
+    targets = api.get_instances(
+        "experiments", 
+        projects=cli_options["project"],
+        technique__method=cli_options["technique"]
+    )
+    return [(targets, [])]
+
+```
+
 ### Validate Experiments
 
-### Get Command
+```python
+def validate_experiments(self, targets, references):
+        """
+        Must raise UsageError if tuple combination isn't valid else return True.
+        Arguments:
+            targets (list): list of targets dictionaries.
+            references (list): list of references dictionaries.
+        Raises:
+            click.UsageError: if tuple is invalid.
+        Returns:
+            bool: True if (targets, references, analyses) combination is ok.
+        """
+        return True
+```
+
+This method is a place to write your _Experiment_ validation logic, and raise an error if any is not what you expect for your _Application_. For example, common validations you may want to do are:
+
+* `validate_bams` : Raise error not all experiments have registered bams.
+* `validate_dna_only`: Check all Experiments are DNA.
+* `validate_same_technique`: Validate targets and references have same bedfile.
+* `validate_are_normals`: Validate all _Experiments_ come from a Normal _Sample._
+* `validate_same_individual` : Check targets and references come from same _Individual_.
+
+{% hint style="info" %}
+As you can write your own validation logic, `isabl.cli.AbstractApplication` comes with a predefined set of methods that you can use. For more information, take a look at them at the [source code](https://github.com/isabl-io/cli/blob/master/isabl_cli/app.py#L1306) of the project.
+{% endhint %}
 
 ## Application Settings And Inputs
 

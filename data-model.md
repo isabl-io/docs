@@ -1,5 +1,5 @@
 ---
-description: '⏱ tutorial time: 10 minutes'
+description: "\U0001F3F7How to create the models in the database with their metadata, before linking your sequencing data."
 ---
 
 # Registering Metadata
@@ -77,11 +77,41 @@ Isabl offer different mechanisms for metadata registration.
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vRWmNY79RBwL1llZxb7zk_bY7cYmJDsClQnMakgNNit7A2JDNXdedgDTCJ-aTqcWka_ltW95o4SEpoM/pub?w=1264&h=554)
 
-
+{% hint style="warning" %}
+Only superusers and users with the proper permissions can create or modify models in the database. When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role.  If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` admin.
+{% endhint %}
 
 ### Register Samples with Excel
 
-TODO
+Through the web interface, is possible to import an _Excel Submission_ to register new samples. 
+
+{% hint style="warning" %}
+Note that this feature is limited to create only new _Individuals_, _Samples_ and _Experiments_. If you need to create _Centers_, _Diseases_, _Techniques_, _Platforms_, for your available choices you need to use the **Admin** interface at `http://<your-isabl-host>/admin/`or the [API method](data-model.md#register-samples-with-restful-api-and-cli).
+{% endhint %}
+
+By clicking in **Create New Submission** button in the top right menu of the user, or by clicking in **Add Batch Samples** in the top right button of the Project view. 
+
+![](https://docs.google.com/drawings/d/e/2PACX-1vTnj1KCwWgfTPLqedUc13XX6wCNshQGDWi-VA8gmh7oXX6tDzNXQGfVzHAXGmaAJfXcskFTPrNEfW9o/pub?w=1276&h=267)
+
+It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques. 
+
+{% hint style="info" %}
+When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. 
+{% endhint %}
+
+![Metadata can be registered using Excel Submission forms.  ](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK_xSbSFLgMnAFP44OPVvxE_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=956&h=315)
+
+After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created \(i.e. _1 Individual, 2 Samples, 4 Experiments_\) or errors in the submission form fields \(i.e. _Error: individual gender FMALE is not a valid choice_\) guides you in the submission process, before you can commit it. 
+
+{% hint style="success" %}
+After uploading the submission file, if you don't get any validation errors and your summary looks correct, hit the **Commit Submission** button to register the submission and make definitive changes in the database.
+{% endhint %}
+
+![](.gitbook/assets/web_submit_form%20%281%29.gif)
+
+After committing your _Submission,_ your new available samples should've been created now, and you can visualize in the _Sample Tree_ the relation between the new models you just registered. 
+
+![Sample Tree of the new registered samples.](.gitbook/assets/screen-shot-2019-06-18-at-4.28.47-pm.png)
 
 ### Register Samples with RESTful API and CLI
 
@@ -89,7 +119,7 @@ TODO
 
 ![](.gitbook/assets/api.gif)
 
-To register new objects in the database, you may want to see the **CREATE** endpoints, which try to retrieve existing objects using either the _pk_ field or _unique together constraints_, and if it doesn't find a match creates a new object . If the view supports nested objects, these will also be retrieved or created using the same criteria.
+To register new objects in the database, you may want to see the **CREATE** endpoints, which try to retrieve existing objects using either the _pk_ \(primary key\) field or _unique together constraints_, and if it doesn't find a match creates a new object . If the view supports nested objects, these will also be retrieved or created using the same criteria.
 
 {% hint style="warning" %}
 _IMPORTANT_: If an existing object is retrieved, its fields won't be updated with the posted data.
