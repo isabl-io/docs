@@ -77,6 +77,12 @@ Isabl offer different mechanisms for metadata registration.
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vRWmNY79RBwL1llZxb7zk_bY7cYmJDsClQnMakgNNit7A2JDNXdedgDTCJ-aTqcWka_ltW95o4SEpoM/pub?w=1264&h=554)
 
+It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques. 
+
+`Isabl` comes with a comprehensive RESTful API reference, where you can learn how to use every available endpoint for each resource of the database. You can access it by browsing to  `http://<your-isabl-host>/api/v1/`
+
+![](.gitbook/assets/api.gif)
+
 {% hint style="warning" %}
 Only superusers and users with the proper permissions can create or modify models in the database. When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role.  If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` admin.
 {% endhint %}
@@ -93,7 +99,7 @@ By clicking in **Create New Submission** button in the top right menu of the use
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vTnj1KCwWgfTPLqedUc13XX6wCNshQGDWi-VA8gmh7oXX6tDzNXQGfVzHAXGmaAJfXcskFTPrNEfW9o/pub?w=1276&h=267)
 
-It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques. 
+To register new objects in the database, you may want to see the **CREATE** endpoints, which try to retrieve existing objects using either the _pk_ \(primary key\) field or _unique together constraints_, and if it doesn't find a match creates a new object . If the view supports nested objects, these will also be retrieved or created using the same criteria.
 
 {% hint style="info" %}
 When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. 
@@ -114,12 +120,6 @@ After committing your _Submission,_ your new available samples should've been cr
 ![Sample Tree of the new registered samples.](.gitbook/assets/screen-shot-2019-06-18-at-4.28.47-pm.png)
 
 ### Register Samples with RESTful API and CLI
-
-`Isabl` comes with a comprehensive RESTful API reference, where you can learn how to use every available endpoint for each resource of the database. You can access it by browsing to  `http://<your-isabl-host>/api/v1/`
-
-![](.gitbook/assets/api.gif)
-
-To register new objects in the database, you may want to see the **CREATE** endpoints, which try to retrieve existing objects using either the _pk_ \(primary key\) field or _unique together constraints_, and if it doesn't find a match creates a new object . If the view supports nested objects, these will also be retrieved or created using the same criteria.
 
 {% hint style="warning" %}
 _IMPORTANT_: If an existing object is retrieved, its fields won't be updated with the posted data.
@@ -323,12 +323,8 @@ individual = ii.create_instance(
 For more information about the available methods in the **isabl\_cli** api, see the [Isabl SDK](isabl-settings.md). 
 
 {% hint style="info" %}
-**Authentication:** For any method you need an _Authentication Token_ that will be used in every query to the API.
+**API Authentication:** For any method you need an _Authentication Token_ that will be used in every query to the API.
 {% endhint %}
-
-if using `isabl_cli` you can run: `isabl login` which will prompt you to enter your username and password. If successful, the auth token will be stored at: `~/.isabl/settings.json`
-
-If using _http requests_, you can run:
 
 ```bash
 curl  -X POST  \
@@ -338,4 +334,7 @@ curl  -X POST  \
 ```
 
 
+
+* If using `isabl_cli` you can run: `isabl login` which will prompt you to enter your username and password. If successful, the auth token will be stored at: `~/.isabl/settings.json`
+* If using _http requests_, you can run:
 
