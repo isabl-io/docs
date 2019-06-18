@@ -6,7 +6,7 @@ description: ⚡️Learn how to embed your Applications into Isabl
 
 ## Introduction
 
-_Applications_ are the data processing algorithms that ran over the _Experiments_ sequencing data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a fastq aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA and a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
+_Applications_ are the data processing algorithms that ran over the _Experiments_ sequencing data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a _fastq_ aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA and a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
 
 All the logic of the filters to query the _Experiments_ you need, the validations you want to perform on the data, the inputs and outputs that your tools need, as well as how to build the command to execute it, are defined into a **python Isabl Application Class**. 
 
@@ -15,60 +15,17 @@ Important Definitions:
 
 **Application**_**:**_ is a tool registered in Isabl, with an specific version and sequence reference assembly. For instance, Mutect v2.0.0 for GRh37 will be a different Application than Mutect v2.0.0 for hg19 as its results can't be comparable between each other. This means that the fields that make an Application unique are: NAME, VERSION, ASSEMBLY and SPECIES.
 
-**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, or an annotation tool ran over a tumor with a pool of normals as reference. 
+**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, or an annotation tool ran over a tumor with a pool of normals as references. 
 {% endhint %}
 
-![](https://docs.google.com/drawings/d/e/2PACX-1vQyGMRlI2yezwTOzWGx5kL_MS899ILuU5AwmciVx0uRWwXL2lUbbOEmyWtzi5ZeN0rjkVCnunjK_bi8/pub?w=608&h=558)
+![Application examples, with different targets-references requirements.](https://docs.google.com/drawings/d/e/2PACX-1vQyGMRlI2yezwTOzWGx5kL_MS899ILuU5AwmciVx0uRWwXL2lUbbOEmyWtzi5ZeN0rjkVCnunjK_bi8/pub?w=608&h=558)
 
 ### A Class Based Approach 
 
-```python
-from isabl_cli import AbstractApplication
-from isabl_cli import options
-
-from isabl_apps.toil import build_toil_command
-from isabl_apps.utils import get_docker_command
-
-
-class CowSayGRCh37(AbstractApplication):
-
-    NAME = "COWSAY"
-    VERSION = "1.0.0"
-    ASSEMBLY = "GRCh37"
-    SPECIES = "HUMAN"
-
-    cli_help = "Cow say the System ID."
-    cli_options = [options.TARGETS]
-    application_description = cli_help
-    application_settings = {
-        "toil": get_docker_command("papaemmelab/toil_say:v0.1.1", "toil"),
-        "toil_say": get_docker_command("papaemmelab/toil_say:v0.1.1", "toil_say"),
-        "toil_batch_system": "singleMachine",
-    }
-
-    def get_experiments_from_cli_options(self, **cli_options):
-        return [([i], []) for i in cli_options["targets"]]
-
-    def validate_experiments(self, targets, references):
-        self.validate_dna_only(targets + references)
-
-    def get_command(self, analysis, inputs, settings):
-        return build_toil_command(
-            outdir=analysis.storage_url,
-            jobname=self.get_job_name(analysis),
-            executable=settings.toil_say,
-            batch_system=settings.toil_batch_system,
-            args=["--message", f"'System ID {analysis.targets[0].system_id}'"],
-            toil=settings.toil,
-            restart=settings.restart,
-        )
-
-```
-
-The following example shows the definition of an example tool, that is available in the system that we will normally run as:
+The following example shows how to register a simple tool, that is available to execute in the system by running:
 
 ```bash
-docker papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
+docker run papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
 
 # output:
  ______________________
@@ -81,44 +38,45 @@ docker papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
                 ||     ||
 ```
 
-Going step by step, to create an `Isabl` _Application_, `isabl_cli` comes with an abstract class that needs some attributes and methods to be defined. 
+In order to create an `Isabl` _Application_, `isabl_cli` comes with an abstract class that needs some attributes and methods to be defined. 
 
 ```python
 from isabl_cli import AbstractApplication
 from isabl_cli import options
 
-class CowSayGRCh37(AbstractApplication):
+class CowSay(AbstractApplication):
 
     NAME = "COWSAY"
     VERSION = "1.0.0"
-    ASSEMBLY = "GRCh37"
-    SPECIES = "HUMAN"
+    ASSEMBLY = "BovineMineV1.6"
+    SPECIES = "BOVINE"
 
     cli_help = "Cow say the System ID."
     cli_options = [options.TARGETS]
     application_description = cli_help
     application_settings = {
         "docker": "/usr/bin/docker",
-        "toil_say": "papaemmelab/toil_say:v0.1.1",
-        "toil_batch_system": "singleMachine",
+        "image": "papaemmelab/toil_say:v0.1.1",
+        "batch_system": "singleMachine",
     }
 
     def get_experiments_from_cli_options(self, **cli_options):
         return [([i], []) for i in cli_options["targets"]]
 
     def validate_experiments(self, targets, references):
-        self.validate_dna_only(targets + references)
+        for experiment in targets:
+            assert experiment['sample']['individual']['species'] == "BOVINE"
 
     def get_command(self, analysis, inputs, settings):
         return [
             settings.docker,
             "run",
-            settings.toil_say,
+            settings.image,
             "cowsay",
             "--message",
             f"'System ID {analysis.targets[0].system_id}'"
             "--batchSytem",
-            settings.batchSystem          
+            settings.batch_system          
         ]
 ```
 
@@ -165,8 +123,10 @@ cli_allow_restart = True
 def get_experiments_from_cli_options(self, **cli_options):
     """
     Must return list of target-reference experiment tuples given the parsed options.
+    
     Arguments:
         cli_options (dict): parsed command line options.
+    
     Returns:
         list: of (targets, references) tuples.
     """
@@ -209,11 +169,14 @@ def get_experiments_from_cli_options(self, **cli_options):
 def validate_experiments(self, targets, references):
         """
         Must raise UsageError if tuple combination isn't valid else return True.
+        
         Arguments:
             targets (list): list of targets dictionaries.
             references (list): list of references dictionaries.
+        
         Raises:
             click.UsageError: if tuple is invalid.
+        
         Returns:
             bool: True if (targets, references, analyses) combination is ok.
         """
@@ -229,27 +192,105 @@ This method is a place to write your _Experiment_ validation logic, and raise an
 * `validate_same_individual` : Check targets and references come from same _Individual_.
 
 {% hint style="info" %}
-As you can write your own validation logic, `isabl.cli.AbstractApplication` comes with a predefined set of methods that you can use. For more information, take a look at them at the [source code](https://github.com/isabl-io/cli/blob/master/isabl_cli/app.py#L1306) of the project.
+As you can write your own validation logic, `isabl.cli.AbstractApplication`comes with a predefined set of methods that you can use. For more information, take a look at them at the [source code](https://github.com/isabl-io/cli/blob/master/isabl_cli/app.py#L1306) of the project.
 {% endhint %}
 
 ## Application Settings And Inputs
 
 ### Application Settings
 
-```text
-application_inputs = {}
-application_results = {}
-application_settings = {}
-application_import_strings = {}
+`application_settings = {}` is a dictionary of settings for your _Application_ that you expect to be constantly changing. i.e. the path of your executable, the version of the application , or variable inputs of your application such as references or configuration files. These settings will be the default ones, but they can be changed from the _Admin_, without having to change the code or app definition.
+
+```python
+application_settings = {
+    "docker": "/usr/opt/docker_v16/bin/docker",
+    "reference_file": "/data/references/grch37.fasta",
+    "default_memory_per_node": "4Gb"
+}
 ```
+
+### Application results
+
+`application_results = {}` is a dictionary of output files of your _Application_, and the definition of the type of each one.
+
+```python
+application_results = {
+    "annotated_vcf": {
+        "frontend_type": "tsv-file",
+        "description": "Annotated Indels from Mutect.",
+        "verbose_name": "Annotated Mutect Indels VCF",
+        "optional": False,
+        "external_link" "https://samtools.github.io/hts-specs/VCFv4.2.pdf" 
+    }
+}
+```
+
+Each result has some fields that need to be defined in order to display the result properly in the isabl frontend:
+
+* `frontend_type`: _Required_. It defines the type of the file and the way it should be displayed in the frontend. The following options are available:
+  * `text-file`: it's shown as a raw file, and its content is streamed partially as the user requests it.
+  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. 
+  * `string`: it's shown as a string and can't be downloaded.
+  * `number`: it's shown as a string and can't be downloaded. 
+  * `image`: rendered as images and previews are displayed in a gallery in the _Analysis_ View.
+  * `html`: rendered as html in an iframe. 
+  * `pdf`: is not rendered but can be opened in a new window to use the browser pdf viewer.
+  * `igv_bam:<name>`:  can be streamed to visualized in an embedded IGV viewer.  
+* `description` : information about the result shown in the _Analysis_ view.
+* `verbose_name`: name displayed for the result in the results list.
+* `optional`: if `False` and result is missing, an alert warning about the missing result will be shown.
+* `external_link`: an URL that will allow the user to browse into an external resource to get more information about the obtained result.
 
 ### Application Inputs
 
-### Dependencies on Other Applications
+`application_inputs = {}` is a dictionary of input file paths or values your _Application_ expects to have as input requirements. Each input should be defined as `NotImplemented` and resolved for each analysis during the `get_dependencies` method. See the example in the `get_dependencies` definition.
 
-```text
-def get_dependencies
+```python
+application_inputs = {
+    "contamination_file": NotImplemented,
+    "ploidy_value": NotImplemented
+}
 ```
+
+### Dependencies on other Applications
+
+```python
+def get_dependencies(self, targets, references, settings): 
+    """
+    Get dictionary of inputs, this function is run before `get_command`.
+
+    Arguments:
+        targets (list): created analysis instance.
+        references (list): created analysis instance.
+        settings (object): settings namespace.
+
+    Returns:
+        tuple: (list of analyses dependencies primary keys, inputs dict).
+    """
+    return [], {}
+```
+
+The main objective of the `get_dependencies` method is to retrieve the necessary dependencies of previous analyses and results that should be linked to the current _Analysis_. 
+
+i.e. Let's say in order to run your indels variant annotator you need as requirement your Mutect application has already been ran and completed in the same target and references tuples. Let's suppose Mutect is registered in your database with primary key `10` and its results are: `snvs_vcf` and `indels_vcf`
+
+```python
+application_inputs = {
+    "mutect_indels_vcf": NotImplemented
+}
+
+def get_dependencies(self, targets, references, settings):
+    input_vcf, analysis_key = self.get_result(
+        experiment=targets[0],
+        application_key=10,         # Primary key of Mutect in your database
+        result_key="indels_vcf",    # Name of the result in your Mutect definition
+    )
+    return [analysis_key], {"mutect_indels_vcf": input_vcf}
+```
+
+### Application Import Strings
+
+`application_import_strings = {}` is a set or list of python import-strings, that you may need imported into your application settings.
 
 ## Optional Functionality
 

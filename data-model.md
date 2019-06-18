@@ -1,5 +1,5 @@
 ---
-description: "\U0001F3F7How to create the models in the database with their metadata, before linking your sequencing data."
+description: "\U0001F3F7Create models and metadata, before linking your sequencing data."
 ---
 
 # Registering Metadata
