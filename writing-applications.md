@@ -347,7 +347,8 @@ def get_analysis_results(self, analysis):
 If your application has defined `application_results`, this method is used to store the results with their respective file paths or values, after the analysis has been ran successfully. For example:
 
 ```python
-from my_utils import count_variants, plot_variants
+from my_utils import count_variants
+from my_utils import plot_variants
 
 ...    
 application_results = {
@@ -419,6 +420,8 @@ def validate_settings(self, settings):
 
 ## Submission of Analyses
 
+`Isabl` is a framework agnostic of the computing setting you're working on. And it can be configured to work with different batch systems, whether is a Cloud platform or HPC environment. In [MSK](https://www.mskcc.org/) specific use case \(where this project was developed\), we ran our computation in an HPC cluster with IBM LSF scheduler. For us we developed a simple util to wrap the commands depending of the scheduler. 
+
 ### Local Submission
 
 ### LSF Batch Submission
@@ -431,36 +434,123 @@ explain what makes an unique analyses
 
 ## Project and Individual Level Auto-merge
 
-Not required neither
+`Isabl` allows you to ran automatic result aggregations on a Project-basis and Individual-basis, as soon as any analysis finishes. For instance: you may want to generate a summary for a Patient report for every time an RNA fusion analysis is ran on an Experiment, or you want to merge all PASS variants of the Experiments that are grouped in a project every time a variant-caller in ran.
+
+For doing this, you can optionally implement the following methods:  
 
 ### Merge Analyses
 
-```text
-def merge_project_analyses
+```python
+...
+def merge_project_analyses(self, analysis, analyses):
+    """
+    Merge analyses on a project level basis.
+
+    If implemented, a new project level analyses will be created. This
+    function will only be called if no other analysis of the same
+    application is currently running or submitted.
+
+    Arguments:
+        analysis (dict): the project level analysis.
+        analyses (list): list of succeeded analyses instances.
+    """
+    pass
 ```
 
-```text
-def merge_individual_analyses
+```python
+...
+def merge_individual_analyses(self, analysis, analyses):
+    """
+    Merge analyses on a individual level basis.
+
+    If implemented, a new individual level analyses will be created. This
+    function will only be called if no other analysis of the same
+    application is currently running or submitted.
+
+    Arguments:
+        analysis (dict): the individual level analysis.
+        analyses (list): list of succeeded analyses instances.
+    """
+    pass
+```
+
+In these methods, goes the logic or the execution of the commands to perform the results aggregation.
+
+```python
+import os
+from my_utils import merge_vcfs
+
+...
+def merge_project_analyses(self, analysis, analyses):
+    all_vcfs = [i["results"]["snvs_vcf"] for i in analyses]
+    outfile = os.path.join(analysis['outdir'], 'project_all_snvs.vcf')
+    merge_vcfs(all_vcfs, outfile)
+
+def validate_project_analyses(self, project, analyses):
+    assert (
+        len(analyses) <= 500
+    ), "Project level merge only valid for projects with less than 500 samples"
+
+def get_project_analysis_results(self, analysis):
+    return {
+        "all_snvs": os.path.join(analysis['outdir'], 'project_all_snvs.vcf')
+    }
 ```
 
 ### Get Merged Analysis Results
 
-```text
-def get_project_analysis_results(
+Methods to define the output results, for both project-level and individual-level analyses, the same way is done with [`get_analysis_results`](writing-applications.md#get-analysis-results).
+
+```python
+...
+def get_project_analysis_results(self, analysis):
+    """
+    Get dictionary of results for a project level analysis.
+
+    This function is run on completion.
+
+    Arguments:
+        analysis (dict): succeeded analysis instance.
+
+    Returns:
+        dict: a jsonable dictionary.
+    """
+    return {}
 ```
 
-```text
-def get_individual_analysis_results
+```python
+ ...
+ def get_individual_analysis_results(self, analysis):
+    """
+    Get dictionary of results for a individual level analysis.
+
+    This function is run on completion.
+
+    Arguments:
+        analysis (dict): succeeded analysis instance.
+
+    Returns:
+        dict: a jsonable dictionary.
+    """
+    return {}
 ```
 
 ### Validate Analyses Before Merge
 
-```text
-def validate_project_analyses
+Methods to write the validation logic when running aggregated analyses:
+
+```python
+...
+def validate_project_analyses(self, project, analyses):
+    """Raise AssertionError if project level analysis logic shouldn't happen."""
+    assert True
 ```
 
-```text
-def validate_individual_analyses(
+```python
+...
+def validate_individual_analyses(self, individual, analyses):
+    """Raise AssertionError if individual level analysis logic shouldn't happen."""
+    assert True
 ```
 
 ### Submitting Analyses Merge
