@@ -6,23 +6,23 @@ description: ⚡️Learn how to embed your Applications into Isabl
 
 ## Introduction
 
-_Applications_ are the data processing algorithms that ran over the _Experiments_ sequencing data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a _fastq_ aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA and a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
+_Applications_ are the data processing algorithms that ran over the _Experiments_ sequencing data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a _fastq_ aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA with a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
 
-All the logic of the filters to query the _Experiments_ you need, the validations you want to perform on the data, the inputs and outputs that your tools need, as well as how to build the command to execute it, are defined into a **python Isabl Application Class**. 
+All the logic of the filters to query the _Experiments_ you need, the validations you want to perform on the data, the inputs and outputs that your tools need, as well as how to build the command to execute it, are defined into a python **Isabl Abstract Application Class**. 
 
 {% hint style="info" %}
 Important Definitions: 
 
 **Application**_**:**_ is a tool registered in Isabl, with an specific version and sequence reference assembly. For instance, Mutect v2.0.0 for GRh37 will be a different Application than Mutect v2.0.0 for hg19 as its results can't be comparable between each other. This means that the fields that make an Application unique are: NAME, VERSION, ASSEMBLY and SPECIES.
 
-**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, or an annotation tool ran over a tumor with a pool of normals as references. 
+**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, a quality-control script over a simple target, or an annotation tool ran over a tumor with a pool of normals as references. 
 {% endhint %}
 
 ![Application examples, with different targets-references requirements.](https://docs.google.com/drawings/d/e/2PACX-1vQyGMRlI2yezwTOzWGx5kL_MS899ILuU5AwmciVx0uRWwXL2lUbbOEmyWtzi5ZeN0rjkVCnunjK_bi8/pub?w=608&h=558)
 
-### A Class Based Approach 
+## A Class Based Approach 
 
-In the following working example, is shown how to register a simple tool, that is available to execute in the system by running:
+The following working example, shows how to register a very simple tool that's available to execute in the system by running:
 
 ```bash
 docker run papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
@@ -80,6 +80,8 @@ class CowSay(AbstractApplication):
         ]
 ```
 
+The following are all the available attributes and methods that can be defined **inside** the Isabl _AbstractApplication_ Class_:_
+
 ### Versioning Applications
 
 ```python
@@ -112,8 +114,33 @@ cli_allow_restart = True
 `Isabl` apps use [Click](https://click.palletsprojects.com/en/7.x/), that is a python library to create command line interfaces \(CLI\) tools. 
 
 * `cli_help` is the verbose description of the app when the user types `--help`.
-* The `cli_options` attribute is a list of [click.options](https://click.palletsprojects.com/en/7.x/options/), and `isabl_cli.options` comes with a bunch of predefined options to get _Experiments_ by different filter arguments.
-* By default, all apps have `--force` and `--restart` options, and `cli_allow_force` and `cli_allow_restart` are flags to opt-out from them. `--force`, allows the user to wipe an analysis' results directory and resubmit it, and `--restart` allows to resubmit it by resuming the analysis without wiping the previous data output.   
+* The `cli_options` attribute is a list of [click.options](https://click.palletsprojects.com/en/7.x/options/), and [`isabl_cli.options`](https://github.com/isabl-io/cli/blob/master/isabl_cli/options.py) comes with a bunch of predefined options to get _Experiments_ by different filter arguments. 
+* By default, all apps have `--force` and `--restart` options, and `cli_allow_force` and `cli_allow_restart` are flags to opt-out from them. `--force`, allows the user to wipe an analysis' results directory and resubmit it, and `--restart` allows to resubmit it by resuming the analysis without wiping the previous data output.
+
+This is an example of how the cli help will look like:
+
+```bash
+$ isabl apps-bovineminev1.6 cowsay-1.0.0 --help
+
+Usage: isabl apps-grch37 cowsay-1.0.0 [OPTIONS]
+
+  Cow say the System ID.
+
+Options:
+  --url                           Show the url or main repo of the app.
+  -fi, --targets-filters <TEXT TEXT>...
+                                  API filters for target experiments
+                                  [required]
+  --quiet                         Don't print verbose output of the operation.
+                                  [default: False]
+  --commit                        Submit application analyses.  [default:
+                                  False]
+  --force                         Wipe unfinished analyses and start from
+                                  scratch.
+  --restart                       Attempt restarting failed analyses from
+                                  previous checkpoint.
+  --help                          Show this message and exit.
+```
 
 ## Required Implementations
 
@@ -166,6 +193,7 @@ def get_experiments_from_cli_options(self, **cli_options):
 ### Validate Experiments
 
 ```python
+...
 def validate_experiments(self, targets, references):
         """
         Must raise UsageError if tuple combination isn't valid else return True.
@@ -202,6 +230,7 @@ As you can write your own validation logic, `isabl.cli.AbstractApplication`comes
 `application_settings = {}` is a dictionary of settings for your _Application_ that you expect to be constantly changing. i.e. the path of your executable, the version of the application , or variable inputs of your application such as references or configuration files. These settings will be the default ones, but they can be changed from the _Admin_, without having to change the code or app definition.
 
 ```python
+...
 application_settings = {
     "docker": "/usr/opt/docker_v16/bin/docker",
     "reference_file": "/data/references/grch37.fasta",
@@ -214,6 +243,7 @@ application_settings = {
 `application_results = {}` is a dictionary of output files of your _Application_, and the definition of the type of each one.
 
 ```python
+...
 application_results = {
     "annotated_vcf": {
         "frontend_type": "tsv-file",
@@ -229,7 +259,7 @@ Each result has some fields that need to be defined in order to display the resu
 
 * `frontend_type`: _Required_. It defines the type of the file and the way it should be displayed in the frontend. The following options are available:
   * `text-file`: it's shown as a raw file, and its content is streamed partially as the user requests it.
-  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. i.e. a VCF is a tsv. 
+  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. i.e. a VCF is a TSV. 
   * `string`: it's shown as a string and can't be downloaded.
   * `number`: it's shown as a string and can't be downloaded. 
   * `image`: rendered as images and previews are displayed in a gallery in the _Analysis_ View.
@@ -246,6 +276,7 @@ Each result has some fields that need to be defined in order to display the resu
 `application_inputs = {}` is a dictionary of input file paths or values your _Application_ expects to have as input requirements. Each input should be defined as `NotImplemented` and resolved for each analysis during the `get_dependencies` method. See the example in the `get_dependencies` definition.
 
 ```python
+...
 application_inputs = {
     "contamination_file": NotImplemented,
     "ploidy_value": NotImplemented
@@ -255,6 +286,7 @@ application_inputs = {
 ### Dependencies on other Applications
 
 ```python
+...
 def get_dependencies(self, targets, references, settings): 
     """
     Get dictionary of inputs, this function is run before `get_command`.
@@ -275,6 +307,7 @@ The main objective of the `get_dependencies` method is to retrieve the necessary
 i.e. Let's say in order to run your indels variant annotator you need as requirement your Mutect application has already been ran and completed in the same target and references tuples. Let's suppose Mutect is registered in your database with primary key `10` and its results are: `snvs_vcf` and `indels_vcf`
 
 ```python
+...
 application_inputs = {
     "mutect_indels_vcf": NotImplemented
 }
@@ -297,6 +330,7 @@ def get_dependencies(self, targets, references, settings):
 ### Get Analysis Results
 
 ```python
+...
 def get_analysis_results(self, analysis):
     """
     Get dictionary of analysis results. This function is run on completion.
@@ -315,6 +349,7 @@ If your application has defined `application_results`, this method is used to st
 ```python
 from my_utils import count_variants, plot_variants
 
+...    
 application_results = {
     "snvs_vcf": {
         "frontend_type": "tsv-file",
@@ -340,12 +375,13 @@ def get_analysis_results(self, analysis):
         "snvs_vcf": snvs_file,
         "snvs_count": count_variants(snvs_file),
         "snvs_plot": plot_variants(snsv_file)
-    } 
+    }     
 ```
 
 ### Get After Completion Status
 
 ```python
+...
 def get_after_completion_status(self, analysis):
     """Possible values are FINISHED and IN_PROGRESS."""
     return "FINISHED"
@@ -356,14 +392,16 @@ In certain cases you don't want your analyses to be marked as `SUCCEEDED` after 
 ### Validate Settings
 
 ```python
+...
 def validate_settings(self, settings):
     """Validate settings."""
     return
 ```
 
-Method to write validation for your _Application_ settings. For instance, check the settings are defined, files can be accessed, have the proper format, etc. 
+Method to write validation for your _Application_ settings. For instance, check the settings are properly defined, files can be accessed, or they have the proper format, etc. 
 
 ```python
+...
 application_settings = {
     "reference": "reference_data_id:genome_fasta",
     "bedfiles_dir": NotImplemented,
@@ -374,6 +412,10 @@ def validate_settings(self, settings):
     self.validate_is_dir(settings.reference)
     assert int(settings.core) < 32
 ```
+
+{% hint style="info" %}
+`application_settings` defines the default settings, but during execution your app may have different settings for different clients or environments. For example, you may have a small test reference file for testing and the real one for production. That's why you can define `NotImplemented` by default, but **validate** that it's in fact implemented on execution.  
+{% endhint %}
 
 ## Submission of Analyses
 
