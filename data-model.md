@@ -101,7 +101,7 @@ It will open a modal where you can download the latest _Submission_ form by clic
 When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. 
 {% endhint %}
 
-![Metadata can be registered using Excel Submission forms.  ](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK_xSbSFLgMnAFP44OPVvxE_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=956&h=315)
+![Metadata can be registered using Excel Submission forms.](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK_xSbSFLgMnAFP44OPVvxE_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=2256&h=498)
 
 After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created \(i.e. _1 Individual, 2 Samples, 4 Experiments_\) or errors in the submission form fields \(i.e. _Error: individual gender FMALE is not a valid choice_\) guides you in the submission process, before you can commit it. 
 
@@ -337,8 +337,4 @@ curl  -X POST  \
     http://<your-isabl-host>/api/v1/rest-auth/login/
 ```
 {% endhint %}
-
-
-
-
 
