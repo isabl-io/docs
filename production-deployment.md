@@ -96,49 +96,49 @@ The Caddy web server used in the default configuration will get you a valid cert
 
 You will need to build the stack first. To do that, run:
 
-```text
+```bash
 docker-compose -f production.yml build
 ```
 
 Once this is ready, you can run it with:
 
-```text
+```bash
 docker-compose -f production.yml up
 ```
 
 To run the stack and detach the containers, run:
 
-```text
+```bash
 docker-compose -f production.yml up -d
 ```
 
 To run a migration, open up a second terminal and run:
 
-```text
+```bash
 docker-compose -f production.yml run --rm django python manage.py migrate
 ```
 
 To create a superuser, run:
 
-```text
+```bash
 docker-compose -f production.yml run --rm django python manage.py createsuperuser
 ```
 
 If you need a shell, run:
 
-```text
+```bash
 docker-compose -f production.yml run --rm django python manage.py shell
 ```
 
 To check the logs out, run:
 
-```text
+```bash
 docker-compose -f production.yml logs
 ```
 
 If you want to scale your application, run:
 
-```text
+```bash
 docker-compose -f production.yml scale django=4
 docker-compose -f production.yml scale celeryworker=2
 ```
@@ -149,7 +149,7 @@ docker-compose -f production.yml scale celeryworker=2
 
 To see how your containers are doing run:
 
-```text
+```bash
 docker-compose -f production.yml ps
 ```
 
@@ -157,7 +157,7 @@ docker-compose -f production.yml ps
 
 Its likely that the data resides in a different server than the web application. To make results available for the web server you may want to consider `sshfs`:
 
-```text
+```bash
 sshfs \
     -o nonempty \
     -o follow_symlinks \
