@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Home](README.md)
+* [Home Test](README.md)
 * [Quick Start](quick-start.md)
 * [Registering Metadata](data-model.md)
 * [Importing Data](import-data.md)
