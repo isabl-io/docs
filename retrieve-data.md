@@ -119,6 +119,56 @@ To get for example all experiments that have a BAM file for `GRCh37` you could d
 experiments = ii.experiments(has_bam_for="GRCh37")
 ```
 
+### Performance Filters
+
+The following filters can be used to \(quite dramatically\) improve the performance for some queries:
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Filter</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><b><code>fields</code></b>
+      </td>
+      <td style="text-align:left">Limit the amount of data you are retrieving. Also supports negation using <code>fields!</code>.</td>
+      <td
+      style="text-align:left">
+        <ul>
+          <li><code>fields=pk,storage_url</code>
+          </li>
+          <li><code>fields!=targets,references</code>
+          </li>
+        </ul>
+        </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b><code>distinct</code></b>
+      </td>
+      <td style="text-align:left">If you set distinct to <em>false</em>, the each result within the query
+        won&apos;t be guaranteed to be unique, yet the response will be faster.</td>
+      <td
+      style="text-align:left"><code>distinct=false</code>
+        </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b><code>paginator</code></b>
+      </td>
+      <td style="text-align:left">By activating the <em>cursor</em> pagination, you would be able to traverse
+        queries results, but you won&apos;t know the total number of results.</td>
+      <td
+      style="text-align:left"><code>paginator=cursor</code>
+        </td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
+`paginator=cursor` is still experimental, please [report an issue](https://github.com/isabl-io/api/issues/new/choose) if you have trouble.
+{% endhint %}
+
 ## Isabl Command Line Client
 
 Filters in the command line are usually provided using the `-fi` or `--filters` flags. Relations or lookups can be provided using double underscores or dots \(e.g. `application.name` or `application__name`\). Here is a list of Isabl commands available to retrieve information:
