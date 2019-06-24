@@ -25,6 +25,10 @@ Checkout the documentation [home](./) page for an intro to Isabl.
 
 * [Docker Compose](https://docs.docker.com/compose/install/) for building and running the application.
 
+{% hint style="warning" %}
+Make sure your installation doesn't require `sudo` to run `docker` and `docker-compose`. Otherwise you will have issues running this demo. Check `docker run hello-world` runs without problem. If you have permissions issues, see [how to run docker as-non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
+{% endhint %}
+
 ### Demo Setup
 
 Let's start by clone the demo:
