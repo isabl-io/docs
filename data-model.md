@@ -10,7 +10,7 @@ description: "\U0001F3F7Create models and metadata, before linking your sequenci
 
 {% tabs %}
 {% tab title="Data Generation Process" %}
-![](https://docs.google.com/drawings/d/e/2PACX-1vQMwiVKHt3qSVyDK9FVErQsKBOD6XSEzCAXV6CN1CPTtL_OhZAnqAFtbd4DmCgo6OUmOr9jiWUx_tLF/pub?w=959&h=540)
+![](https://user-images.githubusercontent.com/8843150/62899450-c77fec80-bd25-11e9-9d92-dc2758cb49d2.png)
 {% endtab %}
 
 {% tab title="Unique Together Constraints" %}
@@ -69,13 +69,13 @@ Unique together constraints enable Isabl link new samples and experiments to exi
 
 The concept of cohorts, where multiple _Experiments_ are grouped and analyzed together, is fundamental and well supported. Furthermore, `isabl` also tracks and executes _Assembly_ aware _Bioinformatics Applications_ making sure that results are a function of the reference genome. Instances of these applications are also tracked and referred as _Analyses_.
 
-![](https://docs.google.com/drawings/d/e/2PACX-1vTG3QBMOtwM5DhpFG07iQFj0SA0J7CE4e8Xd3ZJcpJy24EiDu9HbGomqslNFgqV3rauJ-z_VU-SY-ja/pub?w=1305&h=791)
+![](https://user-images.githubusercontent.com/8843150/62899485-dc5c8000-bd25-11e9-894e-664f11028d20.png)
 
 ### Metadata Registration
 
 Isabl offer different mechanisms for metadata registration.
 
-![](https://docs.google.com/drawings/d/e/2PACX-1vRWmNY79RBwL1llZxb7zk_bY7cYmJDsClQnMakgNNit7A2JDNXdedgDTCJ-aTqcWka_ltW95o4SEpoM/pub?w=1264&h=554)
+![](https://user-images.githubusercontent.com/8843150/62899505-eb433280-bd25-11e9-9c8d-2267d7092b36.png)
 
 {% hint style="warning" %}
 Only users with the proper permissions or _superusers_ can create or modify models in the database, by using any of the methods for metadata registration. 

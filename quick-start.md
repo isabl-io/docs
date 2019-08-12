@@ -19,7 +19,7 @@ This tutorial is tailored for _engineers_ learning about Isabl. If you are an en
 
 Checkout the documentation [home](./) page for an intro to Isabl.
 
-![Isabl is composed of a patient centric relational model, a web-based metadata architecture, and a command line client.](https://docs.google.com/drawings/d/e/2PACX-1vQnO2UBtPAGuUqobgfAH2GFbvuE5aCAzrYpxa_nBb8tigeT-GdfAkurTnOpzrpa_QDxBH-nrQ-lnxEk/pub?w=665&h=475)
+![Isabl is composed of a patient centric relational model, a web-based metadata architecture, and a command line client.](https://user-images.githubusercontent.com/8843150/62899299-77088f00-bd25-11e9-9695-cda93ab825a5.png)
 
 ### Prerequisites
 
