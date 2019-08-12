@@ -125,7 +125,8 @@ The `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io
     <tr>
       <td style="text-align:left"><b>TRASH_ANALYSIS_STORAGE</b>
       </td>
-      <td style="text-align:left">&lt;em&gt;&lt;/em&gt;</td>
+      <td style="text-align:left"><em>Method Import String</em>
+      </td>
       <td style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
@@ -220,4 +221,141 @@ The `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io
     </tr>
   </tbody>
 </table>## **Isabl Web Settings**
+
+Customization of the User Interface can be achieved by defining a global `$isabl` settings dictionary in the main `index.html`.
+
+```markup
+<script>
+    window.$isabl = { }
+</script>
+```
+
+You can configure the `window.$isabl` with the following parameters:
+
+| Setting Name | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| **`apiHost`** | `String` | `''` | Url host where your `isabl api` is running. |
+| **`name`** | `String` | `'isabl'` | Custom app title that is shown in the top of the app. |
+| **`logo`** | `String` | ![:size=18x18](.gitbook/assets/logo.png) | Custom image path that is shown as the main logo of the app. Use a square size image for better display. |
+| **`jira`** | `Boolean` | `false` | Activate the jira card in the projects view. If the jira endpoint is available from the api, it will show the current tickets for each project. Learn more about [jira integration](https://developer.atlassian.com/server/jira/platform/rest-apis/). |
+| **`oncoTree`** | `Boolean` | `false` | If it's enabled, more information about the [onco tree ](http://oncotree.mskcc.org/#/home)disease is added in the _Sample details_. |
+| **`customFields`** | `Object` | `{}` | Every detail info for each model shown in the frontend can be customized, by overwriting the specific key of a fields object. Available fields can be seen [here](https://github.com/isabl-io/web/blob/master/src/utils/fields.js). Learn more on how to create custom fields \(**TODO**\). |
+| **`restartButton`** | `Boolean` | `false` | If enabled,`FAILED` analyses can send a signal to restart or force to the database. Learn more in signals \(**TODO**\). |
+| **`lightTheme`** | `Object` | See [defaults](https://github.com/isabl-io/web/blob/master/src/utils/settings.js#L8) | Colors to customize the light theme. |
+| **`darkTheme`** | `Object` | See [defaults](https://github.com/isabl-io/web/blob/master/src/utils/settings.js#L20) | Colors to customize the dark theme. |
+| **`modelIcons`** | `Object` | `{}` | [Material Icon](https://material.io/resources/icons/?style=baseline) names to customize panel icons. |
+
+### Example of a custom UI configuration 🌈
+
+```markup
+<script>
+    const customFields = {
+        // overwrite 2 of the fields of the analysis panel
+        analysisFields: {
+            // Add a new formatter for status
+            status: {
+                section: 'Analysis Details',
+                verboseName: 'Status',
+                field: 'status',
+                formatter: value => {
+                    if (value === 'SUCEEDED') {
+                        return 'DONE!'
+                    } else if (value === 'FAILED') {
+                        return 'OOPS...'
+                    } else {
+                        return value
+                    }
+                }
+            },
+            // Make notes not editable
+            notes: {
+                section: 'Analysis Details',
+                verboseName: 'Notes',
+                field: 'notes',
+                editable: false
+            }
+        },
+        // display a new custom field for project that exist in the db.
+        // Use http://<api-host>/admin/ to create custom fields.
+        projectFields: {
+            // custom field
+            irbConstent: {
+              section: 'Project Details',
+              verboseName: 'IRB Consent',
+              field: 'custom_fields.irb_consent',
+              editable: true,
+              apiPermission: 'change_project'
+            }
+          }
+        }
+    }
+
+    window.$isabl = {
+        apiHost: "http://my.isabl.api.host",
+        name: "My Cool App",
+        logo: "/path/to/my/awesome/logo",
+        customFields,
+        restartButton: true,
+        jira: true,
+        oncoTree: true,
+        darkTheme: {
+          primary: '#1dc5a7',
+          background: '#1a202c',
+          surface: '#3a4556',
+          accent: '#4a5568'
+        },
+        modelIcons: {
+          project: 'insert_chart',
+          analysis: 'bubble_chart',
+          individual: 'person',
+          sample: 'gesture',
+          experiment: 'flash_on',
+          search: 'search',
+          submission: 'assignment'
+        },
+    }
+</script>
+```
+
+{% hint style="warning" %}
+**Important:** In case you're running your frontend instance in a different host that the backend, you should add this `ENV` variable to your django project where the `isabl-api` is running: 
+
+```bash
+export FRONTEND_URL="http://your-frontend-host.com"
+```
+{% endhint %}
+
+{% hint style="success" %}
+If you want to consume `isabl-web` and serve your own html, outside of `isabl-api`. You can consume the frontend just as: 
+
+{% code-tabs %}
+{% code-tabs-item title="index.html" %}
+```markup
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta charset="UTF-8">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+        <link rel="icon" href="favicon.ico">
+        <title>My Awesome App</title>
+    </head>
+    <body>
+       
+ <div id="isabl-web"></div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/isabl-web"></script>
+        <script>
+            window.$isabl = {
+                apiHost: "http://my.isabl.api.host",
+                //... other settings
+            }
+        </script>
+    </body>
+</html>
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+{% endhint %}
 
