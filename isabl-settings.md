@@ -1,5 +1,7 @@
 # Isabl Settings
 
+## Isabl CLI Settings
+
 To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20).
 
 | Setting Name | Type | Description |
@@ -40,156 +42,7 @@ In general terms, these are the settings types available for Isabl:
 TODO
 {% endhint %}
 
-## Isabl CLI Settings
-
-The `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20) contains the values that can be overwritten or extended in order to control functionality:
-
-| Setting Name | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-
-
-| **API\_BASE\_URL** | _String_ | `http://0.0.0.0:8000/api/v1` | url host where your isabl api is running. Needed to connect the CLI with the API. |
-| :--- | :--- | :--- | :--- |
-
-
-| **BASE\_STORAGE\_DIRECTORY** | _String_ | `~/isabl_storage` | Directory where data will be store in the file system. |
-| :--- | :--- | :--- | :--- |
-
-
-| **TIME\_ZONE** | _String_ | `America/New_York` | Current timezone used by pytz package. |
-| :--- | :--- | :--- | :--- |
-
-
-| **INSTALLED\_APPLICATIONS** | _Array of Method Import Strings_ | `[]` | Array of registered applications to be run with the cli tool. These apps can be seen and run `isabl apps --help`. |
-| :--- | :--- | :--- | :--- |
-
-
-| **CUSTOM\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of custom commands to be added to the custom cli tool. |
-| :--- | :--- | :--- | :--- |
-
-
-| **SYSTEM\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of system commands that are used in isabl-cli. |
-| :--- | :--- | :--- | :--- |
-
-
-| **ADMIN\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of commands that are only executable by admin. |
-| :--- | :--- | :--- | :--- |
-
-
-| **ADMIN\_USER** | _Class Import String_ | `None` | Linux user for which admin operations will be limited to. |
-| :--- | :--- | :--- | :--- |
-
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>MAKE_STORAGE_DIRECTORY</b>
-      </th>
-      <th style="text-align:left"><em>Method Import String</em>
-      </th>
-      <th style="text-align:left">
-        <p><code>isabl_cli</code>
-        </p>
-        <p><code>.data</code>
-        </p>
-        <p><code>.make_storage_directory</code>
-        </p>
-      </th>
-      <th style="text-align:left">Get and create path to a data directory.</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>TRASH_ANALYSIS_STORAGE</b>
-      </th>
-      <th style="text-align:left"><em>Method Import String</em>
-      </th>
-      <th style="text-align:left">
-        <p><code>isabl_cli</code>
-        </p>
-        <p><code>.data</code>
-        </p>
-        <p><code>.trash_analysis_storage</code>
-        </p>
-      </th>
-      <th style="text-align:left">Move analysis storage_url to a trash directory.</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>REFERENCE_DATA_IMPORTER</b>
-      </th>
-      <th style="text-align:left"><em>Class Import String</em>
-      </th>
-      <th style="text-align:left">
-        <p><code>isabl_cli</code>
-        </p>
-        <p><code>.data</code>
-        </p>
-        <p><code>.ReferenceDataImporter</code>
-        </p>
-      </th>
-      <th style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>DATA_IMPORTER</b>
-      </th>
-      <th style="text-align:left"><em>Class Import String</em>
-      </th>
-      <th style="text-align:left">
-        <p><code>isabl_cli</code>
-        </p>
-        <p><code>.data</code>
-        </p>
-        <p><code>.DataImporter</code>
-        </p>
-      </th>
-      <th style="text-align:left">Import raw data for multiple experiments.</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>BED_IMPORTER</b>
-      </th>
-      <th style="text-align:left"><em>Class Import String</em>
-      </th>
-      <th style="text-align:left">
-        <p><code>isabl_cli</code>
-        </p>
-        <p><code>.data</code>
-        </p>
-        <p><code>.BedImporter</code>
-        </p>
-      </th>
-      <th style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>| **FASTQ\_READ\_SUFFIX** | _String_ | `''` | Suffix in case your fastq files have one. Usually needed for aligners like _bwa\_mem_. |
-| :--- | :--- | :--- | :--- |
-
-
-| **ON\_DATA\_IMPORT** | _Array of Method Import Strings_ | See `isabl.settings` | Methods triggered when data has been imported successfully. |
-| :--- | :--- | :--- | :--- |
-
-
-| **ON\_STATUS\_CHANGE** | _Array of Method Import Strings_ | See `isabl.settings` | Methods triggered when an analysis changes status. |
-| :--- | :--- | :--- | :--- |
-
-
-| **ON\_SIGNAL\_FAILURE** | _Array of Method Import Strings_ | `None` | Methods triggered when an analysis fails |
-| :--- | :--- | :--- | :--- |
-
+## Isabl Web Settings
 
 Customization of the User Interface can be achieved by defining a global `$isabl` settings dictionary in the main `index.html`.
 
@@ -205,7 +58,7 @@ You can configure the `window.$isabl` with the following parameters:
 | :--- | :--- | :--- | :--- |
 | **`apiHost`** | `String` | `''` | Url host where your `isabl api` is running. |
 | **`name`** | `String` | `'isabl'` | Custom app title that is shown in the top of the app. |
-| **`logo`** | `String` | ![:size=18x18](.gitbook/assets/logo.png) | Custom image path that is shown as the main logo of the app. Use a square size image for better display. |
+| **`logo`** | `String` |  | Custom image path that is shown as the main logo of the app. Use a square size image for better display. |
 | **`jira`** | `Boolean` | `false` | Activate the jira card in the projects view. If the jira endpoint is available from the api, it will show the current tickets for each project. Learn more about [jira integration](https://developer.atlassian.com/server/jira/platform/rest-apis/). |
 | **`oncoTree`** | `Boolean` | `false` | If it's enabled, more information about the [onco tree ](http://oncotree.mskcc.org/#/home)disease is added in the _Sample details_. |
 | **`customFields`** | `Object` | `{}` | Every detail info for each model shown in the frontend can be customized, by overwriting the specific key of a fields object. Available fields can be seen [here](https://github.com/isabl-io/web/blob/master/src/utils/fields.js). Learn more on how to create custom fields \(**TODO**\). |
