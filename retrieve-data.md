@@ -49,7 +49,7 @@ As indicated in the previous _hint_, filter fields can traverse database relatio
 
 Here is a quick representation of Isabl's relational model, hence related filters:
 
-![Representation of Isabl&apos;s relational model.](https://docs.google.com/drawings/d/e/2PACX-1vTG3QBMOtwM5DhpFG07iQFj0SA0J7CE4e8Xd3ZJcpJy24EiDu9HbGomqslNFgqV3rauJ-z_VU-SY-ja/pub?w=1305&h=791)
+![](.gitbook/assets/image%20%284%29.png)
 {% endtab %}
 
 {% tab title="Lookup Types" %}
@@ -384,7 +384,7 @@ Isabl Web is a great tool to retrieve information and understand the state of af
 
 Multiple panels will be stacked horizontally as you request more information:
 
-![](.gitbook/assets/image%20%283%29.png)
+![image](https://user-images.githubusercontent.com/8843150/62899748-73c1d300-bd26-11e9-9039-55567ecf5aca.png)
 
 ### **Projects Detail Panel**
 

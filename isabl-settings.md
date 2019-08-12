@@ -43,7 +43,7 @@ To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in 
 | **FASTQ\_READ\_SUFFIX** | _String_ | Suffix in case your `fastq` files have one. Usually needed for aligners like `bwa_mem`. |
 | **ON\_DATA\_IMPORT** | _Import Strings Array_ | Methods triggered when data has been imported successfully. |
 | **ON\_STATUS\_CHANGE** | _Import Strings Array_ | Methods triggered when an analysis changes status. |
-| **ON\_SIGNAL\_FAILURE** | _Import Strings Array_ | Methods triggered when an analysis fails |
+| **ON\_SIGNAL\_FAILURE** | _Import Strings Array_ | Methods triggered when an signal fails. |
 
 {% page-ref page="writing-applications.md" %}
 
