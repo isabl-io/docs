@@ -34,7 +34,7 @@ samples = ii.get_instances('samples', individual__species="HUMAN")
 {% endcode-tabs %}
 
 {% hint style="info" %}
-Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` \(e.g. `samples__disease__acronym=AML`,  or a dot in the Command Line `application.name=PINDEL`\)
+Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` \(e.g. `samples__disease__acronym=AML`, or a dot in the Command Line `application.name=PINDEL`\)
 {% endhint %}
 
 ### Filters Modifiers
@@ -76,7 +76,7 @@ Moreover, _Datetime_ query parameters support extra lookups:
 
 | Lookup Type | Description | Example |
 | :--- | :--- | :--- |
-|   `` | No lookup, `ISO` format required | `created=` |
+| \`\` | No lookup, `ISO` format required | `created=` |
 | **`date`** | Filter by date `YYYY-MM-DD`. | `created__date=2016-06-04`  `created__date__gt=2016-06-04` |
 | **`day`** | Filter by day `DD` | `created__day=04` |
 | **`month`** | Filter by month `MM` | `created__month=06` |
@@ -95,7 +95,7 @@ To get a full description of all available filters please visit Isabl's Redoc AP
 
 ### Common Filters
 
-Here are some common and  useful filters for Isabl.
+Here are some common and useful filters for Isabl.
 
 #### Limit vs Count Limit
 
@@ -123,20 +123,17 @@ experiments = ii.experiments(has_bam_for="GRCh37")
 
 The following filters can be used to \(quite dramatically\) improve the performance for some queries:
 
+| Filter | Description | Usage |
+| :--- | :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Filter</th>
-      <th style="text-align:left">Description</th>
-      <th style="text-align:left">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b><code>fields</code></b>
-      </td>
-      <td style="text-align:left">Limit the amount of data you are retrieving. Also supports negation using <code>fields!</code>.</td>
-      <td
+      <th style="text-align:left"><b><code>fields</code></b>
+      </th>
+      <th style="text-align:left">Limit the amount of data you are retrieving. Also supports negation using <code>fields!</code>.</th>
+      <th
       style="text-align:left">
         <ul>
           <li><code>fields=pk,storage_url</code>
@@ -144,28 +141,19 @@ The following filters can be used to \(quite dramatically\) improve the performa
           <li><code>fields!=targets,references</code>
           </li>
         </ul>
-        </td>
+        </th>
     </tr>
-    <tr>
-      <td style="text-align:left"><b><code>distinct</code></b>
-      </td>
-      <td style="text-align:left">If you set distinct to <em>false</em>, the each result within the query
-        won&apos;t be guaranteed to be unique, yet the response will be faster.</td>
-      <td
-      style="text-align:left"><code>distinct=false</code>
-        </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b><code>paginator</code></b>
-      </td>
-      <td style="text-align:left">By activating the <em>cursor</em> pagination, you would be able to traverse
-        queries results, but you won&apos;t know the total number of results.</td>
-      <td
-      style="text-align:left"><code>paginator=cursor</code>
-        </td>
-    </tr>
-  </tbody>
-</table>{% hint style="info" %}
+  </thead>
+  <tbody></tbody>
+</table>| **`distinct`** | If you set distinct to _false_, the each result within the query won't be guaranteed to be unique, yet the response will be faster. | `distinct=false` |
+| :--- | :--- | :--- |
+
+
+| **`paginator`** | By activating the _cursor_ pagination, you would be able to traverse queries results, but you won't know the total number of results. | `paginator=cursor` |
+| :--- | :--- | :--- |
+
+
+{% hint style="info" %}
 `paginator=cursor` is still experimental, please [report an issue](https://github.com/isabl-io/api/issues/new/choose) if you have trouble.
 {% endhint %}
 
@@ -176,8 +164,8 @@ Filters in the command line are usually provided using the `-fi` or `--filters` 
 | Command | Description | Example |
 | :--- | :--- | :--- |
 | **`get-count`** | Get count of database instances given a particular query. For example, how many failed analyses are in the system? | `isabl get-count analyses -fi status FAILED` |
-| **`get-metadata`** | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\). | `isabl get-metadata samples -fi sample_class TUMOR -f disease`  |
-| **`get-data`** | This command will retrieved the _raw_ sequencing data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103`  |
+| **`get-metadata`** | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\). | `isabl get-metadata samples -fi sample_class TUMOR -f disease` |
+| **`get-data`** | This command will retrieved the _raw_ sequencing data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103` |
 | **`get-bams`** | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37` |
 | **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources. | `isabl get-reference GRCh37` |
 | **`get-bed`** | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`. | `isabl get-bed HEMEPACT --assembly GRCh37` |
@@ -207,7 +195,7 @@ isabl get-metadata analyses -f application.name -f status
 
 ### Assembly Resources
 
-By default, the command `get-reference` helps you retrieve the assembly reference genome. 
+By default, the command `get-reference` helps you retrieve the assembly reference genome.
 
 ```bash
 isabl get-reference GRCh37    # retrieve reference genome
@@ -255,7 +243,7 @@ done
 To visualize what results are available for a given application run:
 
 ```bash
-isabl get-results --app-results <application primary key> 
+isabl get-results --app-results <application primary key>
 ```
 
 {% hint style="info" %}

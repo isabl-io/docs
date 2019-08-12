@@ -1,10 +1,33 @@
 # Isabl Settings
 
+To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20).
+
+| Setting Name | Type | Description |
+| :--- | :--- | :--- |
+| **API\_BASE\_URL** | _String_ | url host where your isabl api is running. Needed to connect the CLI with the API. |
+| **BASE\_STORAGE\_DIRECTORY** | _String_ | Directory where data will be store in the file system. |
+| **TIME\_ZONE** | _String_ | Current timezone used by `pytz` package. |
+| **INSTALLED\_APPLICATIONS** | _Array of Method Import Strings_ | Array of registered applications to be run with the cli tool. These apps can be seen and run `isabl apps --help`. |
+| **CUSTOM\_COMMANDS** | _Array of Method Import Strings_ | Array of custom commands to be added to the custom cli tool. |
+| **SYSTEM\_COMMANDS** | _Array of Method Import Strings_ | Array of system commands that are used in isabl-cli. |
+| **ADMIN\_COMMANDS** | _Array of Method Import Strings_ | Array of commands that are only executable by admin. |
+| **ADMIN\_USER** | _String_ | Linux user for which admin operations will be limited. |
+| **DEFAULT\_LINUX\_GROUP** | _String_ | Linux group for data admin\_user to use. |
+| **MAKE\_STORAGE\_DIRECTORY** | _Method Import String_ | Get and create path to a data directory. |
+| **TRASH\_ANALYSIS\_STORAGE** | _Method Import String_ | Move analysis `storage_url` to a trash directory. |
+| **REFERENCE\_DATA\_IMPORTER** | _Class Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
+| **DATA\_IMPORTER** | _Class Import String_ | Import raw data for multiple experiments. |
+| **BED\_IMPORTER** | _Class Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
+| **FASTQ\_READ\_SUFFIX** | _String_ | Suffix in case your fastq files have one. Usually needed for aligners like _bwa\_mem_. |
+| **ON\_DATA\_IMPORT** | _Array of Method Import Strings_ | Methods triggered when data has been imported successfully. |
+| **ON\_STATUS\_CHANGE** | _Array of Method Import Strings_ | Methods triggered when an analysis changes status. |
+| **ON\_SIGNAL\_FAILURE** | _Array of Method Import Strings_ | Methods triggered when an analysis fails |
+
 ## Settings Types
 
 In general terms, these are the settings types available for Isabl:
 
-| **Type**                       | Description |
+| **Type** | Description |
 | :---: | :--- |
 | **String** | A regular `string`. |
 | **Method Import String** | A `string` that contains the path to a method. For example `isabl_cli.data.make_storage_directory`means that `make_storage_directory` is a method that can be loaded from `isabl_cli_data` |
@@ -21,206 +44,152 @@ TODO
 
 The `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20) contains the values that can be overwritten or extended in order to control functionality:
 
-#### 
+| Setting Name | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+
+
+| **API\_BASE\_URL** | _String_ | `http://0.0.0.0:8000/api/v1` | url host where your isabl api is running. Needed to connect the CLI with the API. |
+| :--- | :--- | :--- | :--- |
+
+
+| **BASE\_STORAGE\_DIRECTORY** | _String_ | `~/isabl_storage` | Directory where data will be store in the file system. |
+| :--- | :--- | :--- | :--- |
+
+
+| **TIME\_ZONE** | _String_ | `America/New_York` | Current timezone used by pytz package. |
+| :--- | :--- | :--- | :--- |
+
+
+| **INSTALLED\_APPLICATIONS** | _Array of Method Import Strings_ | `[]` | Array of registered applications to be run with the cli tool. These apps can be seen and run `isabl apps --help`. |
+| :--- | :--- | :--- | :--- |
+
+
+| **CUSTOM\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of custom commands to be added to the custom cli tool. |
+| :--- | :--- | :--- | :--- |
+
+
+| **SYSTEM\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of system commands that are used in isabl-cli. |
+| :--- | :--- | :--- | :--- |
+
+
+| **ADMIN\_COMMANDS** | _Array of Method Import Strings_ | `[]` | Array of commands that are only executable by admin. |
+| :--- | :--- | :--- | :--- |
+
+
+| **ADMIN\_USER** | _Class Import String_ | `None` | Linux user for which admin operations will be limited to. |
+| :--- | :--- | :--- | :--- |
+
 
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Setting Name</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Default</th>
-      <th style="text-align:left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>API_BASE_URL</b>
-      </td>
-      <td style="text-align:left"><em>String</em>
-      </td>
-      <td style="text-align:left"><code>http://0.0.0.0:8000/api/v1</code>
-      </td>
-      <td style="text-align:left">url host where your isabl api is running. Needed to connect the CLI with
-        the API.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>BASE_STORAGE_DIRECTORY</b>
-      </td>
-      <td style="text-align:left"><em>String</em>
-      </td>
-      <td style="text-align:left"><code>~/isabl_storage</code>
-      </td>
-      <td style="text-align:left">Directory where data will be store in the file system.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>TIME_ZONE</b>
-      </td>
-      <td style="text-align:left"><em>String</em>
-      </td>
-      <td style="text-align:left"><code>America/New_York</code>
-      </td>
-      <td style="text-align:left">Current timezone used by pytz package.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>INSTALLED_APPLICATIONS</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left"><code>[]</code>
-      </td>
-      <td style="text-align:left">Array of registered applications to be run with the cli tool. These apps
-        can be seen and run <code>isabl apps --help</code>.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>CUSTOM_COMMANDS</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left"><code>[]</code>
-      </td>
-      <td style="text-align:left">Array of custom commands to be added to the custom cli tool.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>SYSTEM_COMMANDS</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left"><code>[]</code>
-      </td>
-      <td style="text-align:left">Array of system commands that are used in isabl-cli.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>ADMIN_COMMANDS</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left"><code>[]</code>
-      </td>
-      <td style="text-align:left">Array of commands that are only executable by admin.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>ADMIN_USER</b>
-      </td>
-      <td style="text-align:left"><em>Class Import String</em>
-      </td>
-      <td style="text-align:left"><code>None</code>
-      </td>
-      <td style="text-align:left">Linux user for which admin operations will be limited to.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>MAKE_STORAGE_DIRECTORY</b>
-      </td>
-      <td style="text-align:left"><em>Method Import String</em>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>MAKE_STORAGE_DIRECTORY</b>
+      </th>
+      <th style="text-align:left"><em>Method Import String</em>
+      </th>
+      <th style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
         <p><code>.data</code>
         </p>
         <p><code>.make_storage_directory</code>
         </p>
-      </td>
-      <td style="text-align:left">Get and create path to a data directory.</td>
+      </th>
+      <th style="text-align:left">Get and create path to a data directory.</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>TRASH_ANALYSIS_STORAGE</b>
-      </td>
-      <td style="text-align:left"><em>Method Import String</em>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>TRASH_ANALYSIS_STORAGE</b>
+      </th>
+      <th style="text-align:left"><em>Method Import String</em>
+      </th>
+      <th style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
         <p><code>.data</code>
         </p>
         <p><code>.trash_analysis_storage</code>
         </p>
-      </td>
-      <td style="text-align:left">Move analysis storage_url to a trash directory.</td>
+      </th>
+      <th style="text-align:left">Move analysis storage_url to a trash directory.</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>REFERENCE_DATA_IMPORTER</b>
-      </td>
-      <td style="text-align:left"><em>Class Import String</em>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>REFERENCE_DATA_IMPORTER</b>
+      </th>
+      <th style="text-align:left"><em>Class Import String</em>
+      </th>
+      <th style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
         <p><code>.data</code>
         </p>
         <p><code>.ReferenceDataImporter</code>
         </p>
-      </td>
-      <td style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</td>
+      </th>
+      <th style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>DATA_IMPORTER</b>
-      </td>
-      <td style="text-align:left"><em>Class Import String</em>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>DATA_IMPORTER</b>
+      </th>
+      <th style="text-align:left"><em>Class Import String</em>
+      </th>
+      <th style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
         <p><code>.data</code>
         </p>
         <p><code>.DataImporter</code>
         </p>
-      </td>
-      <td style="text-align:left">Import raw data for multiple experiments.</td>
+      </th>
+      <th style="text-align:left">Import raw data for multiple experiments.</th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>BED_IMPORTER</b>
-      </td>
-      <td style="text-align:left"><em>Class Import String</em>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>BED_IMPORTER</b>
+      </th>
+      <th style="text-align:left"><em>Class Import String</em>
+      </th>
+      <th style="text-align:left">
         <p><code>isabl_cli</code>
         </p>
         <p><code>.data</code>
         </p>
         <p><code>.BedImporter</code>
         </p>
-      </td>
-      <td style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</td>
+      </th>
+      <th style="text-align:left">Register input_bed_path in technique&apos;s storage dir and update data.</th>
     </tr>
-    <tr>
-      <td style="text-align:left"><b>FASTQ_READ_SUFFIX</b>
-      </td>
-      <td style="text-align:left"><em>String</em>
-      </td>
-      <td style="text-align:left"><code>&apos;&apos;</code>
-      </td>
-      <td style="text-align:left">Suffix in case your fastq files have one. Usually needed for aligners
-        like <em>bwa_mem</em>.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>ON_DATA_IMPORT</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left">See <code>isabl.settings</code>
-      </td>
-      <td style="text-align:left">Methods triggered when data has been imported successfully.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>ON_STATUS_CHANGE</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left">See <code>isabl.settings</code>
-      </td>
-      <td style="text-align:left">Methods triggered when an analysis changes status.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>ON_SIGNAL_FAILURE</b>
-      </td>
-      <td style="text-align:left"><em>Array of Method Import Strings</em>
-      </td>
-      <td style="text-align:left"><code>None</code>
-      </td>
-      <td style="text-align:left">Methods triggered when an analysis fails</td>
-    </tr>
-  </tbody>
-</table>## **Isabl Web Settings**
+  </thead>
+  <tbody></tbody>
+</table>| **FASTQ\_READ\_SUFFIX** | _String_ | `''` | Suffix in case your fastq files have one. Usually needed for aligners like _bwa\_mem_. |
+| :--- | :--- | :--- | :--- |
+
+
+| **ON\_DATA\_IMPORT** | _Array of Method Import Strings_ | See `isabl.settings` | Methods triggered when data has been imported successfully. |
+| :--- | :--- | :--- | :--- |
+
+
+| **ON\_STATUS\_CHANGE** | _Array of Method Import Strings_ | See `isabl.settings` | Methods triggered when an analysis changes status. |
+| :--- | :--- | :--- | :--- |
+
+
+| **ON\_SIGNAL\_FAILURE** | _Array of Method Import Strings_ | `None` | Methods triggered when an analysis fails |
+| :--- | :--- | :--- | :--- |
+
 
 Customization of the User Interface can be achieved by defining a global `$isabl` settings dictionary in the main `index.html`.
 
@@ -318,7 +287,7 @@ You can configure the `window.$isabl` with the following parameters:
 ```
 
 {% hint style="warning" %}
-**Important:** In case you're running your frontend instance in a different host that the backend, you should add this `ENV` variable to your django project where the `isabl-api` is running: 
+**Important:** In case you're running your frontend instance in a different host that the backend, you should add this `ENV` variable to your django project where the `isabl-api` is running:
 
 ```bash
 export FRONTEND_URL="http://your-frontend-host.com"
@@ -326,7 +295,7 @@ export FRONTEND_URL="http://your-frontend-host.com"
 {% endhint %}
 
 {% hint style="success" %}
-If you want to consume `isabl-web` and serve your own html, outside of `isabl-api`. You can consume the frontend just as: 
+If you want to consume `isabl-web` and serve your own html, outside of `isabl-api`. You can consume the frontend just as:
 
 {% code-tabs %}
 {% code-tabs-item title="index.html" %}
@@ -342,7 +311,7 @@ If you want to consume `isabl-web` and serve your own html, outside of `isabl-ap
         <title>My Awesome App</title>
     </head>
     <body>
-       
+
  <div id="isabl-web"></div>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script src="https://cdn.jsdelivr.net/npm/isabl-web"></script>

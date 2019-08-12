@@ -271,6 +271,8 @@ Each result has some fields that need to be defined in order to display the resu
 * `optional`: if `False` and result is missing, an alert warning about the missing result will be shown.
 * `external_link`: an URL that will allow the user to browse into an external resource to get more information about the obtained result.
 
+
+
 ### Application Inputs
 
 `application_inputs = {}` is a dictionary of input file paths or values your _Application_ expects to have as input requirements. Each input should be defined as `NotImplemented` and resolved for each analysis during the `get_dependencies` method. See the example in the `get_dependencies` definition.
