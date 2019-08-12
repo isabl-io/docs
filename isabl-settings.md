@@ -1,5 +1,12 @@
 # Isabl Settings
 
+In general terms, these are the settings types available for Isabl:
+
+| **Type** | Description |
+| :---: | :--- |
+| **String** | A regular string. |
+| **Import String** | A string pointing to an _importable_ object \(e.g.`isabl_cli.data.DataImporter`\). |
+
 ## Isabl CLI Settings
 
 To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20).
@@ -9,32 +16,21 @@ To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in 
 | **API\_BASE\_URL** | _String_ | url host where your isabl api is running. Needed to connect the CLI with the API. |
 | **BASE\_STORAGE\_DIRECTORY** | _String_ | Directory where data will be store in the file system. |
 | **TIME\_ZONE** | _String_ | Current timezone used by `pytz` package. |
-| **INSTALLED\_APPLICATIONS** | _Array of Method Import Strings_ | Array of registered applications to be run with the cli tool. These apps can be seen and run `isabl apps --help`. |
-| **CUSTOM\_COMMANDS** | _Array of Method Import Strings_ | Array of custom commands to be added to the custom cli tool. |
-| **SYSTEM\_COMMANDS** | _Array of Method Import Strings_ | Array of system commands that are used in isabl-cli. |
-| **ADMIN\_COMMANDS** | _Array of Method Import Strings_ | Array of commands that are only executable by admin. |
+| **INSTALLED\_APPLICATIONS** | _Import Strings Array_ | Array of registered applications to be run with the cli tool. These apps can be seen and run `isabl apps --help`. |
+| **CUSTOM\_COMMANDS** | _Import Strings Array_ | Array of custom commands to be added to the custom cli tool. |
+| **SYSTEM\_COMMANDS** | _Import Strings Array_ | Array of system commands that are used in isabl-cli. |
+| **ADMIN\_COMMANDS** | _Import Strings Array_ | Array of commands that are only executable by admin. |
 | **ADMIN\_USER** | _String_ | Linux user for which admin operations will be limited. |
 | **DEFAULT\_LINUX\_GROUP** | _String_ | Linux group for data admin\_user to use. |
-| **MAKE\_STORAGE\_DIRECTORY** | _Method Import String_ | Get and create path to a data directory. |
-| **TRASH\_ANALYSIS\_STORAGE** | _Method Import String_ | Move analysis `storage_url` to a trash directory. |
-| **REFERENCE\_DATA\_IMPORTER** | _Class Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
-| **DATA\_IMPORTER** | _Class Import String_ | Import raw data for multiple experiments. |
-| **BED\_IMPORTER** | _Class Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
+| **MAKE\_STORAGE\_DIRECTORY** | _Import String_ | Get and create path to a data directory. |
+| **TRASH\_ANALYSIS\_STORAGE** | _Import String_ | Move analysis `storage_url` to a trash directory. |
+| **REFERENCE\_DATA\_IMPORTER** | _Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
+| **DATA\_IMPORTER** | _Import String_ | Import raw data for multiple experiments. |
+| **BED\_IMPORTER** | _Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
 | **FASTQ\_READ\_SUFFIX** | _String_ | Suffix in case your fastq files have one. Usually needed for aligners like _bwa\_mem_. |
-| **ON\_DATA\_IMPORT** | _Array of Method Import Strings_ | Methods triggered when data has been imported successfully. |
-| **ON\_STATUS\_CHANGE** | _Array of Method Import Strings_ | Methods triggered when an analysis changes status. |
-| **ON\_SIGNAL\_FAILURE** | _Array of Method Import Strings_ | Methods triggered when an analysis fails |
-
-## Settings Types
-
-In general terms, these are the settings types available for Isabl:
-
-| **Type** | Description |
-| :---: | :--- |
-| **String** | A regular `string`. |
-| **Method Import String** | A `string` that contains the path to a method. For example `isabl_cli.data.make_storage_directory`means that `make_storage_directory` is a method that can be loaded from `isabl_cli_data` |
-| **Class Import String** | A `string` that contains the path to a Class. For example `isabl_cli.data.DataImporter` means that `DataImporter` is a class that can be loaded from `isabl_cli_data`. The classes should contain a `as_cli_command` that returns a click command. |
-| **Path String** | A `string` that resolves to a path in the current file system. |
+| **ON\_DATA\_IMPORT** | _Import Strings Array_ | Methods triggered when data has been imported successfully. |
+| **ON\_STATUS\_CHANGE** | _Import Strings Array_ | Methods triggered when an analysis changes status. |
+| **ON\_SIGNAL\_FAILURE** | _Import Strings Array_ | Methods triggered when an analysis fails |
 
 ## Isabl API Settings
 
