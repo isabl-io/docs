@@ -19,6 +19,8 @@ Here is a detailed list of available configurations for Isabl API. To configure 
 | **JIRA\_SETTINGS** | _Dictionary_ | Experimental feature to integrate JIRA with Isabl projects \(It can assign a different JIRA epic to each Isabl Group\). |
 | **REQUIRE\_ACCOUNT\_APPROVAL** | _Boolean_ | Disable new accounts and send out email to admins to require approval before new users can login. |
 
+### 
+
 Learn more about production deployment:
 
 {% page-ref page="production-deployment.md" %}
@@ -75,7 +77,7 @@ You can configure the `window.$isabl` with the following parameters:
 | **`darkTheme`** | `Object` | See [defaults](https://github.com/isabl-io/web/blob/master/src/utils/settings.js#L20) | Colors to customize the dark theme. |
 | **`modelIcons`** | `Object` | `{}` | [Material Icon](https://material.io/resources/icons/?style=baseline) names to customize panel icons. |
 
-### Example of a custom UI configuration 🌈
+### Example of a custom UI configuration
 
 ```markup
 <script>
