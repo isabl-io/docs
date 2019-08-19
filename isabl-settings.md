@@ -3,12 +3,12 @@
 Each component of Isabl can be configured in multiple ways. Generally, settings are strings, numbers, objects, and many other types. 
 
 {% hint style="info" %}
-**`Import Strings`** point to an _importable_ object \(e.g.`isabl_cli.data.DataImporter`\)
+**`Import Strings`** point to an _importable_ object, whether its a class, a function, etc. \(e.g.`isabl_cli.data.DataImporter`\)
 {% endhint %}
 
 ## Isabl API Settings
 
-Here is a detailed list of available configurations for Isabl API.
+Here is a detailed list of available configurations for Isabl API. To configure Isabl API, add a dictionary called `ISABL_SETTINGS` to your Django configuration. 
 
 | Setting Name | Type | Description |
 | :--- | :--- | :--- |
@@ -17,6 +17,9 @@ Here is a detailed list of available configurations for Isabl API.
 | **SYSTEM\_ID\_GENERATOR** | _Import String_ | Import path to a function that takes either an Individual, Sample, Aliquot, or Experiment and returns a `system identifier.`  |
 | **FRONTEND\_URL** | _String_ | URL where the frontend is being deployed \(not required if using the Docker compose setup\). |
 | **JIRA\_SETTINGS** | _Dictionary_ | Experimental feature to integrate JIRA with Isabl projects \(It can assign a different JIRA epic to each Isabl Group\). |
+| **REQUIRE\_ACCOUNT\_APPROVAL** | _Boolean_ | Disable new accounts and send out email to admins to require approval before new users can login. |
+
+Learn more about production deployment:
 
 {% page-ref page="production-deployment.md" %}
 
