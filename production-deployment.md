@@ -170,6 +170,26 @@ sshfs \
 Note that we are mounting `/remote/path` to `/remote/path` so that the paths pushed by **Isabl CLI** match those available in the web server. Also note that you may need to restart the docker compose services after mounting this directory.
 {% endhint %}
 
+### Manage User Groups and Permissions
+
+You can configure user permissions using Django. Isabl offers an optional configuration of groups that you can adopt:
+
+| Group Name | Permissions |
+| :--- | :--- |
+| **Managers** | Can create, update, and delete Custom Fields, Individuals, Centers, Diseases, Experiments, Techniques, Platforms, Projects, and Submissions. |
+| **Analysts** | Can create, update, and delete Custom Fields, Applications, Analyses, and Assemblies. They can also download analyses results. |
+| **Engineers** | Engineers have the same permissions of both managers and analysts. |
+
+ In order to create these groups run the following command:
+
+```bash
+python manage.py create_default_groups
+```
+
+{% hint style="info" %}
+These groups are **optional** and you can create your own using the Django Admin.
+{% endhint %}
+
 ## Isabl CLI in Production
 
 In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
