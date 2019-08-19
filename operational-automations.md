@@ -23,6 +23,7 @@ The Data Import signal is triggered after when data is imported into the system.
 ```python
 from isabl_apps import apps
 
+
 def signal_data_import(experiment):
     """Run upon data import using the cli."""
     species = experiment.sample.individual.species
@@ -49,20 +50,20 @@ The Analysis Status Change signal is triggered when the status of an analysis is
 
 ```python
 from isabl_apps import apps
+
+
 def signal_apps_automation(analysis):
     """Run upon an analysis status update in the database."""
-    if analysis.status == "SUCCEEDED" and analysis.targets:
-        if analysis.application.name in ["DISAMBIGUATE", "BWA_MEM", "STAR"]:
-            run_quality_automation(analysis)
-
-def run_quality_automation(analysis):
-    """Trigger QC and coverage analyses."""
-    app = {
+    qc_app = {
         "GRCh37": apps.QualityControlGRCh37,
         "GRCm38": apps.QualityControlGRCm38,
     }.get(analysis.application.assembly.name)
 
-    if app:
-        app().run(tuples=[(analysis.targets, [])], commit=True)
+    if (
+        analysis.status == "SUCCEEDED"
+        and analysis.application.name in ["DISAMBIGUATE", "BWA_MEM", "STAR"]
+        and qc_app
+    ):  
+        qc_app().run(tuples=[(analysis.targets, [])], commit=True)
 ```
 
