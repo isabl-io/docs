@@ -1,20 +1,20 @@
 ---
-description: "\U0001F4E6Bring the sequencing data and match with existing metadata"
+description: "\U0001F4E6Bring your raw data and match with existing metadata"
 ---
 
 # Importing Data
 
-Isabl-CLI enables tracking and managing of NGS data, as well as reference resources that are a function of a _genome assembly_ or a _sequencing technique_.
+Isabl-CLI enables tracking and managing of raw data, as well as reference resources that are a function of a _genome assembly_ or an _experimental technique_.
 
-### NGS Data Import
+## Data Import
 
-Isabl-CLI supports automated data import by recursively exploring data deposition directories and matching NGS files with identifiers registered in the database. For example, the client can be instructed to explore the `/projects` directory \(**A**\), retrieving only samples from _Project 393_, and match files using _Sample Identifiers_ \(**B**\).
+Isabl-CLI supports automated data import by recursively exploring data deposition directories and matching raw data files with identifiers registered in the database. For example, the client can be instructed to explore the `/projects` directory \(**A**\), retrieving only samples from _Project 393_, and match files using _Sample Identifiers_ \(**B**\).
 
 ![Isabl supports automatic import from data deposition directories.](https://user-images.githubusercontent.com/8843150/62899370-a1f2e300-bd25-11e9-9e50-1d88e870d19a.png)
 
 Upon `--commit`, Isabl-CLI proceeds to move \(or symlink\) matched files into scalable directory structures \(**C**\). The experiments data path is created by hashing the four last digits of the its primary key. For instance, data for Experiment 57395 will be stored at `{storage-directory}/experiments/73/95/57395/`. This hashing approach ensures a maximum of 1000 subdirectories in any folder at a worst case scenario of 10 million experiments.
 
-### Import Reference Data and BED files
+## Import Reference Data and BED files
 
 Isabl supports the ability to track resources for assemblies and techniques. For instance, ensuring that reference FASTA files are uniformly index, named, and tracked across genome builds:
 
@@ -78,16 +78,16 @@ techniques/
 
 Imported assets are available for systematic processing by Isabl applications.
 
-### Customizing Import Logic
+## Customizing Import Logic
 
 All registration mechanisms are configurable and can be customized by providing an alternative python `sub class`:
 
-| Setting Name | Default |
-| :--- | :--- |
-| **DATA\_IMPORTER** | isabl\_cli.data.LocalDataImporter |
+| Setting Name                    | Default                                      |
+| :------------------------------ | :------------------------------------------- |
+| **DATA\_IMPORTER**              | isabl\_cli.data.LocalDataImporter            |
 | **REFERENCE\_GENOME\_IMPORTER** | isabl\_cli.data.LocalReferenceGenomeImporter |
-| **REFERENCE\_DATA\_IMPORTER** | isabl\_cli.data.LocalReferenceDataImporter |
-| **BED\_IMPORTER** | isabl\_cli.data.LocalBedImporter |
+| **REFERENCE\_DATA\_IMPORTER**   | isabl\_cli.data.LocalReferenceDataImporter   |
+| **BED\_IMPORTER**               | isabl\_cli.data.LocalBedImporter             |
 
 Although only local storage is supported at the time of writing, Isabl-CLI capability can be extrapolated to cloud solutions including integration with cloud workbenches such as Arvados.
 

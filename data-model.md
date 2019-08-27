@@ -1,12 +1,12 @@
 ---
-description: "\U0001F3F7Create models and metadata, before linking your sequencing data."
+description: "\U0001F3F7Create models and metadata, before linking your raw data."
 ---
 
 # Registering Metadata
 
 ### Isabl Data Model
 
-`isabl` models a NGS data generation process where sequencing _Experiments_ such as Whole Genome Sequencing are performed on _Samples_ collected from different _Individuals_. This normalization approach reduces data redundancy and improves data integrity. 
+`Isabl` models a data generation process where _Experiments_ such as Whole Genome Sequencing are performed on _Samples_ collected from different _Individuals_. This normalization approach reduces data redundancy and improves data integrity.
 
 {% tabs %}
 {% tab title="Data Generation Process" %}
@@ -78,32 +78,32 @@ Isabl offer different mechanisms for metadata registration.
 ![](https://user-images.githubusercontent.com/8843150/62899505-eb433280-bd25-11e9-9c8d-2267d7092b36.png)
 
 {% hint style="warning" %}
-Only users with the proper permissions or _superusers_ can create or modify models in the database, by using any of the methods for metadata registration. 
+Only users with the proper permissions or _superusers_ can create or modify models in the database, by using any of the methods for metadata registration.
 
 When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role.  If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
 {% endhint %}
 
 ### Register Samples with Excel
 
-Through the web interface, is possible to import an _Excel Submission_ to register new samples. 
+Through the web interface, is possible to import an _Excel Submission_ to register new samples.
 
 {% hint style="warning" %}
 Note that this feature is limited to create only new _Individuals_, _Samples_ and _Experiments_. If you need to create _Centers_, _Diseases_, _Techniques_, _Platforms_, for your available choices you need to use the **Admin** interface at `http://<your-isabl-host>/admin/`or the [API method](data-model.md#register-samples-with-restful-api-and-cli).
 {% endhint %}
 
-By clicking in **Create New Submission** button in the top right menu of the user, or by clicking in **Add Batch Samples** in the top right button of the Project view. 
+By clicking in **Create New Submission** button in the top right menu of the user, or by clicking in **Add Batch Samples** in the top right button of the Project view.
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vTnj1KCwWgfTPLqedUc13XX6wCNshQGDWi-VA8gmh7oXX6tDzNXQGfVzHAXGmaAJfXcskFTPrNEfW9o/pub?w=1276&h=267)
 
-It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques. 
+It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques.
 
 {% hint style="info" %}
-When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. 
+When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns.
 {% endhint %}
 
 ![Metadata can be registered using Excel Submission forms.](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK_xSbSFLgMnAFP44OPVvxE_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=2256&h=498)
 
-After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created \(i.e. _1 Individual, 2 Samples, 4 Experiments_\) or errors in the submission form fields \(i.e. _Error: individual gender FMALE is not a valid choice_\) guides you in the submission process, before you can commit it. 
+After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created \(i.e. _1 Individual, 2 Samples, 4 Experiments_\) or errors in the submission form fields \(i.e. _Error: individual gender FMALE is not a valid choice_\) guides you in the submission process, before you can commit it.
 
 {% hint style="success" %}
 After uploading the submission file, if you don't get any validation errors and your summary looks correct, hit the **Commit Submission** button to register the submission and make definitive changes in the database.
@@ -111,7 +111,7 @@ After uploading the submission file, if you don't get any validation errors and 
 
 ![](.gitbook/assets/web_submit_form%20%281%29.gif)
 
-After committing your _Submission,_ your new available samples should've been created by now, and you can visualize in the _Sample Tree_ the relationship between the new models you just registered. 
+After committing your _Submission,_ your new available samples should've been created by now, and you can visualize in the _Sample Tree_ the relationship between the new models you just registered.
 
 ![Sample Tree of the new registered samples.](.gitbook/assets/screen-shot-2019-06-18-at-4.28.47-pm.png)
 
@@ -179,7 +179,6 @@ Center object
     "created_by": "admin",
     "custom_fields": {},
     "data": "string",
-    "internal": true,
     "name": "string",
     "notes": "string",
     "storage_url": "string",
@@ -214,7 +213,7 @@ Center object
 {% endapi-method-spec %}
 {% endapi-method %}
 
-Look that `center` is at the same time another object of the database. So if you want to pass it as a field you may need to create a new one or query an existing one. Let's say you want to get an existing one. 
+Look that `center` is at the same time another object of the database. So if you want to pass it as a field you may need to create a new one or query an existing one. Let's say you want to get an existing one.
 
 {% api-method method="get" host="/api/v1" path="/centers/:id" %}
 {% api-method-summary %}
@@ -258,7 +257,6 @@ Abbreviation formed from the initial letters \(e.g. NASA\)
   "created_by": "admin",
   "custom_fields": {},
   "data": "string",
-  "internal": true,
   "model_name": "string",
   "modified": "2019-06-17T19:47:46Z",
   "name": "string",
@@ -288,7 +286,7 @@ curl \
     -H 'Authorization: Token <your-token>' \
     http://<your-isabl-host>/api/v1/centers/MSK
 
-# Response: { "pk": 1, "acronym":"MSK", "name": "MEMORIAL SLOAN KETTERING", ... } 
+# Response: { "pk": 1, "acronym":"MSK", "name": "MEMORIAL SLOAN KETTERING", ... }
 
 curl \
     -X POST \
@@ -300,7 +298,7 @@ curl \
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-or using the _interactive isabl api_ that comes with the **isabl\_cli** package: 
+or using the _interactive isabl api_ that comes with the **isabl\_cli** package:
 
 {% code-tabs %}
 {% code-tabs-item title="Using Isabl SDK" %}
@@ -308,21 +306,21 @@ or using the _interactive isabl api_ that comes with the **isabl\_cli** package:
 import isabl_cli as ii
 
 center = ii.get_instance(
-    'centers', 
+    'centers',
     'MEMORIAL SLOAN KETTERING (MSK)',
 )
 individual = ii.create_instance(
-    'individuals', 
-    identifier = 'EXTERNAL_ID_1', 
+    'individuals',
+    identifier = 'EXTERNAL_ID_1',
     species = 'HUMAN',
-    gender = 'FEMALE', 
-    center = center, 
+    gender = 'FEMALE',
+    center = center,
 )
 ```
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-For more information about the available methods in the **isabl\_cli** api, see the [Isabl SDK](isabl-settings.md). 
+For more information about the available methods in the **isabl\_cli** api, see the [Isabl SDK](isabl-settings.md).
 
 {% hint style="info" %}
 **API Authentication:** For any method you'll need an _Authentication Token_ that will be used in every query to the API.
