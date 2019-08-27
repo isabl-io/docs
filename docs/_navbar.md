@@ -1,5 +1,0 @@
-- Repos
-  - [⚙️ api](https://github.com/isabl-io/api)
-  - [🚀 web](https://github.com/isabl-io/web)
-  - [🤖 cli](https://github.com/isabl-io/cli)
-  - [👾 apps](https://github.com/isabl-io/apps)
