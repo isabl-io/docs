@@ -6,21 +6,21 @@ description: ⚡️Learn how to embed your Applications into Isabl
 
 ## Introduction
 
-_Applications_ are the data processing algorithms that ran over the _Experiments_ sequencing data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a _fastq_ aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA with a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
+_Applications_ are the data processing algorithms that ran over the _Experiments_ raw data. And `Isabl` is agnostic as the type of tool you want to run on your data, or the technology the tool is written in. You can have a _fastq_ aligner written in Perl, or a CWL pipeline for running a variant caller written in JAVA with a variant annotator written in R . It doesn't matter, as what Isabl allows you to do is to run your registered _Applications_ in large batches of _Experiments_ by using the available metadata stored in your database. \(See [What isabl is not!](./#what-isabl-is-not)\)
 
-All the logic of the filters to query the _Experiments_ you need, the validations you want to perform on the data, the inputs and outputs that your tools need, as well as how to build the command to execute it, are defined into a python **Isabl Abstract Application Class**. 
+All the logic of the filters to query the _Experiments_ you need, the validations you want to perform on the data, the inputs and outputs that your tools need, as well as how to build the command to execute it, are defined into a python **Isabl Abstract Application Class**.
 
 {% hint style="info" %}
-Important Definitions: 
+Important Definitions:
 
 **Application**_**:**_ is a tool registered in Isabl, with an specific version and sequence reference assembly. For instance, Mutect v2.0.0 for GRh37 will be a different Application than Mutect v2.0.0 for hg19 as its results can't be comparable between each other. This means that the fields that make an Application unique are: NAME, VERSION, ASSEMBLY and SPECIES.
 
-**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, a quality-control script over a simple target, or an annotation tool ran over a tumor with a pool of normals as references. 
+**Analysis:** is an Application ran over a list of target Experiments and a list of reference Experiments. The uniqueness of an Analysis is defined by these, so if someone tries to ran the same Application over the same list of targets and references, a new Analysis won't be created and the existing one will be retrieved. Examples of these tuples of targets and references can be: a variant caller ran in a tumor-normal pair, a cross-individual validation all-vs-all individual samples, a quality-control script over a simple target, or an annotation tool ran over a tumor with a pool of normals as references.
 {% endhint %}
 
 ![Application examples, with different targets-references requirements.](https://docs.google.com/drawings/d/e/2PACX-1vQyGMRlI2yezwTOzWGx5kL_MS899ILuU5AwmciVx0uRWwXL2lUbbOEmyWtzi5ZeN0rjkVCnunjK_bi8/pub?w=608&h=558)
 
-## A Class Based Approach 
+## A Class Based Approach
 
 The following working example, shows how to register a very simple tool that's available to execute in the system by running:
 
@@ -38,7 +38,7 @@ docker run papaemmelab/toil_say:v0.1.1 cowsay --message "System ID: DEM_H12000"
                 ||     ||
 ```
 
-In order to create an `Isabl` _Application_, `isabl_cli` comes with an abstract class that needs some attributes and methods to be defined. 
+In order to create an `Isabl` _Application_, `isabl_cli` comes with an abstract class that needs some attributes and methods to be defined.
 
 ```python
 from isabl_cli import AbstractApplication
@@ -76,7 +76,7 @@ class CowSay(AbstractApplication):
             "--message",
             f"'System ID {analysis.targets[0].system_id}'"
             "--batchSytem",
-            settings.batch_system          
+            settings.batch_system
         ]
 ```
 
@@ -111,10 +111,10 @@ cli_allow_force = True
 cli_allow_restart = True
 ```
 
-`Isabl` apps use [Click](https://click.palletsprojects.com/en/7.x/), that is a python library to create command line interfaces \(CLI\) tools. 
+`Isabl` apps use [Click](https://click.palletsprojects.com/en/7.x/), that is a python library to create command line interfaces \(CLI\) tools.
 
 * `cli_help` is the verbose description of the app when the user types `--help`.
-* The `cli_options` attribute is a list of [click.options](https://click.palletsprojects.com/en/7.x/options/), and [`isabl_cli.options`](https://github.com/isabl-io/cli/blob/master/isabl_cli/options.py) comes with a bunch of predefined options to get _Experiments_ by different filter arguments. 
+* The `cli_options` attribute is a list of [click.options](https://click.palletsprojects.com/en/7.x/options/), and [`isabl_cli.options`](https://github.com/isabl-io/cli/blob/master/isabl_cli/options.py) comes with a bunch of predefined options to get _Experiments_ by different filter arguments.
 * By default, all apps have `--force` and `--restart` options, and `cli_allow_force` and `cli_allow_restart` are flags to opt-out from them. `--force`, allows the user to wipe an analysis' results directory and resubmit it, and `--restart` allows to resubmit it by resuming the analysis without wiping the previous data output.
 
 This is an example of how the cli help will look like:
@@ -150,10 +150,10 @@ Options:
 def get_experiments_from_cli_options(self, **cli_options):
     """
     Must return list of target-reference experiment tuples given the parsed options.
-    
+
     Arguments:
         cli_options (dict): parsed command line options.
-    
+
     Returns:
         list: of (targets, references) tuples.
     """
@@ -182,7 +182,7 @@ cli_options =[technique, project]
 
 def get_experiments_from_cli_options(self, **cli_options):
     targets = api.get_instances(
-        "experiments", 
+        "experiments",
         projects=cli_options["project"],
         technique__method=cli_options["technique"]
     )
@@ -197,14 +197,14 @@ def get_experiments_from_cli_options(self, **cli_options):
 def validate_experiments(self, targets, references):
         """
         Must raise UsageError if tuple combination isn't valid else return True.
-        
+
         Arguments:
             targets (list): list of targets dictionaries.
             references (list): list of references dictionaries.
-        
+
         Raises:
             click.UsageError: if tuple is invalid.
-        
+
         Returns:
             bool: True if (targets, references, analyses) combination is ok.
         """
@@ -250,7 +250,7 @@ application_results = {
         "description": "Annotated Indels from Mutect.",
         "verbose_name": "Annotated Mutect Indels VCF",
         "optional": False,
-        "external_link" "https://samtools.github.io/hts-specs/VCFv4.2.pdf" 
+        "external_link" "https://samtools.github.io/hts-specs/VCFv4.2.pdf"
     }
 }
 ```
@@ -259,13 +259,13 @@ Each result has some fields that need to be defined in order to display the resu
 
 * `frontend_type`: _Required_. It defines the type of the file and the way it should be displayed in the frontend. The following options are available:
   * `text-file`: it's shown as a raw file, and its content is streamed partially as the user requests it.
-  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. i.e. a VCF is a TSV. 
+  * `tsv-file`: it can be shown as raw text or tabulated for easier inspection. i.e. a VCF is a TSV.
   * `string`: it's shown as a string and can't be downloaded.
-  * `number`: it's shown as a string and can't be downloaded. 
+  * `number`: it's shown as a string and can't be downloaded.
   * `image`: rendered as images and previews are displayed in a gallery in the _Analysis_ View.
-  * `html`: rendered as html in an iframe. 
+  * `html`: rendered as html in an iframe.
   * `pdf`: is not rendered but can be opened in a new window to use the browser pdf viewer.
-  * `igv_bam:<name>`:  can be streamed to visualized in an embedded IGV viewer.  
+  * `igv_bam:<name>`:  can be streamed to visualized in an embedded IGV viewer.
 * `description` : _Required_. information about the result shown in the _Analysis_ view.
 * `verbose_name`: _Required_. name displayed for the result in the results list.
 * `optional`: if `False` and result is missing, an alert warning about the missing result will be shown.
@@ -289,7 +289,7 @@ application_inputs = {
 
 ```python
 ...
-def get_dependencies(self, targets, references, settings): 
+def get_dependencies(self, targets, references, settings):
     """
     Get dictionary of inputs, this function is run before `get_command`.
 
@@ -304,7 +304,7 @@ def get_dependencies(self, targets, references, settings):
     return [], {}
 ```
 
-The main objective of the `get_dependencies` method is to retrieve the necessary dependencies of previous analyses and results that should be linked to the current _Analysis_. 
+The main objective of the `get_dependencies` method is to retrieve the necessary dependencies of previous analyses and results that should be linked to the current _Analysis_.
 
 i.e. Let's say in order to run your indels variant annotator you need as requirement your Mutect application has already been ran and completed in the same target and references tuples. Let's suppose Mutect is registered in your database with primary key `10` and its results are: `snvs_vcf` and `indels_vcf`
 
@@ -352,7 +352,7 @@ If your application has defined `application_results`, this method is used to st
 from my_utils import count_variants
 from my_utils import plot_variants
 
-...    
+...
 application_results = {
     "snvs_vcf": {
         "frontend_type": "tsv-file",
@@ -378,7 +378,7 @@ def get_analysis_results(self, analysis):
         "snvs_vcf": snvs_file,
         "snvs_count": count_variants(snvs_file),
         "snvs_plot": plot_variants(snsv_file)
-    }     
+    }
 ```
 
 ### Get After Completion Status
@@ -401,7 +401,7 @@ def validate_settings(self, settings):
     return
 ```
 
-Method to write validation for your _Application_ settings. For instance, check the settings are properly defined, files can be accessed, or they have the proper format, etc. 
+Method to write validation for your _Application_ settings. For instance, check the settings are properly defined, files can be accessed, or they have the proper format, etc.
 
 ```python
 ...
@@ -417,12 +417,12 @@ def validate_settings(self, settings):
 ```
 
 {% hint style="info" %}
-`application_settings` defines the default settings, but during execution your app may have different settings for different clients or environments. For example, you may have a small test reference file for testing and the real one for production. That's why you can define `NotImplemented` by default, but **validate** that it's in fact implemented on execution.  
+`application_settings` defines the default settings, but during execution your app may have different settings for different clients or environments. For example, you may have a small test reference file for testing and the real one for production. That's why you can define `NotImplemented` by default, but **validate** that it's in fact implemented on execution.
 {% endhint %}
 
 ## Submission of Analyses
 
-`Isabl` is a framework agnostic of the computing setting you're working on. And it can be configured to work with different batch systems, whether is a Cloud platform or HPC environment. In [MSK](https://www.mskcc.org/) specific use case \(where this project was developed\), we ran our computation in an HPC cluster with IBM LSF scheduler. For us we developed a simple util to wrap the commands depending of the scheduler. 
+`Isabl` is a framework agnostic of the computing setting you're working on. And it can be configured to work with different batch systems, whether is a Cloud platform or HPC environment. In [MSK](https://www.mskcc.org/) specific use case \(where this project was developed\), we ran our computation in an HPC cluster with IBM LSF scheduler. For us we developed a simple util to wrap the commands depending of the scheduler.
 
 ### Local Submission
 
@@ -438,7 +438,7 @@ explain what makes an unique analyses
 
 `Isabl` allows you to ran automatic result aggregations on a Project-basis and Individual-basis, as soon as any analysis finishes. For instance: you may want to generate a summary for a Patient report for every time an RNA fusion analysis is ran on an Experiment, or you want to merge all PASS variants of the Experiments that are grouped in a project every time a variant-caller in ran.
 
-For doing this, you can optionally implement the following methods:  
+For doing this, you can optionally implement the following methods:
 
 ### Merge Analyses
 

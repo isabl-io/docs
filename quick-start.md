@@ -47,7 +47,7 @@ source .demo-profile
 If you are **redoing** the tutorial, we recommend to remove the demo directory and clone it again:
 
 ```bash
-chmod -R u+w demo && rm -rf demo 
+chmod -R u+w demo && rm -rf demo
 ```
 
 Also remove the Docker volume:
@@ -95,7 +95,7 @@ Creating a project in Isabl is as simple as adding a title. You can also specify
 
 ### Register Samples
 
-Before we create samples, let's use `isabl-cli` to add choices for _Center_, _Disease_, _Sequencing Technique_, and _Sequencing Platform_:
+Before we create samples, let's use `isabl-cli` to add choices for _Center_, _Disease_, _Sequencing Technique_, and _Data Generating Platform_:
 
 ```bash
 demo-cli python3.6 assets/metadata/create_choices.py
@@ -231,7 +231,7 @@ First we'll run alignment \(pass `--commit` to deploy\):
 ```bash
 isabl apps-grch37           `# apps are grouped by assembly ` \
     bwa-mem-0.7.17.r1188    `# run bwa-mem version 0.7.17.r1188 ` \
-    -fi tags.contains data  `# filter using tags, feel free to try others ` 
+    -fi tags.contains data  `# filter using tags, feel free to try others `
 ```
 
 {% hint style="info" %}
@@ -295,7 +295,7 @@ isabl get-results -fi name STRELKA --result-key indels
 ```
 
 {% hint style="info" %}
-To find out what other results are available use: 
+To find out what other results are available use:
 
 ```bash
 # app-primary-key can be retrieved from the frontend
