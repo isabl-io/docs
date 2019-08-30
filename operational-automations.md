@@ -12,11 +12,11 @@ Registering a signal is as simple as adding your signal functions to the appropr
 
 ## Signals on Data Import
 
-The Data Import signal is triggered after when data is imported into the system. Any implementing trigger functions will receive an experiment object. You can use the metadata of the experiment to determine what automation should be applied. 
+The Data Import signal is triggered after when data is imported into the system. Any implementing trigger functions will receive an experiment object. You can use the metadata of the experiment to determine what automation should be applied.
 
 ### Examples
 
-* Trigger assembly/species/analyte aware alignment
+* Trigger assembly/species/category aware alignment
 * Perform Gene quantification or Fusion calling in RNA
 * Create symlinks to the raw data that are more human accessible
 
@@ -27,11 +27,11 @@ from isabl_apps import apps
 def signal_data_import(experiment):
     """Run upon data import using the cli."""
     species = experiment.sample.individual.species
-    analyte = experiment.technique.analyte
+    category = experiment.technique.category
     dna_aligner = {"HUMAN": apps.BwaMemGRCh37, "MOUSE": apps.BwaMemGRCm38}.get(species)
     tuples = [([experiment], [])]
 
-    if analyte == "DNA" and dna_aligner:
+    if category == "DNA" and dna_aligner:
         dna_aligner().run(tuples=tuples, commit=True)
 ```
 
@@ -63,7 +63,7 @@ def signal_apps_automation(analysis):
         analysis.status == "SUCCEEDED"
         and analysis.application.name in ["DISAMBIGUATE", "BWA_MEM", "STAR"]
         and qc_app
-    ):  
+    ):
         qc_app().run(tuples=[(analysis.targets, [])], commit=True)
 ```
 
