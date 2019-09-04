@@ -347,7 +347,7 @@ analysis = analyses[0]
 target = analysis.targets[0]
 
 # print the parent sample class
-print(target.sample.sample_class)
+print(target.sample.category)
 
 # see available fields
 print(target.keys())
