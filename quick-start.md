@@ -15,13 +15,13 @@ This tutorial is tailored for _engineers_ learning about Isabl. If you are an en
 * Submit an [issue](https://github.com/isabl-io/demo/issues/new) 🐛 if you are having  problems with this guide
 {% endhint %}
 
-### Intro to Isabl
+## Intro to Isabl
 
 Checkout the documentation [home](./) page for an intro to Isabl.
 
 ![Isabl is composed of a patient centric relational model, a web-based metadata architecture, and a command line client.](https://user-images.githubusercontent.com/8843150/62899299-77088f00-bd25-11e9-9695-cda93ab825a5.png)
 
-### Prerequisites
+## Prerequisites
 
 * [Docker Compose](https://docs.docker.com/compose/install/) for building and running the application.
 
@@ -29,7 +29,7 @@ Checkout the documentation [home](./) page for an intro to Isabl.
 Make sure your installation doesn't require `sudo` to run `docker` and `docker-compose`. Otherwise you will have issues running this demo. Check `docker run hello-world` runs without problem. If you have permissions issues, see [how to run docker as-non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user).
 {% endhint %}
 
-### Demo Setup
+## Demo Setup
 
 Let's start by clone the demo:
 
@@ -57,7 +57,7 @@ docker volume rm isabl_demo_local_postgres_data
 ```
 {% endhint %}
 
-### Installation
+## Installation
 
 Build and run the application \(this might take a few minutes\):
 
@@ -87,13 +87,13 @@ Visit your browser at [http://localhost:8000/](http://localhost:8000/) and log i
 `demo-compose`, `demo-django`, and `demo-cli` are simple wrappers around `docker-compose`, check them out. The `isabl_demo` directory was bootstrapped using [cookiecutter-isabl](https://isabl-io.github.io/docs/#/api/settings), a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)! Many topics from their [guide](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#) will be relevant to your project.
 {% endhint %}
 
-### Create Project
+## Create Project
 
 Creating a project in Isabl is as simple as adding a title. You can also specify optional fields:
 
 ![Hover over the menu and click in the + icon to add a new project.](.gitbook/assets/web_create_project.gif)
 
-### Register Samples
+## Register Samples
 
 Before we create samples, let's use `isabl-cli` to add choices for _Center_, _Disease_, _Sequencing Technique_, and _Data Generating Platform_:
 
@@ -133,13 +133,13 @@ For this particular demo, we wanted to create a _sample tree_ that showcases the
 
 ![A data generation process tree that resulted in 4 sequencing experiments \(or ultimately bams\), produced from two samples of the same individual.](.gitbook/assets/image.png)
 
-### RESTful API
+## RESTful API
 
 Although not required for this tutorial, you are welcome to checkout the RESTful API documentation at: [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/)
 
 ![](.gitbook/assets/api.gif)
 
-### **Import** Reference Data
+## **Import** Reference Data
 
 Given that `isabl-cli` will move our test data, let's copy original assets into a _staging_ directory:
 
@@ -185,7 +185,7 @@ isabl get-reference GRCh37 --resources
 Learn more about importing data into Isabl [here](import-data.md).
 {% endhint %}
 
-### Import Experimental Data
+## Import Experimental Data
 
 Next step is to import data for the samples we just created:
 
@@ -208,7 +208,7 @@ isabl get-data -fi sample.identifier "demo normal"
 
 The front end will also reflect that data has been imported.
 
-### Writing Applications
+## Writing Applications
 
 Isabl is a language agnostic platform and can deploy any pipeline. To get started, we will use some applications from [isabl-io/apps](https://github.com/isabl-io/apps). Precisely we will run alignment, quality control, and variant calling. Applications are registered in the client configuration:
 
@@ -252,7 +252,7 @@ Insert `2:123,028-123,995` in the locus bar, that's were our test data has reads
 
 ![Although the BAM file is an output of the bwa-mem analysis, Isabl enables registering default bams to an experiment. Thus a link is available in the sample panel.](.gitbook/assets/web_visualize_data.gif)
 
-### Auto-merge Analyses
+## Auto-merge Analyses
 
 Let's get some stats for our experiments with a quality control [application](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl_apps/apps/qc_data/apps.py#L20):
 
@@ -272,7 +272,7 @@ Isabl-web can render multiple types of results, in this case we will check at HT
 [Applications](writing-applications.md) can define any custom logic to merge analyses.
 {% endhint %}
 
-### Multi-experiment Analyses
+## Multi-experiment Analyses
 
 Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example [this implementation of _Strelka_](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl_apps/apps/strelka/apps.py#L15) uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, let's try:
 
@@ -316,7 +316,7 @@ Lastly, lets check the indels VCFs through the web portal:
 
 ![](.gitbook/assets/web_visualize_vcf.gif)
 
-### Software Development Kit
+## Software Development Kit
 
 To finalize the tutorial, we'll use Isabl as an SDK with `ipython`:
 
@@ -353,9 +353,9 @@ print(target.sample.category)
 print(target.keys())
 ```
 
-### Wrap up and Next Steps
+## Wrap up and Next Steps
 
-Learn about [CLI advanced configuration](guides/cli#configuration) to customize functionality:
+Learn about [CLI advanced configuration](https://github.com/isabl-io/docs/tree/c6cbd729fc1d9696332a3c78ea48aa4c7f409066/guides/cli/README.md#configuration) to customize functionality:
 
 {% page-ref page="isabl-settings.md" %}
 
@@ -363,7 +363,7 @@ Learn about writing applications:
 
 {% page-ref page="writing-applications.md" %}
 
-Ready for **production**? learn more about [deployment](tutorials/deployment):
+Ready for **production**? learn more about [deployment](https://github.com/isabl-io/docs/tree/c6cbd729fc1d9696332a3c78ea48aa4c7f409066/tutorials/deployment/README.md):
 
 {% page-ref page="production-deployment.md" %}
 

@@ -10,7 +10,7 @@ This tutorial will help you set up a **full Development environment** with all c
 📘 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. `isabl` could always use more documentation, whether as part of the READMES, in docstrings, or even on the web in blog posts articles, and such. Also, bet you've read the [Zen Of Python](https://www.python.org/dev/peps/pep-0020/#the-zen-of-python).
 {% endhint %}
 
-### RESTful API
+## RESTful API
 
 [![](https://img.shields.io/github/issues/isabl-io/api.svg)](https://github.com/isabl-io/docs/issues) [![](https://img.shields.io/github/issues-pr/isabl-io/api.svg)](https://github.com/isabl-io/api/compare)
 
@@ -41,7 +41,7 @@ This tutorial will help you set up a **full Development environment** with all c
     docker-compose run --rm django pydocstyle isabl_api
    ```
 
-#### Create a superuser
+### Create a superuser
 
 Create a superuser with username and password set to `admin` \(we will need it later\):
 
@@ -51,7 +51,7 @@ docker-compose run --rm django python manage.py createsuperuser --email admin@is
 
 Now you can login in the frontend at [http://localhost:8000](http://localhost:8000) \(there won't be much to see\). An easy way to create objects is to run the client tests.
 
-#### Coverage report
+### Coverage report
 
 Since tests were run inside a container, we need to combine the coverages to see the html report:
 
@@ -60,9 +60,9 @@ alias opencov="mv .coverage .coverage.tmp && coverage combine && coverage html &
 pip install coverage && opencov
 ```
 
-### Command Line Client
+## Command Line Client
 
- [![cli issue badge](https://img.shields.io/github/issues/isabl-io/cli.svg)](https://github.com/isabl-io/docs/issues) [![cli pullr badge](https://img.shields.io/github/issues-pr/isabl-io/cli.svg)](https://github.com/isabl-io/cli/compare)
+[![cli issue badge](https://img.shields.io/github/issues/isabl-io/cli.svg)](https://github.com/isabl-io/docs/issues) [![cli pullr badge](https://img.shields.io/github/issues-pr/isabl-io/cli.svg)](https://github.com/isabl-io/cli/compare)
 
 1. Clone locally:
 
@@ -93,7 +93,7 @@ pip install coverage && opencov
 
 **Note:** if your changes depend on a particual branch of Isabl API, make sure both Isabl CLI and Isabl API branches are called the same so that the travis configuration can pick that up.
 
-### Applications
+## Applications
 
 [![apps issue badge](https://img.shields.io/github/issues/isabl-io/apps.svg)](https://github.com/isabl-io/docs/issues) [![apps pullr badge](https://img.shields.io/github/issues-pr/isabl-io/apps.svg)](https://github.com/isabl-io/apps/compare)
 
@@ -129,9 +129,9 @@ pip install coverage && opencov
     pydocstyle isabl_cli
    ```
 
-### Frontend
+## Frontend
 
- [![web issue badge](https://img.shields.io/github/issues/isabl-io/web.svg)](https://github.com/isabl-io/docs/issues) [![web pullr badge](https://img.shields.io/github/issues-pr/isabl-io/web.svg)](https://github.com/isabl-io/web/compare)
+[![web issue badge](https://img.shields.io/github/issues/isabl-io/web.svg)](https://github.com/isabl-io/docs/issues) [![web pullr badge](https://img.shields.io/github/issues-pr/isabl-io/web.svg)](https://github.com/isabl-io/web/compare)
 
 1. Clone locally:
 
@@ -160,7 +160,7 @@ pip install coverage && opencov
 
    **Important!** export `FRONTEND_URL=localhost:8080` before running `docker-compose up` in the api repository, note that the port may vary.
 
-### Documentation
+## Documentation
 
 [![docs issue badge](https://img.shields.io/github/issues/isabl-io/docs.svg)](https://github.com/isabl-io/docs/issues) [![docs pullr badge](https://img.shields.io/github/issues-pr/isabl-io/docs.svg)](https://github.com/isabl-io/docs/compare)
 
@@ -182,7 +182,7 @@ pip install coverage && opencov
     cd docs && docsify serve .
    ```
 
-### Contribute with Github
+## Contribute with Github
 
 1. Create a branch for local development and get ready to make changes locally:
 
@@ -208,7 +208,7 @@ pip install coverage && opencov
 
 4. Submit a pull request through the GitHub website.
 
-#### Formatting projects
+### Formatting projects
 
 Python Projects are formatted with [black](https://github.com/ambv/black). Is required for `api`, `cli` and `apps`, simply run:
 
@@ -222,7 +222,7 @@ Project `web` is formatted following the [Vue style guide](https://vuejs.org/v2/
 yarn lint
 ```
 
-#### Bumping version of PyPi
+### Bumping version of PyPi
 
 Following the [semantic versioning](http://semver.org/) guidelines and update the `VERSION` file before creating a PR, for instance:
 
@@ -232,20 +232,20 @@ git add isabl_api/VERSION
 git commit -m ":gem: bump to version 0.1.0"
 ```
 
-#### Emoji reference
+### Emoji reference
 
 We use emojis to quickly categorize commits and pull requests. These are some common type of changes we use but feel free to ignore the conventions:
 
-| emoji | name               | type of change              |
-| :---- | :----------------- | :-------------------------- |
-| 🚀    | rocket             | new feature                 |
-| 🐛    | bug                | bug fix                     |
-| 📝    | memo               | changes to documentation    |
-| 🎨    | art                | formatting  no code change  |
-| 🔧    | wrench             | refactoring production code |
-| ✅     | white\_check\_mark | adding/editing test logic   |
-| 👕    | shirt              | no production code change   |
-| 💎    | gem                | bump to new version         |
+| emoji | name | type of change |
+| :--- | :--- | :--- |
+| 🚀 | rocket | new feature |
+| 🐛 | bug | bug fix |
+| 📝 | memo | changes to documentation |
+| 🎨 | art | formatting  no code change |
+| 🔧 | wrench | refactoring production code |
+| ✅ | white\_check\_mark | adding/editing test logic |
+| 👕 | shirt | no production code change |
+| 💎 | gem | bump to new version |
 
 {% hint style="info" %}
 **Tip:** To insert an emoji in mac type `control+cmd+space`. Alternative, type the emoji's name within two semicolons \(e.g. `:rocket:`\).

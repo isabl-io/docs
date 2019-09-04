@@ -55,33 +55,33 @@ Here is a quick representation of Isabl's relational model, hence related filter
 {% tab title="Lookup Types" %}
 Furthermore, all query parameters in this API support advanced lookup types:
 
-| Lookup Type         | Description             | Example                                           |
-| :------------------ | :---------------------- | :------------------------------------------------ |
-| **`!`**             | Negate any query        | `name!=isabel`                                    |
-| **`[i]exact`**      | Exact match             | `name__exact=isabl`  `name__iexact=IsAbL`         |
-| **`[i]contains`**   | Value contains query    | `name__contains=isa`  `name__icontains=iSa`       |
+| Lookup Type | Description | Example |
+| :--- | :--- | :--- |
+| **`!`** | Negate any query | `name!=isabel` |
+| **`[i]exact`** | Exact match | `name__exact=isabl`  `name__iexact=IsAbL` |
+| **`[i]contains`** | Value contains query | `name__contains=isa`  `name__icontains=iSa` |
 | **`[i]startswith`** | Value starts with query | `name__startswith=isab`  `name__istartswith=iSab` |
-| **`[i]endswith`**   | Value starts with query | `name__endswith=bl`  `name__iendswith=bL`         |
-| **`in`**            | Comma separated query   | `name__in=isabl,besuhof`                          |
-| **`isnull`**        | Value is null           | `name__isnull=true`                               |
-| **`regex`**         | Use regex pattern       | `name__regex=isabl`                               |
-| **`gt`**            | Greater than            | `total__gt=1`                                     |
-| **`gte`**           | Greater or equal        | `total__gte=1`                                    |
-| **`lt`**            | Less than               | `total__lt=1`                                     |
-| **`lte`**           | Less than or equal      | `total__lte=1`                                    |
+| **`[i]endswith`** | Value starts with query | `name__endswith=bl`  `name__iendswith=bL` |
+| **`in`** | Comma separated query | `name__in=isabl,besuhof` |
+| **`isnull`** | Value is null | `name__isnull=true` |
+| **`regex`** | Use regex pattern | `name__regex=isabl` |
+| **`gt`** | Greater than | `total__gt=1` |
+| **`gte`** | Greater or equal | `total__gte=1` |
+| **`lt`** | Less than | `total__lt=1` |
+| **`lte`** | Less than or equal | `total__lte=1` |
 {% endtab %}
 
 {% tab title="Datetime Lookups" %}
 Moreover, _Datetime_ query parameters support extra lookups:
 
-| Lookup Type | Description                      | Example                                                    |
-| :---------- | :------------------------------- | :--------------------------------------------------------- |
-| \`\`        | No lookup, `ISO` format required | `created=`                                                 |
-| **`date`**  | Filter by date `YYYY-MM-DD`.     | `created__date=2016-06-04`  `created__date__gt=2016-06-04` |
-| **`day`**   | Filter by day `DD`               | `created__day=04`                                          |
-| **`month`** | Filter by month `MM`             | `created__month=06`                                        |
-| **`year`**  | Filter by year `YYYY`            | `created__year=2016`                                       |
-| **`time`**  | Filter by time `HH-MM-SS`        | `created__time=21:00:51`                                   |
+| Lookup Type | Description | Example |
+| :--- | :--- | :--- |
+| \`\` | No lookup, `ISO` format required | `created=` |
+| **`date`** | Filter by date `YYYY-MM-DD`. | `created__date=2016-06-04`  `created__date__gt=2016-06-04` |
+| **`day`** | Filter by day `DD` | `created__day=04` |
+| **`month`** | Filter by month `MM` | `created__month=06` |
+| **`year`** | Filter by year `YYYY` | `created__year=2016` |
+| **`time`** | Filter by time `HH-MM-SS` | `created__time=21:00:51` |
 {% endtab %}
 
 {% tab title="Full Relational Model" %}
@@ -124,33 +124,15 @@ experiments = ii.experiments(has_bam_for="GRCh37")
 The following filters can be used to \(quite dramatically\) improve the performance for some queries:
 
 | Filter | Description | Usage |
-| :----- | :---------- | :---- |
+| :--- | :--- | :--- |
 
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b><code>fields</code></b>
-      </th>
-      <th style="text-align:left">Limit the amount of data you are retrieving. Also supports negation using <code>fields!</code>.</th>
-      <th
-      style="text-align:left">
-        <ul>
-          <li><code>fields=pk,storage_url</code>
-          </li>
-          <li><code>fields!=targets,references</code>
-          </li>
-        </ul>
-        </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-| </table> | **`distinct`** | If you set distinct to _false_, the each result within the query won't be guaranteed to be unique, yet the response will be faster. | `distinct=false` |
-| :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| &lt;/table&gt; | **`distinct`** | If you set distinct to _false_, the each result within the query won't be guaranteed to be unique, yet the response will be faster. | `distinct=false` |
+| :--- | :--- | :--- | :--- |
 
 
 | **`paginator`** | By activating the _cursor_ pagination, you would be able to traverse queries results, but you won't know the total number of results. | `paginator=cursor` |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :----------------- |
+| :--- | :--- | :--- |
 
 
 {% hint style="info" %}
@@ -161,17 +143,17 @@ The following filters can be used to \(quite dramatically\) improve the performa
 
 Filters in the command line are usually provided using the `-fi` or `--filters` flags. Relations or lookups can be provided using double underscores or dots \(e.g. `application.name` or `application__name`\). Here is a list of Isabl commands available to retrieve information:
 
-| Command             | Description                                                                                                                                                                                                                                                | Example                                                        |
-| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
-| **`get-count`**     | Get count of database instances given a particular query. For example, how many failed analyses are in the system?                                                                                                                                         | `isabl get-count analyses -fi status FAILED`                   |
-| **`get-metadata`**  | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\).                                                                        | `isabl get-metadata samples -fi category TUMOR -f disease` |
-| **`get-data`**      | This command will retrieved the _raw_ data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data.                                                                          | `isabl get-data -fi projects.pk.in 102,103`                    |
-| **`get-bams`**      | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37`                        |
-| **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources.                | `isabl get-reference GRCh37`                                   |
-| **`get-bed`**       | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`.                                                                                                  | `isabl get-bed HEMEPACT --assembly GRCh37`                     |
-| **`get-paths`**     | Retrieve the storage directory for any instance in the database. Use [`--pattern`](retrieve-data.md#retrieving-application-results) to retrieve files within those directories.                                                                            | `isabl get-paths projects 102`                                 |
-| **`get-outdirs`**   | This command is a short cut of `isabl get-paths analyses`. Learn more about retrieving results [here](retrieve-data.md#retrieving-application-results).                                                                                                    | `isabl get-outdirs -fi name PINDEL -fi status SUCCEEDED`       |
-| **`get-results`**   | Retrieve analyses results produced by applications. Use [`--app-results`](retrieve-data.md#retrieving-application-results)to list all available choices for a given application.                                                                           | `isabl get-results -fi application.pk 1 -r command_script`     |
+| Command | Description | Example |
+| :--- | :--- | :--- |
+| **`get-count`** | Get count of database instances given a particular query. For example, how many failed analyses are in the system? | `isabl get-count analyses -fi status FAILED` |
+| **`get-metadata`** | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\). | `isabl get-metadata samples -fi category TUMOR -f disease` |
+| **`get-data`** | This command will retrieved the _raw_ data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103` |
+| **`get-bams`** | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37` |
+| **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources. | `isabl get-reference GRCh37` |
+| **`get-bed`** | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`. | `isabl get-bed HEMEPACT --assembly GRCh37` |
+| **`get-paths`** | Retrieve the storage directory for any instance in the database. Use [`--pattern`](retrieve-data.md#retrieving-application-results) to retrieve files within those directories. | `isabl get-paths projects 102` |
+| **`get-outdirs`** | This command is a short cut of `isabl get-paths analyses`. Learn more about retrieving results [here](retrieve-data.md#retrieving-application-results). | `isabl get-outdirs -fi name PINDEL -fi status SUCCEEDED` |
+| **`get-results`** | Retrieve analyses results produced by applications. Use [`--app-results`](retrieve-data.md#retrieving-application-results)to list all available choices for a given application. | `isabl get-results -fi application.pk 1 -r command_script` |
 
 ### Dynamically Explore Metadata
 
@@ -370,11 +352,11 @@ _With great power, comes..._ yeah you know how it goes. Just be careful.
 
 Here are other useful utilities available in `isabl-cli`:
 
-| Method                 | Description                                                                               |
-| :--------------------- | :---------------------------------------------------------------------------------------- |
-| `ii.api.chunks`        | Given a list of elements, return a list of chunks of `n` elements from the original list. |
-| `ii.api.api_request`   | Perform an authenticated request to Isabl API.                                            |
-| `ii.api.retry_request` | Retry an HTTP request multiple times with a delay between each failure.                   |
+| Method | Description |
+| :--- | :--- |
+| `ii.api.chunks` | Given a list of elements, return a list of chunks of `n` elements from the original list. |
+| `ii.api.api_request` | Perform an authenticated request to Isabl API. |
+| `ii.api.retry_request` | Retry an HTTP request multiple times with a delay between each failure. |
 
 ## **Isabl Web**
 

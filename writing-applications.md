@@ -187,7 +187,6 @@ def get_experiments_from_cli_options(self, **cli_options):
         technique__method=cli_options["technique"]
     )
     return [(targets, [])]
-
 ```
 
 ### Validate Experiments
@@ -270,8 +269,6 @@ Each result has some fields that need to be defined in order to display the resu
 * `verbose_name`: _Required_. name displayed for the result in the results list.
 * `optional`: if `False` and result is missing, an alert warning about the missing result will be shown.
 * `external_link`: an URL that will allow the user to browse into an external resource to get more information about the obtained result.
-
-
 
 ### Application Inputs
 
@@ -578,6 +575,4 @@ def submit_merge_analysis
 ### Application Containers
 
 ## Complete List of Application Settings
-
-
 

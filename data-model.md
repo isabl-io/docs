@@ -4,7 +4,7 @@ description: "\U0001F3F7Create models and metadata, before linking your raw data
 
 # Registering Metadata
 
-### Isabl Data Model
+## Isabl Data Model
 
 `Isabl` models a data generation process where _Experiments_ such as Whole Genome Sequencing are performed on _Samples_ collected from different _Individuals_. This normalization approach reduces data redundancy and improves data integrity.
 
@@ -16,49 +16,56 @@ description: "\U0001F3F7Create models and metadata, before linking your raw data
 {% tab title="Unique Together Constraints" %}
 Unique together constraints enable Isabl link new samples and experiments to existing records in the database. The following fields are enforced to be unique together across the entire system:
 
+| Database Schema | Unique Together Fields |
+| :--- | :--- |
+
+
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Database Schema</th>
-      <th style="text-align:left">Unique Together Fields</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>Individual</b>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>Individual</b>
+      </th>
+      <th style="text-align:left">
         <ul>
           <li>Center</li>
           <li>Species</li>
           <li>Identifier</li>
         </ul>
-      </td>
+      </th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>Samples</b>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>Samples</b>
+      </th>
+      <th style="text-align:left">
         <ul>
           <li>Individual</li>
           <li>Sample Class</li>
           <li>Identifier</li>
         </ul>
-      </td>
+      </th>
     </tr>
+  </thead>
+  <tbody></tbody>
+</table><table>
+  <thead>
     <tr>
-      <td style="text-align:left"><b>Experiments</b>
-      </td>
-      <td style="text-align:left">
+      <th style="text-align:left"><b>Experiments</b>
+      </th>
+      <th style="text-align:left">
         <ul>
           <li>Sample</li>
           <li>Aliquot ID</li>
           <li>Technique</li>
           <li>Identifier</li>
         </ul>
-      </td>
+      </th>
     </tr>
-  </tbody>
+  </thead>
+  <tbody></tbody>
 </table>
 {% endtab %}
 
@@ -71,7 +78,7 @@ The concept of cohorts, where multiple _Experiments_ are grouped and analyzed to
 
 ![](https://user-images.githubusercontent.com/8843150/62899485-dc5c8000-bd25-11e9-894e-664f11028d20.png)
 
-### Metadata Registration
+## Metadata Registration
 
 Isabl offer different mechanisms for metadata registration.
 
@@ -80,10 +87,10 @@ Isabl offer different mechanisms for metadata registration.
 {% hint style="warning" %}
 Only users with the proper permissions or _superusers_ can create or modify models in the database, by using any of the methods for metadata registration.
 
-When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role.  If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
+When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role. If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
 {% endhint %}
 
-### Register Samples with Excel
+## Register Samples with Excel
 
 Through the web interface, is possible to import an _Excel Submission_ to register new samples.
 
@@ -115,9 +122,9 @@ After committing your _Submission,_ your new available samples should've been cr
 
 ![Sample Tree of the new registered samples.](.gitbook/assets/screen-shot-2019-06-18-at-4.28.47-pm.png)
 
-### Register Samples with RESTful API and CLI
+## Register Samples with RESTful API and CLI
 
-`Isabl` comes with a comprehensive RESTful API reference, where you can learn how to use every available endpoint for each resource of the database. You can access it by browsing to  `http://<your-isabl-host>/api/v1/`
+`Isabl` comes with a comprehensive RESTful API reference, where you can learn how to use every available endpoint for each resource of the database. You can access it by browsing to `http://<your-isabl-host>/api/v1/`
 
 ![Swagger API Documentation](.gitbook/assets/api.gif)
 
@@ -169,7 +176,7 @@ Center object
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "pk": 0,
   "birth_year": 1800,
@@ -249,7 +256,7 @@ Abbreviation formed from the initial letters \(e.g. NASA\)
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "pk": 0,
   "acronym": "string",

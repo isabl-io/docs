@@ -1,10 +1,12 @@
 ---
-description: 'Features summary, infrastructure overview, and why Isabl.'
+description: >-
+  A scalable data science framework for patient-centric bioinformatics
+  operations.
 ---
 
 # Home
 
-Isabl is a plug-and-play open-source framework for scalable bioinformatics operations designed to support automated processing and management of experimental assets and their metadata. Isabl's patient centric model enables advanced integrations with multinomial data types and linkage to other institutional information systems such as clinical databases and visualization interfaces. Have questions? Ask [here](https://gitter.im/isabl-io/community).
+Isabl is a plug-and-play data science framework designed to support automated processing and management of patient-centric digital assets and their metadata. Isabl's patient centric model enables advanced integrations with multimodal data types and linkage to other institutional information systems such as clinical databases and visualization interfaces. Have questions? Ask [here](https://gitter.im/isabl-io/community).
 
 {% page-ref page="quick-start.md" %}
 
@@ -19,23 +21,19 @@ Isabl is a plug-and-play open-source framework for scalable bioinformatics opera
     * Choice models such as _diseases_, _centers_ and more
     * **Custom fields** for all schemas!
 * 🤖 **Command Line Interface and Software Development Kit**
-
   * Digital Assets Management \(Permissions, Storage, Tracking\)
   * Automated execution and tracking of bioinformatics applications
   * Project and patient level results auto-merge
   * Operational automations on data import and analyses status change
   * Dynamic retrieval of data and results using versatile queries
   * Fully featured SDK for post-processing analyses
-
 * 🚀 **Web Application**
-
   * User Interface to browse and manage the operations metadata
   * Analyses tracking and results visualization
   * Flexibility to edit and customize models
   * Batch creation of metadata by excel file submission
   * Single Page Application that provides a crispy user experience
   * Possibility to integrate third-party services like JIRA
-
 * ✅ **Plug-n-play and reliable codebase**
   * Docker-compose is the only dependency for the web application and the backend
   * The Command Line Interface is a portable pip installable package
@@ -54,7 +52,7 @@ RESTful API capabilities are documented with Swagger \([https://swagger.io](http
 
 ## Data Model
 
-**I**sabl's relational model maps workflows for data provenance, processing, and governance. Metadata is captured across the following thematic categories: \(1\) project, individual and sample level attributes; \(2\) raw data properties including experimental technique, technology, and related parameters \(e.g. read length\); \(3\) analytical workflows to include a complete audit trail of versioned algorithms, related execution parameters, reference files, analyses status tracking, and results deposition; \(4\) data governance information for management of system and data  access across stakeholders.
+**I**sabl's relational model maps workflows for data provenance, processing, and governance. Metadata is captured across the following thematic categories: \(1\) project, individual and sample level attributes; \(2\) raw data properties including experimental technique, technology, and related parameters \(e.g. read length\); \(3\) analytical workflows to include a complete audit trail of versioned algorithms, related execution parameters, reference files, analyses status tracking, and results deposition; \(4\) data governance information for management of system and data access across stakeholders.
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vTG3QBMOtwM5DhpFG07iQFj0SA0J7CE4e8Xd3ZJcpJy24EiDu9HbGomqslNFgqV3rauJ-z_VU-SY-ja/pub?w=1305&h=791)
 
@@ -75,7 +73,7 @@ Here are some reasons why you may want to use Isabl:
 * You want to have programmatic access to the entire data capital
 * Seamlessly run reproducible pipelines across your projects
 
-{% embed url="https://www.youtube.com/watch?v=L1JhVqZ3oBY" %}
+{% embed url="https://www.youtube.com/watch?v=L1JhVqZ3oBY" caption="" %}
 
 ## Similar projects
 
@@ -87,7 +85,6 @@ Here are some reasons why you may want to use Isabl:
 ## What Isabl is not
 
 * Isabl is not a _Workflow Management System_ such as [toil](https://github.com/DataBiosphere/toil), [bpipe](https://github.com/ssadedin/bpipe), instead Isabl facilitates automated deployment and databasing of data processing pipelines.
-
 * Isabl is not a _Platform as a Service \(PAAS\)_ provider such as [DNA nexus](https://www.dnanexus.com), [Seven Bridges](https://www.sevenbridges.com) or [Fire Cloud](https://software.broadinstitute.org/firecloud/), instead an information system that could potentially feed in metadata and data to these services.
 * Isabl differs from _Server Workbenches_ such as [Galaxy](https://usegalaxy.org/) or Pegasus, instead of being configuration friendly, Isabl is designed to conduct systematic analyses automatically and in a standardized way with as little human input as possible.
 * Isabl is not a _Workflow Language_, instead the Bioinformatics Applications in `isabl` only define meta-data driven validation and logic to build commands to trigger pipelines written in any language.
