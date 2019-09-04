@@ -91,6 +91,8 @@ pip install coverage && opencov
     pydocstyle isabl_cli
    ```
 
+**Note:** if your changes depend on a particual branch of Isabl API, make sure both Isabl CLI and Isabl API branches are called the same so that the travis configuration can pick that up.
+
 ### Applications
 
 [![apps issue badge](https://img.shields.io/github/issues/isabl-io/apps.svg)](https://github.com/isabl-io/docs/issues) [![apps pullr badge](https://img.shields.io/github/issues-pr/isabl-io/apps.svg)](https://github.com/isabl-io/apps/compare)
@@ -234,16 +236,16 @@ git commit -m ":gem: bump to version 0.1.0"
 
 We use emojis to quickly categorize commits and pull requests. These are some common type of changes we use but feel free to ignore the conventions:
 
-| emoji | name | type of change |
-| :--- | :--- | :--- |
-| 🚀 | rocket | new feature |
-| 🐛 | bug | bug fix |
-| 📝 | memo | changes to documentation |
-| 🎨 | art | formatting  no code change |
-| 🔧 | wrench | refactoring production code |
-| ✅ | white\_check\_mark | adding/editing test logic |
-| 👕 | shirt | no production code change |
-| 💎 | gem | bump to new version |
+| emoji | name               | type of change              |
+| :---- | :----------------- | :-------------------------- |
+| 🚀    | rocket             | new feature                 |
+| 🐛    | bug                | bug fix                     |
+| 📝    | memo               | changes to documentation    |
+| 🎨    | art                | formatting  no code change  |
+| 🔧    | wrench             | refactoring production code |
+| ✅     | white\_check\_mark | adding/editing test logic   |
+| 👕    | shirt              | no production code change   |
+| 💎    | gem                | bump to new version         |
 
 {% hint style="info" %}
 **Tip:** To insert an emoji in mac type `control+cmd+space`. Alternative, type the emoji's name within two semicolons \(e.g. `:rocket:`\).

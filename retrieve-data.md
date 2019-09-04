@@ -164,7 +164,7 @@ Filters in the command line are usually provided using the `-fi` or `--filters` 
 | Command             | Description                                                                                                                                                                                                                                                | Example                                                        |
 | :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
 | **`get-count`**     | Get count of database instances given a particular query. For example, how many failed analyses are in the system?                                                                                                                                         | `isabl get-count analyses -fi status FAILED`                   |
-| **`get-metadata`**  | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\).                                                                        | `isabl get-metadata samples -fi sample_class TUMOR -f disease` |
+| **`get-metadata`**  | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\).                                                                        | `isabl get-metadata samples -fi category TUMOR -f disease` |
 | **`get-data`**      | This command will retrieved the _raw_ data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data.                                                                          | `isabl get-data -fi projects.pk.in 102,103`                    |
 | **`get-bams`**      | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37`                        |
 | **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources.                | `isabl get-reference GRCh37`                                   |
@@ -298,7 +298,7 @@ Some examples of things you can do with these instances:
 target = analysis.targets[0]
 
 # print the experiment sample class
-print(experiment.sample.sample_class)
+print(experiment.sample.category)
 
 # see available analysis fields
 print(analysis.keys())
@@ -311,7 +311,7 @@ To get multiple instances you can do:
 
 ```python
 # get all TUMOR experiments in project 102
-experiments = ii.get_experiments(projects=102, sample__sample_class="TUMOR")
+experiments = ii.get_experiments(projects=102, sample__category="TUMOR")
 
 # get the first 10 SUCCEEDED analyses in the same project
 analyses = ii.get_experiments(projects=102, status="SUCCEEDED", count_limit=10)
