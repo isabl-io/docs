@@ -49,7 +49,7 @@ As indicated in the previous _hint_, filter fields can traverse database relatio
 
 Here is a quick representation of Isabl's relational model, hence related filters:
 
-![](.gitbook/assets/image%20%284%29.png)
+![](.gitbook/assets/image%20%285%29.png)
 {% endtab %}
 
 {% tab title="Lookup Types" %}
@@ -376,7 +376,7 @@ The projects detail panel conveys all assets and stakeholders linked to a partic
 
 _Live Tables_ are directly wired to the API and will enable you to search and filter on specific columns. For the later, simply click in the column name:
 
-![Directly searching on the sample Identifier column.](.gitbook/assets/image%20%282%29.png)
+![Directly searching on the sample Identifier column.](.gitbook/assets/image%20%283%29.png)
 
 ### **The Samples View**
 

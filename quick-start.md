@@ -262,7 +262,7 @@ isabl apps-grch37 qc-data-0.1.0 -fi identifier.icontains demo --commit
 
 This quality control application has defined logic to merge results at a project and individual level. Upon completion of analyses execution, Isabl automatically runs the auto-merge logic:
 
-![A short message is displayed at the end of the run indicating merge analyses are being run.](.gitbook/assets/image%20%281%29.png)
+![A short message is displayed at the end of the run indicating merge analyses are being run.](.gitbook/assets/image%20%282%29.png)
 
 Isabl-web can render multiple types of results, in this case we will check at HTML reports. Results for our `qc-data` application are available at an _experiment_, _individual_, and _project_ level. In this example we are looking at the _project-level_ auto-merge analysis:
 

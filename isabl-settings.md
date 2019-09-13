@@ -27,7 +27,17 @@ Learn more about production deployment:
 
 ## Isabl CLI Settings
 
-To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in [`isabl_cli.settings`](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20).
+Before anything, you must set the following environment variables:
+
+```bash
+# you need to let Isabl CLI where the API is being hosted
+export ISABL_API_URL='your-isabl-instance.org/api/v1/'
+
+# you can create a client object in from the django admin
+export ISABL_CLIENT_ID=<insert-client-primary-key-or-slug>
+```
+
+Once this is set, you can configure your client object settings with the following configurations \(see [**`isabl_cli.settings`**](https://github.com/isabl-io/cli/blob/master/isabl_cli/settings.py#L20) to check default settings\):
 
 | Setting Name | Type | Description |
 | :--- | :--- | :--- |
@@ -45,10 +55,11 @@ To see the _default_ values for each setting. See the `_DEFAULTS` dictionary in 
 | **REFERENCE\_DATA\_IMPORTER** | _Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
 | **DATA\_IMPORTER** | _Import String_ | Import raw data for multiple experiments. |
 | **BED\_IMPORTER** | _Import String_ | Register input\_bed\_path in technique's storage dir and update data. |
-| **FASTQ\_READ\_SUFFIX** | _String_ | Suffix in case your `fastq` files have one. Usually needed for aligners like `bwa_mem`. |
 | **ON\_DATA\_IMPORT** | _Import Strings Array_ | Methods triggered when data has been imported successfully. |
 | **ON\_STATUS\_CHANGE** | _Import Strings Array_ | Methods triggered when an analysis changes status. |
 | **ON\_SIGNAL\_FAILURE** | _Import Strings Array_ | Methods triggered when an signal fails. |
+| **SUBMIT\_ANALYSES** | _Import String_ | A function that will take a list tuples \(analysis, path to analysis script\) and submits them to a given compute architecture.  |
+| **SUBMIT\_CONFIGURATION** | Dictionary | A schema-less dictionary to set configurations that the **`SUBMIT_ANALYSES`** function may utilize. |
 
 {% page-ref page="writing-applications.md" %}
 
