@@ -1,14 +1,52 @@
 # Production Deployment
 
-## Isabl Cookiecutter
+## Isabl API in Production
 
-[Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a template to create production-ready [Isabl](https://isabl-io.github.io/docs/#/) projects.
+You can get a **production-ready** Isabl API instance from [isabl.io](https://isabl.io) in less than 30 seconds. Alternatively,  you can [install `isabl-api` on premise](production-deployment.md#isabl-api-on-premise) as a third party application in your own Django project, this might be useful if you need to run Isabl behind a firewall.
 
-{% hint style="info" %}
-[Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django), please note that most of their [documentation](https://cookiecutter-django.readthedocs.io/en/latest/) remains relevant! Also see [troubleshooting](https://cookiecutter-django.readthedocs.io/en/latest/troubleshooting.html). For reference, we forked out at commit [4258ba9](https://github.com/pydanny/cookiecutter-django/commit/4258ba9e2ddc822953e326f98f1f74842fa0fed1). If you have differences in your preferred setup, please fork [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) to create your own version. **New to Django?** [Two Scoops of Django](http://twoscoopspress.com/products/two-scoops-of-django-1-11) is the best dessert-themed Django reference in the universe!
-{% endhint %}
+## Isabl CLI in Production
 
-### Features
+In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
+
+```bash
+# install isabl-cli from PyPi
+pip install isabl-cli
+
+# let the client know what API should be used
+export ISABL_API_URL="https://isabl.mskcc.org/api/v1/"
+
+# set client id, you can create a new client in the admin site
+export ISABL_CLIENT_ID="<replace with client primary key>"
+
+# isabl should be now available
+isabl --help
+```
+
+Learn more about [Writing Applications](writing-applications.md):
+
+{% page-ref page="writing-applications.md" %}
+
+Learn more about [Isabl CLI settings](isabl-settings.md#isabl-cli-settings):
+
+{% page-ref page="isabl-settings.md" %}
+
+Learn more about [Retrieving Data](retrieve-data.md) using `isabl-cli` to fetch data:
+
+{% page-ref page="retrieve-data.md" %}
+
+## Isabl API on Premise
+
+You can bootstrap a new Django project using [Cookiecutter API](https://github.com/isabl-io/cookiecutter):
+
+```bash
+# install cookiecutter
+pip install cookiecutter 
+
+# then bootstrap the project
+cookiecutter https://github.com/isabl-io/cookiecutter-api
+```
+
+#### Cookiecutter API Features
 
 * [Isabl](https://isabl-io.github.io/docs/#/) out of the box
 * For Django 2.0 & Python 3.6
@@ -27,23 +65,15 @@
 * **optional** - Serve static files from Amazon S3 or [Whitenoise](https://whitenoise.readthedocs.io/)
 * **optional** - Integration with [MailHog](https://github.com/mailhog/MailHog) for local email testing
 
-### Constraints
+#### Cookiecutter API Constraints
 
 * Only maintained 3rd party libraries are used.
 * Uses PostgreSQL everywhere \(9.2+\)
 * Environment variables for configuration \(This won't work with Apache/mod\_wsgi except on AWS ELB\).
 
-## Bootstrap Your Django Project
-
-In order to get started run:
-
-```bash
-# install cookiecutter
-pip install cookiecutter 
-
-# then bootstrap the project
-cookiecutter https://github.com/isabl-io/cookiecutter-api
-```
+{% hint style="info" %}
+[Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) is a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django), please note that most of their [documentation](https://cookiecutter-django.readthedocs.io/en/latest/) remains relevant! Also see [troubleshooting](https://cookiecutter-django.readthedocs.io/en/latest/troubleshooting.html). For reference, we forked out at commit [4258ba9](https://github.com/pydanny/cookiecutter-django/commit/4258ba9e2ddc822953e326f98f1f74842fa0fed1). If you have differences in your preferred setup, please fork [Isabl Cookiecutter](https://github.com/isabl-io/cookiecutter) to create your own version. **New to Django?** [Two Scoops of Django](http://twoscoopspress.com/products/two-scoops-of-django-1-11) is the best dessert-themed Django reference in the universe!
+{% endhint %}
 
 ### Understanding the Docker Compose Setup
 
@@ -169,54 +199,4 @@ sshfs \
 {% hint style="info" %}
 Note that we are mounting `/remote/path` to `/remote/path` so that the paths pushed by **Isabl CLI** match those available in the web server. Also note that you may need to restart the docker compose services after mounting this directory.
 {% endhint %}
-
-### Manage User Groups and Permissions
-
-You can configure user permissions using Django. Isabl offers an optional configuration of groups that you can adopt:
-
-| Group Name | Permissions |
-| :--- | :--- |
-| **Managers** | Can create, update, and delete Custom Fields, Individuals, Centers, Diseases, Experiments, Techniques, Platforms, Projects, and Submissions. |
-| **Analysts** | Can create, update, and delete Custom Fields, Applications, Analyses, and Assemblies. They can also download analyses results. |
-| **Engineers** | Engineers have the same permissions of both managers and analysts. |
-
- In order to create these groups run the following command:
-
-```bash
-python manage.py create_default_groups
-```
-
-{% hint style="info" %}
-These groups are **optional** and you can create your own using the Django Admin.
-{% endhint %}
-
-## Isabl CLI in Production
-
-In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
-
-```bash
-# install isabl-cli from PyPi
-pip install isabl-cli
-
-# let the client know what API should be used
-export ISABL_API_URL="https://isabl.mskcc.org/api/v1/"
-
-# set client id, you can create a new client in the admin site
-export ISABL_CLIENT_ID="<replace with client primary key>"
-
-# isabl should be now available
-isabl --help
-```
-
-Learn more about [Writing Applications](writing-applications.md):
-
-{% page-ref page="writing-applications.md" %}
-
-Learn more about [Isabl CLI settings](isabl-settings.md#isabl-cli-settings):
-
-{% page-ref page="isabl-settings.md" %}
-
-Learn more about [Retrieving Data](retrieve-data.md) using `isabl-cli` to fetch data:
-
-{% page-ref page="retrieve-data.md" %}
 
