@@ -195,75 +195,28 @@ These groups are **optional** and you can create your own using the Django Admin
 In your production environment you can install [Isabl CLI](https://github.com/isabl-io/cli)  with:
 
 ```bash
+# install isabl-cli from PyPi
 pip install isabl-cli
-```
 
-Then you need to export the API URL:
-
-{% code-tabs %}
-{% code-tabs-item title="~/.bash\_profile" %}
-```bash
+# let the client know what API should be used
 export ISABL_API_URL="https://isabl.mskcc.org/api/v1/"
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
 
-By doing this you will have access to Isabl's command line interface:
+# set client id, you can create a new client in the admin site
+export ISABL_CLIENT_ID="<replace with client primary key>"
 
-```bash
+# isabl should be now available
 isabl --help
 ```
 
-### Configuring Isabl CLI Settings
-
-Isabl CLI settings can be provided by configuring a Django variable:
-
-{% code-tabs %}
-{% code-tabs-item title="settings.py" %}
-```python
-ISABL_SETTINGS = {
-    "CLIENT_SETTINGS": {
-        "INSTALLED_APPLICATIONS": [
-            "isabl_apps.apps.bwa_mem.apps.BwaMemGRCh37",
-            "isabl_apps.apps.qc_data.apps.QualityControlGRCh37",
-        ],
-    },
-}
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-A better approach however is to create a client object from the admin site, e.g. [https://isabl.mskcc.org/admin/isabl\_api/client/add/](https://isabl.mskcc.org/admin/isabl_api/client/add/), and exporting the object's primary key \(or slug\):
-
-{% code-tabs %}
-{% code-tabs-item title="~/.bash\_profile" %}
-```bash
-export ISABL_CLIENT_ID="<replace with client primary key>"
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-Once done, you can configure the your Isabl CLI from the admin site by updating the `settings` field of your client object.
-
-### Custom Isabl CLI Logic and Applications
-
-The CLI packages aims to be as flexible and customizable as possible, so that several functions can be replaced, or new commands can be added. The best way of doing this is using the [cookiecutter-cli](https://github.com/isabl-io/cookiecutter-cli), which generates a python project from which [Isabl CLI](https://github.com/isabl-io/cli) can be extended:
-
-```text
-cookiecutter https://github.com/isabl-io/cookiecutter-cli
-```
-
-### Wrap Up and Next Steps
-
-With a production-ready instance of Isabl you are now ready to write new applications:
+Learn more about [Writing Applications](writing-applications.md):
 
 {% page-ref page="writing-applications.md" %}
 
-Learn more about Isabl customization:
+Learn more about [Isabl CLI settings](isabl-settings.md#isabl-cli-settings):
 
 {% page-ref page="isabl-settings.md" %}
 
-Or contribute new features to Isabl!
+Learn more about [Retrieving Data](retrieve-data.md) using `isabl-cli` to fetch data:
 
-{% page-ref page="contributing-guide.md" %}
+{% page-ref page="retrieve-data.md" %}
 
