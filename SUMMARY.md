@@ -6,8 +6,8 @@
 * [Importing Data](import-data.md)
 * [Retrieving Data](retrieve-data.md)
 * [Writing Applications](writing-applications.md)
-* [Production Deployment](production-deployment.md)
 * [Operational Automations](operational-automations.md)
 * [Isabl Settings](isabl-settings.md)
+* [Production Deployment](production-deployment.md)
 * [Contributing Guide](contributing-guide.md)
 
