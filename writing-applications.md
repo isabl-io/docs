@@ -112,7 +112,7 @@ class HelloWorldApp(AbstractApplication):
 ```
 
 {% hint style="info" %}
-A good strategy to version applications is to ask the question: _are results comparable across experiments?_ An optimization that doesn't change outputs might not require a version change.
+A good strategy to version applications is to ask the question: _are results comparable across experiments?_ An optimization \(or bug fix\) that doesn't change outputs **might not** require a version change.
 {% endhint %}
 
 Optionally you can also set `ASSEMBLY` and `SPECIES` to version the application as a function of a given genome assembly. This is particularly useful for NGS applications as often results are only comparable if data was analyzed against the same version of the genome: 
