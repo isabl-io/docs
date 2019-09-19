@@ -6,11 +6,8 @@ description: '⏱ tutorial time: 10 minutes'
 
 Welcome to the _10 Minutes to Isabl_ guide! This tutorial will walk you through installation, meta data registration, data import, and automated data processing.
 
-{% hint style="warning" %}
-This tutorial is tailored for _engineers_ learning about Isabl. If you are an end-user \(i.e. analyst, project manager\), you are very welcome to follow this tutorial! But we also recommend you to explore the [Retrieve Data](retrieve-data.md) and [Register Metadata](data-model.md) guides.
-{% endhint %}
-
 {% hint style="info" %}
+* Also check the [Retrieve Data](retrieve-data.md) and [Register Metadata](data-model.md) guides!
 * Join us on [Gitter](https://gitter.im/isabl-io/community) if you have questions
 * Submit an [issue](https://github.com/isabl-io/demo/issues/new) 🐛 if you are having  problems with this guide
 {% endhint %}
@@ -75,16 +72,10 @@ demo-compose up -d
 You can type `demo-compose down` to stop the application.
 {% endhint %}
 
-You will need to create a new user before you can access the system:
-
-```bash
-demo-django createsuperuser --username admin --email admin@mskcc.org
-```
-
-Visit your browser at [http://localhost:8000/](http://localhost:8000/) and log in!
+Visit [http://localhost:8000/](http://localhost:8000/) and log in with `username=admin password=admin`!
 
 {% hint style="info" %}
-`demo-compose`, `demo-django`, and `demo-cli` are simple wrappers around `docker-compose`, check them out. The `isabl_demo` directory was bootstrapped using [cookiecutter-isabl](https://isabl-io.github.io/docs/#/api/settings), a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)! Many topics from their [guide](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#) will be relevant to your project.
+`demo-compose`, `demo-django`, and `demo-cli` are simple wrappers around `docker-compose` - check them out. The `isabl_demo` directory was bootstrapped using [cookiecutter-isabl](https://isabl-io.github.io/docs/#/api/settings), a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)! Many topics from their [guide](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#) will be relevant to your project.
 {% endhint %}
 
 ## Create Project
