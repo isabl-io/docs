@@ -84,12 +84,30 @@ Creating a project in Isabl is as simple as adding a title. You can also specify
 
 ![Hover over the menu and click in the + icon to add a new project.](.gitbook/assets/web_create_project.gif)
 
+## Configure Isabl CLI
+
+We need to let `isabl-cli` know where can the API be reached, and what CLI settings we should use:
+
+```bash
+# point to your API URL
+export ISABL_API_URL=http://localhost:8000/api/v1/
+
+# set environment variable for demo client
+export ISABL_CLIENT_ID="demo-cli-client"
+
+# create and update the client object
+demo-cli python3.6 ./assets/metadata/create_cli_client.py
+
+# check the file used to create the client
+cat ./assets/metadata/create_cli_client.py
+```
+
 ## Register Samples
 
 Before we create samples, let's use `isabl-cli` to add choices for _Center_, _Disease_, _Sequencing Technique_, and _Data Generating Platform_:
 
 ```bash
-demo-cli python3.6 assets/metadata/create_choices.py
+demo-cli python3.6 ./assets/metadata/create_choices.py
 ```
 
 {% hint style="info" %}
@@ -143,7 +161,6 @@ Now let's import the genome:
 ```bash
 isabl import-reference-genome \
     --assembly GRCh37 \
-    --species HUMAN  \
     --genome-path assets/staging/reference/reference.fasta
 ```
 
@@ -201,11 +218,7 @@ The front end will also reflect that data has been imported.
 
 ## Writing Applications
 
-Isabl is a language agnostic platform and can deploy any pipeline. To get started, we will use some applications from [isabl-io/apps](https://github.com/isabl-io/apps). Precisely we will run alignment, quality control, and variant calling. Applications are registered in the client configuration:
-
-```bash
-cat config/settings.py
-```
+Isabl is a language agnostic platform and can deploy any pipeline. To get started, we will use some applications from [isabl-io/apps](https://github.com/isabl-io/apps). Precisely we will run alignment, quality control, and variant calling. Applications were [previously registered](quick-start.md#configure-isabl-cli) in client object. Once registered, they are available in the client:
 
 ```bash
 isabl apps-grch37
@@ -214,8 +227,6 @@ isabl apps-grch37
 {% hint style="info" %}
 Learn more about customizing your instance with [Isabl Settings](isabl-settings.md).
 {% endhint %}
-
-Once registered, they are available in the client:
 
 First we'll run alignment \(pass `--commit` to deploy\):
 
@@ -226,7 +237,7 @@ isabl apps-grch37           `# apps are grouped by assembly ` \
 ```
 
 {% hint style="info" %}
-Note that if you try to re-run the same command, Isabl will notify you that results are already available.
+Note that if you try to re-run the same command, Isabl will notify you that results are already available. If for some reason the analyses fail, you can force a re-run using `--force`.
 {% endhint %}
 
 Now we can retrieve bams from the command line:
