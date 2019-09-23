@@ -7,10 +7,12 @@ description: '⏱ tutorial time: 20 minutes'
 This tutorial will help you set up a **full Development environment** with all components of the `isabl` infrastructure.
 
 {% hint style="info" %}
-📘 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. `isabl` could always use more documentation, whether as part of the **README**, in doc-strings, or even on the web in blog posts articles, and such. Also, bet you've read the [Zen Of Python](https://www.python.org/dev/peps/pep-0020/#the-zen-of-python).
+📘 Contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given. `isabl` could always use more documentation, whether as part of the READMES, in docstrings, or even on the web in blog posts articles, and such. Also, bet you've read the [Zen Of Python](https://www.python.org/dev/peps/pep-0020/#the-zen-of-python).
 {% endhint %}
 
-## Isabl API
+## RESTful API
+
+[![](https://img.shields.io/github/issues/isabl-io/api.svg)](https://github.com/isabl-io/docs/issues) [![](https://img.shields.io/github/issues-pr/isabl-io/api.svg)](https://github.com/isabl-io/api/compare)
 
 1. Clone locally:
 
@@ -39,7 +41,7 @@ This tutorial will help you set up a **full Development environment** with all c
     docker-compose run --rm django pydocstyle isabl_api
    ```
 
-#### Create a superuser
+### Create a superuser
 
 Create a superuser with username and password set to `admin` \(we will need it later\):
 
@@ -49,7 +51,7 @@ docker-compose run --rm django python manage.py createsuperuser --email admin@is
 
 Now you can login in the frontend at [http://localhost:8000](http://localhost:8000) \(there won't be much to see\). An easy way to create objects is to run the client tests.
 
-#### Coverage report
+### Coverage report
 
 Since tests were run inside a container, we need to combine the coverages to see the html report:
 
@@ -58,7 +60,9 @@ alias opencov="mv .coverage .coverage.tmp && coverage combine && coverage html &
 pip install coverage && opencov
 ```
 
-## Isabl CLI
+## Command Line Client
+
+[![cli issue badge](https://img.shields.io/github/issues/isabl-io/cli.svg)](https://github.com/isabl-io/docs/issues) [![cli pullr badge](https://img.shields.io/github/issues-pr/isabl-io/cli.svg)](https://github.com/isabl-io/cli/compare)
 
 1. Clone locally:
 
@@ -87,9 +91,47 @@ pip install coverage && opencov
     pydocstyle isabl_cli
    ```
 
-**Note:** if your changes depend on a particular branch of Isabl API, make sure both Isabl CLI and Isabl API branches are called the same so that the travis configuration can pick that up.
+**Note:** if your changes depend on a particual branch of Isabl API, make sure both Isabl CLI and Isabl API branches are called the same so that the travis configuration can pick that up.
 
-## Isabl Web
+## Applications
+
+[![apps issue badge](https://img.shields.io/github/issues/isabl-io/apps.svg)](https://github.com/isabl-io/docs/issues) [![apps pullr badge](https://img.shields.io/github/issues-pr/isabl-io/apps.svg)](https://github.com/isabl-io/apps/compare)
+
+1. Clone locally:
+
+   ```text
+    git clone git@github.com:isabl-io/apps.git
+    cd apps
+   ```
+
+2. Install with pip, please make sure the client is installed in the same environment:
+
+   ```text
+    pip install -r requirements.txt
+   ```
+
+3. Run [pytest](https://docs.pytest.org/en/latest/) with:
+
+   ```text
+    py.test tests/ --cov=isabl_apps -s
+   ```
+
+4. Execute the applications:
+
+   ```text
+    py.test tests/ --cov=isabl_apps -s --commit
+   ```
+
+5. Check styling with:
+
+   ```text
+    pylint isabl_cli
+    pydocstyle isabl_cli
+   ```
+
+## Frontend
+
+[![web issue badge](https://img.shields.io/github/issues/isabl-io/web.svg)](https://github.com/isabl-io/docs/issues) [![web pullr badge](https://img.shields.io/github/issues-pr/isabl-io/web.svg)](https://github.com/isabl-io/web/compare)
 
 1. Clone locally:
 
@@ -120,11 +162,25 @@ pip install coverage && opencov
 
 ## Documentation
 
-Simply create a PR in [github](https://github.com/isabl-io/docs):
+[![docs issue badge](https://img.shields.io/github/issues/isabl-io/docs.svg)](https://github.com/isabl-io/docs/issues) [![docs pullr badge](https://img.shields.io/github/issues-pr/isabl-io/docs.svg)](https://github.com/isabl-io/docs/compare)
 
-```text
- git clone git@github.com:isabl-io/docs.git
-```
+1. Clone locally:
+
+   ```text
+    git clone git@github.com:isabl-io/docs.git
+   ```
+
+2. Install [docsify](https://docsify.js.org/#/quickstart):
+
+   ```text
+    npm i docsify-cli -g
+   ```
+
+3. Serve docs:
+
+   ```text
+    cd docs && docsify serve .
+   ```
 
 ## Contribute with Github
 
