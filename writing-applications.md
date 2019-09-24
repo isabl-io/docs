@@ -480,15 +480,33 @@ class HelloWorldApp(AbstractApplication):
             count = sum(len(i) for i in f)
 
         return {"merged": merged, "count": count}
-    
-    # we can reuse the project merge logic at the individual level
+
+```
+
+The first argument in `merge_project_analyses`, is the project level `analysis`, which is unique per project and application. The second argument is a list of all completed `analyses` of this application for a given project. Your role is to merge `analyses` output into the project level `analysis` directory. We need to define similar methods for the  **Individual** level auto merge. Lets say that our project-level merge logic is the same for individuals, then we can simply do:
+
+```python
+class HelloWorldApp(AbstractApplication):
+
+    # reuse the project merge logic at the individual level
     application_individual_level_results = application_project_level_results
     merge_individual_analyses = merge_project_analyses
     get_individual_analysis_results = get_project_analysis_results
+
+```
+
+If at any arbitrary time you want to test the auto-merge logic, use any of these two commands:
+
+```bash
+# for project level auto merge
+isabl merge-project-analyses --project <project id> --application <application id>
+
+# for individual level automerge
+isabl merge-individual-analyses --individual <individual id> --application <application id>
 ```
 
 {% hint style="info" %}
-You can validate analyses before running the merge operation by implementing validate\_project\_analyses, and validate\_individual\_analyses.
+Please note that merged output will always be stored in the same analysis for a given project or individual and application. Furthermore, you can validate analyses before running the merge operation by implementing `validate_project_analyses`, and `validate_individual_analyses`.
 {% endhint %}
 
 #### Submitting Merge Analysis to A Compute Architecture
