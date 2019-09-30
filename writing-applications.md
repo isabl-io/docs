@@ -332,7 +332,7 @@ Isabl is **agnostic** to compute architecture, `get_command` does not need to wo
 `Isabl` is agnostic of the compute infrastructure you're working on and can be configured to work with different batch systems \(e.g. local, HPC, cloud\). Currently, `Isabl` supports local and LSF submission, how ever you can create a submitter for [other schedulers](writing-applications.md#other-schedulers).
 
 {% hint style="info" %}
-**Importantly** _****_`Isabl` is not a workflow management system or language like Toil, Bpipe, CWL, etc. Isabl will however, can submit _head jobs_ per analysis to a compute infrastructure.
+**Importantly** _****_`Isabl` is not a workflow management system or language like Toil, Bpipe, CWL, etc. Isabl however, can submit _head jobs_ per analysis to a compute infrastructure.
 {% endhint %}
 
 #### LSF Batch Submission
