@@ -1,5 +1,5 @@
 ---
-description: "\U0001F3F7Create models and metadata, before linking your raw data."
+description: "\U0001F3F7 Create models and metadata, before linking your raw data."
 ---
 
 # Registering Metadata
@@ -89,6 +89,10 @@ Only users with the proper permissions or _superusers_ can create or modify mode
 
 When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role. If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
 {% endhint %}
+
+## Adding Extra Choices
+
+If you need more choices for `species`, `gender`, sample `category`, and technique `methods`, please refer to the [extra choices documentation](isabl-settings.md#extra-choices-settings).
 
 ## Register Samples with Excel
 

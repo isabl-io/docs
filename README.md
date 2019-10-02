@@ -1,7 +1,7 @@
 ---
 description: >-
-  A scalable data science framework for patient-centric bioinformatics
-  operations.
+  Isabl is a platform for the integration, management, and processing of
+  individual-centric multimodal data. Welcome to the Isabl Documentation!
 ---
 
 # Home

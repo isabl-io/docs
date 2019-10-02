@@ -1,5 +1,5 @@
 ---
-description: "\U0001F4E6Bring your raw data and match with existing metadata"
+description: "\U0001F4E6 Learn how to import raw data into Isabl using existing metadata."
 ---
 
 # Importing Data
@@ -14,7 +14,60 @@ Isabl-CLI supports automated data import by recursively exploring data depositio
 
 Upon `--commit`, Isabl-CLI proceeds to move \(or symlink\) matched files into scalable directory structures \(**C**\). The experiments data path is created by hashing the four last digits of the its primary key. For instance, data for Experiment 57395 will be stored at `{storage-directory}/experiments/73/95/57395/`. This hashing approach ensures a maximum of 1000 subdirectories in any folder at a worst case scenario of 10 million experiments.
 
+### Supported Data Formats
+
+Isabl experiments can be linked to any kind of data. Be default Isabl will match the following data types:
+
+```python
+RAW_DATA_FORMATS = [
+    ("CRAM", "CRAM"),
+    ("FASTQ_R1", "FASTQ_R1"),
+    ("FASTQ_R2", "FASTQ_R2"),
+    ("FASTQ_I1", "FASTQ_I1"),
+    ("BAM", "BAM"),
+    ("PNG", "PNG"),
+    ("JPEG", "JPEG"),
+    ("TXT", "TXT"),
+    ("TSV", "TSV"),
+    ("CSV", "CSV"),
+    ("PDF", "PDF"),
+    ("DICOM", "DICOM"),
+    ("MD5", "MD5"),
+]
+```
+
+If you need to support more raw data formats, you will need to extend the [valid data format choices](isabl-settings.md#extra-choices-settings) and provide a new [data importer](isabl-settings.md#isabl-cli-settings). 
+
+{% hint style="info" %}
+**Tip:** subclassing `isabl_cli.data.LocalDataImporter` and overwriting `RAW_DATA_INSPECTORS`might be enough to support new data formats.
+{% endhint %}
+
 ## Import Reference Data and BED files
+
+You can link reference data to assemblies and techniques. Here are a few ways of how to go about it.
+
+### Link Arbitrary Reference Data for Techniques and Assemblies
+
+The need to register _arbitrary_ resources for any assembly or technique \(e.g. gene annotations\) is also supported:
+
+```bash
+isabl import-reference-data --help
+
+# extra resources are included in the assembly directory
+assemblies/
+├── GRCh37
+│   ├── chr_alias
+│   │   └── hg19_alias.tab
+│   ├── cytoband
+│   │   └── cytoBand.txt
+│   ├── genes
+│   │   └── refGene.txt
+│   └── genome_fasta
+│       └── GRCh37.fasta ...
+└── GRCm38
+```
+
+### Import Assembly Reference Genome
 
 Isabl supports the ability to track resources for assemblies and techniques. For instance, ensuring that reference FASTA files are uniformly index, named, and tracked across genome builds:
 
@@ -37,26 +90,9 @@ assemblies/
 └── ...
 ```
 
-The need to register arbitrary resources for any assembly \(e.g. gene annotations\) is also supported:
+### Import BED Files for Sequencing Techniques
 
-```bash
-isabl import-reference-data --help
-
-# extra resources are included in the assembly directory
-assemblies/
-├── GRCh37
-│   ├── chr_alias
-│   │   └── hg19_alias.tab
-│   ├── cytoband
-│   │   └── cytoBand.txt
-│   ├── genes
-│   │   └── refGene.txt
-│   └── genome_fasta
-│       └── GRCh37.fasta ...
-└── GRCm38
-```
-
-Lastly, you can register BED files for any sequencing technique, which will be compressed, indexed, moved to the technique data directory, and registered in the database:
+Lastly, you can register BED files for any _sequencing_ technique, which will be compressed, indexed, moved to the technique data directory, and registered in the database:
 
 ```bash
 # compressed with bgzip, indexed with tabix
