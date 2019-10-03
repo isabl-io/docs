@@ -90,9 +90,18 @@ Only users with the proper permissions or _superusers_ can create or modify mode
 When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role. If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
 {% endhint %}
 
-## Adding Extra Choices
+### Adding Extra Choices
 
 If you need more choices for `species`, `gender`, sample `category`, and technique `methods`, please refer to the [extra choices documentation](isabl-settings.md#extra-choices-settings).
+
+### Sync Diseases with Onco Tree
+
+If you are working with Cancer, you can create sync Isabl Diseases with [Onco Tree](http://oncotree.mskcc.org/#/home). Simply run:
+
+```bash
+# you can find more onco tree versions at http://oncotree.mskcc.org
+python ./manage.py sync_oncotree --oncotree-version oncotree_2019_03_01
+```
 
 ## Register Samples with Excel
 
