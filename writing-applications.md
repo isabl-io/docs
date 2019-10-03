@@ -2,7 +2,7 @@
 description: >-
   ⚡️Isabl Applications enable you to systematically deploy data science tools
   across thousands of Experiments in a metadata driven approach. Learn how to
-  build Isabl Applications here.
+  build them here.
 ---
 
 # Writing Applications
