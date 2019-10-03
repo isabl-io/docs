@@ -267,6 +267,17 @@ Options:
   --help                  Show this message and exit.
 ```
 
+The `--force` flag will not completely remove the analyses, but it will move them to a temporary trash directory within the [**`BASE_STORAGE_DIRECTORY`**](isabl-settings.md#isabl-cli-settings). You may want to clean this location periodically using `crontab -e`:
+
+{% code-tabs %}
+{% code-tabs-item title="crontab -e" %}
+```bash
+# Clears trash directory.
+0 0 * * *   source ~/.bash_profile &> /dev/null; rm -rf <replace with BASE_STORAGE_DIRECTORY>/.analyses_trash/* &> /dev/null;
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
 {% hint style="success" %}
 You can use`cli_options` to include any other argument your app may need in order to successfully build and deploy data processing tools.
 {% endhint %}
@@ -362,7 +373,20 @@ def get_lsf_requirements(app, targets_methods):
 
 #### Other Schedulers
 
-You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) ****functions for other schedulers, the function must take a list of tuples, each tuple being an analysis and the analysis script. 
+You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) ****functions for other schedulers, the function must take a list of tuples, each tuple being an analysis and the analysis script.
+
+### Applications Run by Multiple Users
+
+Isabl applications can be run by multiple users in the same unix group. However, if applications are run by users different than the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****and are not [re-runnable](writing-applications.md#re-runnable-applications), then analyses will be set to `FINISHED` instead of `SUCCEEDED`. `isabl processed-finished` can be run by the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****to copy and own the results and set the permissions to _read-only_ whilst updating analyses status to `SUCCEEDED`. We recommend you add the following cron task in the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****profile using `crontab -e`: 
+
+{% code-tabs %}
+{% code-tabs-item title="crontab -e" %}
+```bash
+# Moves finished analyses to lkdc, updates them as SUCCEEDED.
+*/30 * * * * source ~/.bash_profile &> /dev/null; isabl process-finished &>> ~/moving.log
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 ## Application Results
 

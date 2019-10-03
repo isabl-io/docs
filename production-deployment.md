@@ -22,6 +22,10 @@ export ISABL_CLIENT_ID="<replace with client primary key>"
 isabl --help
 ```
 
+{% hint style="info" %}
+**Tip:** Isabl Applications can be run by multiple unix users but still be owned by a single [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings). Learn more about it [here](writing-applications.md#applications-run-by-multiple-users).
+{% endhint %}
+
 Learn more about [Writing Applications](writing-applications.md):
 
 {% page-ref page="writing-applications.md" %}
