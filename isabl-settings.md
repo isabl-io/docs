@@ -57,6 +57,7 @@ Once this is set, you can configure your client object settings with the followi
 | **SYSTEM\_COMMANDS** | _Import Strings Array_ | Array of system commands that are used in isabl-cli. |
 | **ADMIN\_COMMANDS** | _Import Strings Array_ | Array of commands that are only executable by admin. |
 | **ADMIN\_USER** | _String_ | Linux user for which admin operations will be limited. This user will own the data and analyses results. Nevertheless, Isabl Applications can be run by multiple unix users. Learn more about it [here](writing-applications.md#applications-run-by-multiple-users). |
+| **CREATE\_SYMLINKS** | _Boolean_ | By default, Isabl creates a [symlink farm](data-model.md) upon data import and analyses completion. You can turn it off with this setting. |
 | **DEFAULT\_LINUX\_GROUP** | _String_ | Linux group for data admin\_user to use. |
 | **MAKE\_STORAGE\_DIRECTORY** | _Import String_ | Get and create path to a data directory. |
 | **TRASH\_ANALYSIS\_STORAGE** | _Import String_ | Move analysis `storage_url` to a trash directory. |

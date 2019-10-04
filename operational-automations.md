@@ -1,24 +1,28 @@
 ---
-description: >-
-  Once you have set up your instance and created a few applications you can now
-  automate your processes! In Isabl, this is achieved using signals.
+description: "\U0001F916 Once you have set up your Isabl instance and created a few applications you can now automate your processes! In Isabl, this is achieved using signals."
 ---
 
 # Operational Automations
 
 ## Registering Signals
 
-Registering a signal is as simple as adding your signal functions to the appropriate signals in the `Clients` section of the admin website.
+Signals are python functions that take _one_ argument: an **experiment** or an **analysis**. Signals for experiments are triggered on data import, whilst signals for analyses are triggered on status change \(i.e.  analysis failure or completion\). Register signals by including the function import string in either [**`ON_STATUS_CHANGE`**](isabl-settings.md#isabl-cli-settings) or [**`ON_DATA_IMPORT`**](isabl-settings.md#isabl-cli-settings) Isabl CLI settings: 
 
-## Signals on Data Import
+```python
+# experiments signals are triggered on data import
+"ON_DATA_IMPORT": [
+    "my_apps.signals.trigger_apps"
+]
 
-The Data Import signal is triggered after when data is imported into the system. Any implementing trigger functions will receive an experiment object. You can use the metadata of the experiment to determine what automation should be applied.
+# analyses signals are triggered on status change
+"ON_STATUS_CHANGE": [
+    "my_apps.signals.trigger_dependencies"
+]
+```
 
-### Examples
+### Signals on Data Import
 
-* Trigger assembly/species/category aware alignment
-* Perform Gene quantification or Fusion calling in RNA
-* Create symlinks to the raw data that are more human accessible
+Signals for experiments are triggered on data import and receive the experiment object as its only argument. You can use the metadata of the experiment to determine what automation should be applied. 
 
 ```python
 from isabl_apps import apps
@@ -35,18 +39,15 @@ def signal_data_import(experiment):
         dna_aligner().run(tuples=tuples, commit=True)
 ```
 
-## Signals on Analysis Status Change
+Some examples are:
 
-The Analysis Status Change signal is triggered when the status of an analysis is changed. Any implementing trigger functions will receive the analysis object. You can use the metadata of the experiment to determine what automation should be applied.
+* Trigger assembly/species/category aware alignment
+* Perform Gene quantification or Fusion calling in RNA
+* Create symlinks to the raw data that are more human accessible
 
-### Examples
+### Signals on Analysis Status Change
 
-* Trigger Quality Control/Coverage calculation after alignment has successfully been run
-* Trigger Variant Calling after alignment
-* Trigger Report Generation after analyses have been completed
-* Merge results on a project/individual level basis
-* Create symlinks to the analysis output directory that is more human accessible
-* Email an analyst letting them know that results are ready to be reviewed
+Analyses signals are triggered on status change. Each signal will receive the analysis object as its only argument. You can use the metadata of the experiment to determine what automation should be applied. 
 
 ```python
 from isabl_apps import apps
@@ -66,4 +67,49 @@ def signal_apps_automation(analysis):
     ):
         qc_app().run(tuples=[(analysis.targets, [])], commit=True)
 ```
+
+Some examples are:
+
+* Trigger Quality Control/Coverage calculation after alignment has successfully been run
+* Trigger Variant Calling after alignment
+* Trigger Report Generation after analyses have been completed
+
+## Working with Signals
+
+Here are a few examples of how to work with signals, trigger them, and get notified if signals fail.
+
+### Running Signals Manually
+
+You can trigger signals manually with Isabl CLI:
+
+```bash
+# experiment signals
+isabl run-signals experiments -s my_apps.signals.trigger_apps -fi projects 100 
+
+# analyses signals
+isabl run-signals analyses -s my_apps.signals.trigger_dependencies -fi projects 100 
+```
+
+### Rerunning Failed Signals
+
+When signals fail during automation, database records are created to keep track of this event. Rerun failed signals with:
+
+```bash
+# rerun all failed signals
+isabl rerun-signals
+
+# rerun failed signals using filters
+isabl rerun-signals \
+    -fi import_string my_apps.signals.trigger_apps \
+    -fi target_endpoint analyses \
+    -fi target_id <an analysis primary key>
+```
+
+### Get Notified When Signals Fail
+
+You can configure Isabl API to periodically check if any signal has failed and send you email notifications. To do so, head to the admin site at `/admin/django_celery_beat/periodictask/add/` and in _Task \(registered\)_ select `isabl_api.tasks.report_failed_signals_task`, then create a 15 minutes interval, and hit save:
+
+![](.gitbook/assets/image%20%283%29.png)
+
+
 
