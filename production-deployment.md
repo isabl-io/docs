@@ -22,9 +22,45 @@ export ISABL_CLIENT_ID="<replace with client primary key>"
 isabl --help
 ```
 
+For example, if `ISABL_CLIENT_ID=1` you can update the settings field at [https://my.isabl/admin/isabl\_api/client/1/change/](https://isabl.mskcc.org/admin/isabl_api/client/1/change/). An example of such configuration could be:
+
+```javascript
+{
+  "ADMIN_USER": "isablbot",
+  "DEFAULT_LINUX_GROUP": "isabl",
+  "BASE_STORAGE_DIRECTORY": "/isabl/data",
+  "SUBMIT_ANALYSES": "isabl_cli.batch_systems.submit_lsf",
+  "ON_DATA_IMPORT": ["isabl_apps.signals.signal_data_import"],
+  "CUSTOM_COMMANDS": ["isabl_apps.cli.one_click_genome"],
+  "ON_STATUS_CHANGE": ["isabl_apps.signals.signal_apps_automation"],
+  "INSTALLED_APPLICATIONS": ["isabl_apps.apps.BwaMemGRCh37"]
+}
+```
+
+This is how the admin website looks like for editing Isabl CLI settings:
+
+![Editing Isabl CLI settings from the Admin.](.gitbook/assets/image%20%281%29.png)
+
+### Multiuser Setup
+
+Isabl CLI can be configured to be used by multiple users. In this setup, data and results are owned by an[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****yet [applications can be triggered by any user](writing-applications.md#applications-run-by-multiple-users). To get this working correctly, you will need to configure the `ADMIN_USER` and the `DEFAULT_LINUX_GROUP` in the Isabl CLI _client object_ \(you can do so by updating the `settings` field of your client `ISABL_CLIENT_ID` from the Django admin website\).
+
 {% hint style="info" %}
-**Tip:** Isabl Applications can be run by multiple unix users but still be owned by a single [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings). Learn more about it [here](writing-applications.md#applications-run-by-multiple-users).
+An[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings)is a shared unix account that can be accessed by one or more engineers. These engineers are then responsible for the data and results of Isabl installations. 
 {% endhint %}
+
+Once you follow the [writing applications guide](writing-applications.md), you will understand that Isabl Applications can be managed using a python package. If you have multiple users triggering applications, you may want to have them all pointing to the same package. This can be either using the `PYTHONPATH` environment variable or pip installing locally your apps repo:
+
+```bash
+# using an environment variable
+export PYTHONPATH=/path/to/my/isabl/apps
+
+# alternatively you can have other users pip install the repo
+pip install --editable /path/to/my/isabl/apps
+
+# you may need to update the .eggs directory permissions
+chmod -R g+rwX /path/to/my/isabl/apps/.eggs
+```
 
 Learn more about [Writing Applications](writing-applications.md):
 

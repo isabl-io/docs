@@ -109,7 +109,7 @@ isabl rerun-signals \
 
 You can configure Isabl API to periodically check if any signal has failed and send you email notifications. To do so, head to the admin site at `/admin/django_celery_beat/periodictask/add/` and in _Task \(registered\)_ select `isabl_api.tasks.report_failed_signals_task`, then create a 15 minutes interval, and hit save:
 
-![](.gitbook/assets/image%20%284%29.png)
+![](.gitbook/assets/image%20%285%29.png)
 
 
 

@@ -66,7 +66,7 @@ Results produced by applications are stored as analyses. The uniqueness of an an
 
 Importantly, if someone tries to run the same application over the same experiments, a new analysis won't be created and but the existing one will be retrieved.
 
-![Isabl applications are python classes with the role of constructing, validating, and deploying commands for tools \(or pipelines\) into compute environments across several samples, all guided by metadata retrieved from Isabl API.](.gitbook/assets/image%20%282%29.png)
+![Isabl applications are python classes with the role of constructing, validating, and deploying commands for tools \(or pipelines\) into compute environments across several samples, all guided by metadata retrieved from Isabl API.](.gitbook/assets/image%20%283%29.png)
 
 ### Getting Started with Isabl Applications
 
@@ -624,7 +624,7 @@ Individual Level Auto-Merge and Unique Analyses Per Individual are different con
 
 You can configure Isabl API to periodically check if any analysis has failed and send you email notifications. To do so, head to the admin site at `/admin/django_celery_beat/periodictask/add/` and in _Task \(registered\)_ select `isabl_api.tasks.report_status_change_task`, then create a 1 hour interval, and provide the following Keyword arguments `{"status": "FAILED", "seconds": 3600}` \(i.e. _every hour check how many analyses failed in the past hour_\):
 
-![Every hour check how many analyses failed in the past hour.](.gitbook/assets/image%20%281%29.png)
+![Every hour check how many analyses failed in the past hour.](.gitbook/assets/image%20%282%29.png)
 
 ## Testing Applications
 
