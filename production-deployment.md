@@ -43,11 +43,21 @@ This is how the admin website looks like for editing Isabl CLI settings:
 
 ### Multiuser Setup
 
-Isabl CLI can be configured to be used by multiple users. In this setup, data and results are owned by an[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****yet [applications can be triggered by any user](writing-applications.md#applications-run-by-multiple-users). To get this working correctly, you will need to configure the `ADMIN_USER` and the `DEFAULT_LINUX_GROUP` in the Isabl CLI _client object_ \(you can do so by updating the `settings` field of your client `ISABL_CLIENT_ID` from the Django admin website\).
+Isabl CLI can be used by multiple users. By default, any user can import data and result files are owned by whoever triggered the application. These capabilities can be limited to an [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings)**.** In this setup, data and results are owned by the`ADMIN_USER` ****yet [applications can be triggered by any user](writing-applications.md#applications-run-by-multiple-users).
 
 {% hint style="info" %}
-An[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings)is a shared unix account that can be accessed by one or more engineers. These engineers are then responsible for the data and results of Isabl installations. 
+An[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings)is a shared unix account that can be accessed by one or more engineers. These engineers are responsible for the data and results of Isabl installations. 
 {% endhint %}
+
+To get this working correctly, you will need to configure the `ADMIN_USER` and the `DEFAULT_LINUX_GROUP` in the Isabl CLI _client object_ \(you can do so by updating your client `ISABL_CLIENT_ID` from the Django admin website\). For example:
+
+```javascript
+{
+  "ADMIN_USER": "isablbot",
+  "DEFAULT_LINUX_GROUP": "isabl",
+  ...
+}
+```
 
 Once you follow the [writing applications guide](writing-applications.md), you will understand that Isabl Applications can be managed using a python package. If you have multiple users triggering applications, you may want to have them all pointing to the same package. This can be either using the `PYTHONPATH` environment variable or pip installing locally your apps repo:
 
