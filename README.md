@@ -13,6 +13,7 @@ Isabl is a plug-and-play data science framework designed to support automated pr
 ## Features
 
 * 👾 **Backend, Data Model and RESTful API**
+  * Metadata version control
   * Fully featured and brisk RESTful API with extensive swagger documentation
   * Comprehensive permissions controls and user groups
   * Patient centric relational model with support for:

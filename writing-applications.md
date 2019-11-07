@@ -24,8 +24,8 @@ Isabl applications are not Workflow Management Systems \(see [what Isabl is not 
 
 During this tutorial we will build a hello world application that show cases the functionalities and advantages of processing data with Isabl. Here is a really simple example of an Isabl application that echoes an experiment's sample identifier and it's raw data.
 
-{% code-tabs %}
-{% code-tabs-item title="hello\_world/apps.py" %}
+{% tabs %}
+{% tab title="hello\_world/apps.py" %}
 ```python
 from isabl_cli import AbstractApplication
 from isabl_cli import options
@@ -42,8 +42,8 @@ class HelloWorldApp(AbstractApplication):
         return f"echo {experiment.sample.identifier} {experiment.raw_data} "
 
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 This application can now be executed system-wide using:
 
@@ -272,14 +272,14 @@ Options:
 
 The `--force` flag will not completely remove the analyses, but it will move them to a temporary trash directory within the [**`BASE_STORAGE_DIRECTORY`**](isabl-settings.md#isabl-cli-settings). You may want to clean this location periodically using `crontab -e`:
 
-{% code-tabs %}
-{% code-tabs-item title="crontab -e" %}
+{% tabs %}
+{% tab title="crontab -e" %}
 ```bash
 # Clears trash directory.
 0 0 * * *   source ~/.bash_profile &> /dev/null; rm -rf <replace with BASE_STORAGE_DIRECTORY>/.analyses_trash/* &> /dev/null;
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 {% hint style="success" %}
 You can use`cli_options` to include any other argument your app may need in order to successfully build and deploy data processing tools.
@@ -382,14 +382,14 @@ You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) 
 
 Isabl applications can be run by multiple users in the same unix group. However, if applications are run by users different than the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****and are not [re-runnable](writing-applications.md#re-runnable-applications), then analyses will be set to `FINISHED` instead of `SUCCEEDED`. `isabl processed-finished` can be run by the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****to copy and own the results and set the permissions to _read-only_ whilst updating analyses status to `SUCCEEDED`. We recommend you add the following cron task in the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****profile using `crontab -e`: 
 
-{% code-tabs %}
-{% code-tabs-item title="crontab -e" %}
+{% tabs %}
+{% tab title="crontab -e" %}
 ```bash
 # Moves finished analyses to lkdc, updates them as SUCCEEDED.
 */30 * * * * source ~/.bash_profile &> /dev/null; isabl process-finished &>> ~/moving.log
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ### Running Applications from Python
 

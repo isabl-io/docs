@@ -149,8 +149,8 @@ Create endpoints are _get or create_, they try to retrieve existing objects usin
 
 Let's say you want to create a new _Individual._ According to the API documentation, we need to provide at  species, gender, an identifier, and the center associated with the individual. Note that `center` is a _nested_  object, you may need to create a new one or query an existing one. Let's say you want to get an existing one. This is how you'd do it with `isabl_cli`:
 
-{% code-tabs %}
-{% code-tabs-item title="Using Isabl SDK" %}
+{% tabs %}
+{% tab title="Using Isabl SDK" %}
 ```python
 import isabl_cli as ii
 
@@ -166,13 +166,13 @@ individual = ii.create_instance(
     center = center,
 )
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 You can also make http requests directly to the API \(you can create a new token from the admin site\):
 
-{% code-tabs %}
-{% code-tabs-item title="A request to the API" %}
+{% tabs %}
+{% tab title="A request to the API" %}
 ```bash
 # get token for authentication
 curl  -X POST  \
@@ -188,8 +188,8 @@ curl \
     -d '{"identifier": "EXTERNAL_ID_1", "species": "HUMAN", "gender": "FEMALE", "center": {"acronym": "MSK", "name": "MEMORIAL SLOAN KETTERING" } }' \
     http://<your-isabl-host>/api/v1/individuals
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 ## Manage User Groups and Permissions
 

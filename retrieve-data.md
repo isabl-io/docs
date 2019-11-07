@@ -8,30 +8,30 @@ description: "\U0001F913 The ultimate guide for data analysts using Isabl!"
 
 **Filters** enable you to subset the data of your interest. For example you can use filters to retrieve all the BAM files of a given project, or get all VCFs from a given variant calling application. Filters are _field-value_ pairs and can be used both in the Command Line and within Python. Check out this examples:
 
-{% code-tabs %}
-{% code-tabs-item title="A request to the API" %}
+{% tabs %}
+{% tab title="A request to the API" %}
 ```bash
 curl http://my-isabl.io/api/v1/experiments?sample__identifier=the-sample-id
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="Using Isabl CLI" %}
+{% tabs %}
+{% tab title="Using Isabl CLI" %}
 ```bash
 isabl get-outdirs -fi application.name BWA_MEM -fi status SUCCEEDED
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
-{% code-tabs %}
-{% code-tabs-item title="Using Isabl SDK" %}
+{% tabs %}
+{% tab title="Using Isabl SDK" %}
 ```python
 import isabl_cli as ii
 samples = ii.get_instances('samples', individual__species="HUMAN")
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` \(e.g. `samples__disease__acronym=AML`, or a dot in the Command Line `application.name=PINDEL`\)
@@ -236,13 +236,13 @@ You can retrieve the application primary key from the front end.
 
 Importantly, `isabl-cli` can also be used as a Software Development Kit within python:
 
-{% code-tabs %}
-{% code-tabs-item title="Try from an ipython session" %}
+{% tabs %}
+{% tab title="Try from an ipython session" %}
 ```python
 import isabl_cli as ii  # ii stands for `isabl interactive` 😎
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endtab %}
+{% endtabs %}
 
 {% hint style="info" %}
 If you are using `ipython`, use `?` to get help on a method \(e.g. `ii.get_instances?`\)
