@@ -4,9 +4,15 @@ description: "\U0001F916 Once you have set up your Isabl instance and created a 
 
 # Operational Automations
 
+## Operational Signals
+
+Signals are python functions that take _one_ argument: an **experiment** or an **analysis**. Signals for experiments are triggered on data import, whilst signals for analyses are triggered on status change \(i.e.  analysis failure or completion\). 
+
+![](https://cdn-images-1.medium.com/max/800/1*nrOMsAUtbsmIHol-43Yunw.png)
+
 ## Registering Signals
 
-Signals are python functions that take _one_ argument: an **experiment** or an **analysis**. Signals for experiments are triggered on data import, whilst signals for analyses are triggered on status change \(i.e.  analysis failure or completion\). Register signals by including the function import string in either [**`ON_STATUS_CHANGE`**](isabl-settings.md#isabl-cli-settings) or [**`ON_DATA_IMPORT`**](isabl-settings.md#isabl-cli-settings) Isabl CLI settings: 
+Register signals by including the function import string in either [**`ON_STATUS_CHANGE`**](isabl-settings.md#isabl-cli-settings) or [**`ON_DATA_IMPORT`**](isabl-settings.md#isabl-cli-settings) Isabl CLI settings: 
 
 ```python
 # experiments signals are triggered on data import

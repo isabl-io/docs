@@ -180,6 +180,7 @@ export FRONTEND_URL="http://your-frontend-host.com"
 {% hint style="success" %}
 If you want to consume `isabl-web` and serve your own html, outside of `isabl-api`. You can consume the frontend just as:
 
+{% code title="index.html" %}
 ```markup
 <!DOCTYPE html>
 <html>
@@ -205,5 +206,6 @@ If you want to consume `isabl-web` and serve your own html, outside of `isabl-ap
     </body>
 </html>
 ```
+{% endcode %}
 {% endhint %}
 
