@@ -1,5 +1,5 @@
 ---
-description: "\U0001F3F7 Create models and metadata, before linking your raw data."
+description: "\U0001F3F7 Create Individuals, Samples, and Experiments before importing data."
 ---
 
 # Registering Metadata

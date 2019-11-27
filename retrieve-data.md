@@ -84,7 +84,7 @@ Moreover, _Datetime_ query parameters support extra lookups:
 {% endtabs %}
 
 {% hint style="info" %}
-To get a full description of all available filters please visit Isabl's Redoc API documentation by [https://isabl.mskcc.org/api/v1 ](https://isabl.mskcc.org/api/v1/)\(or replacing `isabl.mskcc.org` with your own host.\) Another useful way to explore the relational model is by using [`isabl get-metadata`](retrieve-data.md#dynamically-explore-metadata).
+To get a full description of all available filters please visit Isabl's Redoc API documentation at [https://isabl.io/redoc](https://isabl.io/redoc) or  [https://isabl.mskcc.org/api/v1 ](https://isabl.mskcc.org/api/v1/)\(replacing `isabl.mskcc.org` with your own host\). Another useful way to explore the relational model is by using [`isabl get-metadata`](retrieve-data.md#dynamically-explore-metadata)`.`
 {% endhint %}
 
 ### Common Filters
