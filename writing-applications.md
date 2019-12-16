@@ -380,7 +380,7 @@ Isabl applications can be run by multiple users in the same unix group. However,
 
 {% code title="crontab -e" %}
 ```bash
-# Moves finished analyses to lkdc, updates them as SUCCEEDED.
+# Change analyses permissions and updates them to SUCCEEDED.
 */30 * * * * source ~/.bash_profile &> /dev/null; isabl process-finished &>> ~/moving.log
 ```
 {% endcode %}
