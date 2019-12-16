@@ -84,6 +84,33 @@ Learn more about [Retrieving Data](retrieve-data.md) using `isabl-cli` to fetch 
 
 {% page-ref page="retrieve-data.md" %}
 
+### Initialize Data Lake
+
+With the admin user run the following snippet in the [**`BASE_STORAGE_URL`**](isabl-settings.md#isabl-cli-settings):
+
+```bash
+DIRS="00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99"
+BASE="analyses experiments"
+
+# go to your data lake base directory (see: BASE_STORAGE_DIRECTORY)
+cd /path/to/my/data/lake
+
+for i in $BASE;
+do
+    for j in $DIRS;
+    do
+        for k in $DIRS;
+        do
+            DIR="$i/$j/$k"
+            mkdir -p $DIR
+            chmod u+wrX,g+wrX $DIR
+        done;
+    
+    chmod g-w "$i/$j/"
+    done;
+done
+```
+
 ## Isabl API on Premise
 
 You can bootstrap a new Django project using [Cookiecutter API](https://github.com/isabl-io/cookiecutter):
