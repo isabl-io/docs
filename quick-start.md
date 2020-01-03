@@ -86,7 +86,7 @@ Creating a project in Isabl is as simple as adding a title. You can also specify
 
 ## Configure Isabl CLI
 
-We need to let `isabl-cli` know where can the API be reached, and what CLI settings we should use:
+We need to let `isabl-cli` know where can the API be reached, and what CLI settings we should use \(if you are using `demo-compose`, these variables are already set\):
 
 ```bash
 # point to your API URL
@@ -94,7 +94,11 @@ export ISABL_API_URL=http://localhost:8000/api/v1/
 
 # set environment variable for demo client
 export ISABL_CLIENT_ID="demo-cli-client"
+```
 
+Now we can create a client for `isabl-cli`:
+
+```bash
 # create and update the client object
 demo-cli python3.6 ./assets/metadata/create_cli_client.py
 
@@ -124,7 +128,13 @@ open assets/metadata/demo_submission.xlsm
 When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns. By the way, Isabl has multiple mechanisms for metadata ingestion! Learn more [here](data-model.md).
 {% endhint %}
 
-Now let's proceed to submit this excel form:
+Now let's proceed to submit this excel form. First open the directory:
+
+```bash
+open assets/metadata
+```
+
+And drag the `demo_submission.xlsm` file into the submit samples form:
 
 ![Click the + button in the project panel header to add new samples.](.gitbook/assets/web_submit_form%20%281%29.gif)
 
@@ -287,7 +297,8 @@ Now insert those identifiers in the following command:
 ```bash
 isabl apps-grch37 strelka-2.9.1 \
     --pairs {TUMOR 1 ID} {NORMAL ID}  `# replace tumor 1 system id and normal system id` \
-    --pairs {TUMOR 1 ID} {NORMAL ID}  `# replace tumor 2 system id and normal system id`
+    --pairs {TUMOR 2 ID} {NORMAL ID}  `# replace tumor 2 system id and normal system id` \
+    --pairs {TUMOR 3 ID} {NORMAL ID}  `# replace tumor 3 system id and normal system id`
 ```
 
 You can retrieve registered results for the analysis, for instance the _indels_ VCF:
