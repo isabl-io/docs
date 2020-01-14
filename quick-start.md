@@ -154,7 +154,7 @@ For this particular demo, we wanted to create a _sample tree_ that showcased the
 
 ## RESTful API
 
-Although not required for this tutorial, you are welcome to checkout the RESTful API documentation at: [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/)
+Although not required for this tutorial, you are welcome to checkout the RESTful API documentation at: [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/) or [https://isabl.io/redoc](https://isabl.io/redoc).
 
 ![](.gitbook/assets/api.gif)
 
