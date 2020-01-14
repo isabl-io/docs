@@ -148,7 +148,7 @@ isabl get-metadata experiments --fx
 Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
 {% endhint %}
 
-For this particular demo, we wanted to create a _sample tree_ that showcases the flexibility of Isabl's data model. Our demo individual has two samples, one normal and one tumor. The tumor sample is further divided into two biological replicates \(or _aliquots_\), and two experiments where conducted on the second aliquot:
+For this particular demo, we wanted to create a _sample tree_ that showcased the flexibility of Isabl's data model. Our demo individual has two samples, one normal and one tumor. The tumor sample is further divided into two biological replicates \(or _aliquots_\), with two experiments conducted on the second aliquot:
 
 ![A data generation process tree that resulted in 4 sequencing experiments \(or ultimately bams\), produced from two samples of the same individual.](.gitbook/assets/image.png)
 
