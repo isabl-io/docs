@@ -49,7 +49,25 @@ Isabl CLI can be used by multiple users. By default, any user can import data an
 An[**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings)is a shared unix account that can be accessed by one or more engineers. These engineers are responsible for the data and results of Isabl installations. 
 {% endhint %}
 
-To get this working correctly, you will need to configure the `ADMIN_USER` and the `DEFAULT_LINUX_GROUP` in the Isabl CLI _client object_ \(you can do so by updating your client `ISABL_CLIENT_ID` from the Django admin website\). For example:
+First you need to assign the right API permissions to your users. To facilitate this Isabl comes with the following command:
+
+```bash
+# from the django project directory run
+python manage.py create_default_groups
+
+# if you are using docker compose
+docker-compose -f production.yml run --rm django python manage.py create_default_groups
+```
+
+This command will create the following three Django groups:
+
+| Group name | Description | Permissions to |
+| :--- | :--- | :--- |
+| **Managers** | Individuals who register samples. | CustomField, Individual, Center, Disease, Experiment, Technique, Platform, Project, Submission, Analysis |
+| **Analysts** | individuals who run analyses. | CustomField, Application, Analysis, Assembly |
+| **Engineers** | A combination of Managers and Analysts | CustomField, Individual, Center, Disease, Experiment, Technique, Platform, Project, Submission, Analysis, Application, Assembly |
+
+Then you will need to configure the `ADMIN_USER` and the `DEFAULT_LINUX_GROUP` in the Isabl CLI _client object_ \(you can do so by updating your client `ISABL_CLIENT_ID` from the Django admin website\). For example:
 
 ```javascript
 {
