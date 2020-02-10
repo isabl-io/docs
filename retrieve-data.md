@@ -232,7 +232,7 @@ Importantly, `isabl-cli` can also be used as a Software Development Kit within p
 
 {% code title="Try from an ipython session" %}
 ```python
-import isabl_cli as ii  # ii stands for `isabl interactive` 😎
+import isabl_cli as ii  # ii stands for `interactive isabl` 😎
 ```
 {% endcode %}
 
