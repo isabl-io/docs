@@ -8,19 +8,19 @@ description: "\U0001F913 The ultimate guide for data analysts using Isabl!"
 
 **Filters** enable you to subset the data of your interest. For example you can use filters to retrieve all the BAM files of a given project, or get all VCFs from a given variant calling application. Filters are _field-value_ pairs and can be used both in the Command Line and within Python. Check out this examples:
 
-{% code title="A request to the API" %}
+{% code title="\# A request to the API" %}
 ```bash
-curl http://my-isabl.io/api/v1/experiments?sample__identifier=the-sample-id
+curl http://{my-isabl-instance}/api/v1/experiments?sample__identifier={the-sample-id}
 ```
 {% endcode %}
 
-{% code title="Using Isabl CLI" %}
+{% code title="\# Using Isabl CLI" %}
 ```bash
 isabl get-outdirs -fi application.name BWA_MEM -fi status SUCCEEDED
 ```
 {% endcode %}
 
-{% code title="Using Isabl SDK" %}
+{% code title="\# Using Isabl SDK" %}
 ```python
 import isabl_cli as ii
 samples = ii.get_instances('samples', individual__species="HUMAN")
@@ -79,7 +79,7 @@ Moreover, _Datetime_ query parameters support extra lookups:
 {% endtab %}
 
 {% tab title="Full Relational Model" %}
-![UML Diagram of Isabl&apos;s relational model.](https://user-images.githubusercontent.com/7906289/56929717-5f740600-6aa8-11e9-8f31-4ce7a4c828f3.png)
+![UML Diagram of the the db schema ](.gitbook/assets/isabl-db-uml.png)
 {% endtab %}
 {% endtabs %}
 
