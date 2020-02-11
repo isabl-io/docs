@@ -334,23 +334,30 @@ class HelloWorldApp(AbstractApplication):
 All options passed in `cli_options` are available during `get_command` using the settings attribute `run_args`. In this simple example, we allowed the user to pass a custom `--message`.
 
 {% hint style="info" %}
-Isabl is **agnostic** to compute architecture, `get_command` does not need to worry about HPC schedulers, or cloud architecture \(e.g. LSF, AWS\), it's only role is to return a shell command.
+Isabl is **agnostic** to compute architecture, `get_command` does not need to worry about HPC schedulers, or cloud architecture \(e.g. **`LSF`**, **`AWS`**\), its only role is to return a shell command.
 {% endhint %}
 
 ### Submitting Analyses to Compute Architectures
 
-`Isabl` is agnostic of the compute infrastructure you're working on and can be configured to work with different batch systems \(e.g. local, HPC, cloud\). Currently, `Isabl` supports local and LSF submission, how ever you can create a submitter for [other schedulers](writing-applications.md#other-schedulers).
+`Isabl` is agnostic of the compute infrastructure you're working on and can be configured to work with different batch systems \(e.g. local, HPC, cloud\). Currently, `Isabl` supports **`local`**, **`LSF`**, **`SGE`**, and **`Slurm`** submissions, how ever you can create a submitter for [other schedulers](writing-applications.md#other-schedulers).
 
 {% hint style="info" %}
 **Importantly** _****_`Isabl` is not a workflow management system or language like Toil, Bpipe, CWL, etc. Isabl however, can submit _head jobs_ per analysis to a compute infrastructure.
 {% endhint %}
 
-#### LSF Batch Submission
+#### Analyses Batch Submission
 
-Isabl comes with prebuilt logic to submit thousands of analyses to `LSF`, to do so simply set the Isabl CLI setting [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) as follows:
+Isabl comes with prebuilt logic to submit thousands of analyses to **`LSF`**, **`SGE`**, and **`Slurm`**using Job Arrays. To do so simply set the Isabl CLI setting [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) as follows:
 
 ```javascript
+// IBM's LSF
 "SUBMIT_ANALYSES": "isabl_cli.batch_systems.lsf.submit_lsf",
+
+// Sun Grid Engine
+"SUBMIT_ANALYSES": "isabl_cli.batch_systems.sge.submit_sge",
+
+// Slurm
+"SUBMIT_ANALYSES": "isabl_cli.batch_systems.slurm.submit_slurm",
 ```
 
 This submitter can check for the following configurations in [**`SUBMIT_CONFIGURATION`**](https://app.gitbook.com/@isabl/s/docs/~/edit/drafts/-Lo6bCi7iKfY_zd4B8U1/isabl-settings#isabl-cli-settings):
@@ -358,7 +365,7 @@ This submitter can check for the following configurations in [**`SUBMIT_CONFIGUR
 | Configuration Name | Type | Description |
 | :--- | :--- | :--- |
 | **`get_requirements`** | Import String | An import string to a function that will determine LSF requirements as a function of the experimental methods, see below. |
-| **`extra_args`** | String | Default LSF args to be used across all submissions. |
+| **`extra_args`** | String | Default `qsub` , `bsub`, or `sbatch` args to be used across all submissions. |
 | **`throttle_by`** | Integer | The total number of analyses that are allowed to run at the same time \(default is 50\). |
 
 The method `get_requirements` must take the application and a list of targets' technique methods \(which are submitted together in the same job array\):
@@ -372,7 +379,7 @@ def get_lsf_requirements(app, targets_methods):
 
 #### Other Schedulers
 
-You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) ****functions for other schedulers, the function must take a list of tuples, each tuple being an analysis and the analysis script.
+You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) ****functions for other schedulers, the function must take a list of tuples, each tuple being an analysis and the analysis head job script.
 
 ### Applications Run by Multiple Users
 
@@ -552,7 +559,7 @@ Please note that merged output will always be stored in the same analysis for a 
 
 #### Submitting Merge Analysis to A Compute Architecture
 
-Merge operations are triggered automatically when the last analysis that is meant to be merged finish running. By default, the merge operation will be conducted right after the analysis is patched to `SUCCEEDED`. However, you can define how merge analyses are submitted using Isabl CLI setting [**`SUBMIT_MERGE_ANALYSIS`**](isabl-settings.md#isabl-cli-settings). For example in `LSF`:
+Merge operations are triggered automatically when the last analysis that is meant to be merged finish running. By default, the merge operation will be conducted right after the analysis is patched to `SUCCEEDED`. However, you can define how merge analyses are submitted using Isabl CLI setting [**`SUBMIT_MERGE_ANALYSIS`**](isabl-settings.md#isabl-cli-settings). For example in **`LSF`**:
 
 ```python
 import subprocess
@@ -562,6 +569,18 @@ def submit_merge_analysis_to_lsf(instance, application, command):
     command = ["bsub", "-n", "1", "-W", "40000", "-M", "32"] + command.split()
     subprocess.check_call(command)
     print("Submited merge analysis using: " + " ".join(command))
+```
+
+Here is an example for **`SGE`**:
+
+```python
+import subprocess
+
+def submit_merge_analysis_to_sge(instance, application, command):
+    """Submit project merge to SGE."""
+    command = f"qsub -l h_vmem=[32G] << EOF\n{command}\nEOF\n"
+    subprocess.check_call(command, shell=True)
+    print(f"Submited project level merge with: {command}")
 ```
 
 ## Optional Functionality
