@@ -10,4 +10,5 @@
 * [Isabl Settings](isabl-settings.md)
 * [Production Deployment](production-deployment.md)
 * [Contributing Guide](contributing-guide.md)
+* [Other CLI commands](other-cli-commands.md)
 
