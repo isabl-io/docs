@@ -41,6 +41,12 @@ Isabl is a plug-and-play data science framework designed to support automated pr
   * Continuously Integrated with +98 % coverage across all codebase
   * isabl is upgradable, no need to fork out from codebase
 
+## Who is using Isabl
+
+* [Elli Papaemmanuil's lab](https://www.mskcc.org/research-areas/labs/elli-papaemmanuil).
+* The [Department of Pediatrics](https://www.mskcc.org/blog/one-one-how-msk-using-precision-medicine-tailor-treatment-children-cancer) at Memorial Sloan Kettering.
+* [Sohrab Shah's lab](https://www.mskcc.org/profile/sohrab-shah) \(they have nicely [documented](https://shahlab.ca/isabl_api/) their experience with Isabl\).
+
 ## Infrastructure
 
 Isabl is a modular infrastructure with four main components: \(1\) an individual-centric and extensible relational database \(Isabl-db\); \(2\) a comprehensive RESTful API \(Isabl-api\) used to support integration with data processing environments and enterprise systems \(e.g. clinical databases, visualization platforms\); \(3\) a Command Line Client \(CLI; Isabl-cli\) used to manage digital assets and deploy bioinformatics applications; \(4\) a front end single page web application \(Isabl-web\) with system wide queries enabled.
