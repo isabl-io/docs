@@ -42,6 +42,50 @@ If you need to support more raw data formats, you will need to extend the [valid
 **Tip:** subclassing `isabl_cli.data.LocalDataImporter` and overwriting `RAW_DATA_INSPECTORS`might be enough to support new data formats.
 {% endhint %}
 
+### Import Data from Yaml
+
+Isabl-CLI also supports explicit importing into a single experiment by specifying absolute file paths and metadata in a yaml file via the `import-data-from-yaml` command. The metadata will be added to the `file_data` field in an experiment's `raw_data`.
+
+The two main parameters to be specified when importing are:
+
+* **-fi:** an argument that takes a pair of values \(field, field value\) to identify an experiment. For example, if you had an experiment with a `system_id` of `TEST_EXPERIMENT_T01` , the argument would look like: 
+
+  ```python
+  -fi system_id EST_EXPERIMENT_T01
+  ```
+
+* **--files-data:** an argument that takes an absolute file path to the yaml file containing absolute files path and metadata. For example, if you had a yaml file `/absolute/path/to/files_data.yaml` with the following contents: 
+
+  {% code title="/absolute/path/to/files\_data.yaml" %}
+  ```yaml
+  /absolute/path/to/file_1.fastq.gz: 
+      metadata1: value1 
+      metadata2: value2
+  ​/absolute/path/to/file_2.fastq.gz: 
+      metadata3: value3 
+      metadata4: value4
+  ```
+  {% endcode %}
+
+  the argument would look like 
+
+  ```python
+  --files-data system_id /absolute/path/to/files_data.yaml
+  ```
+
+Full command using examples above:
+
+```
+isabl import-data-from-yaml \
+-fi system_id EST_EXPERIMENT_T01 \
+--files-data system_id /absolute/path/to/files_data.yaml \
+--commit
+```
+
+{% hint style="info" %}
+**View command details by running:** `isabl import-data-from-yaml --help`
+{% endhint %}
+
 ## Import Reference Data and BED files
 
 You can link reference data to assemblies and techniques. Here are a few ways of how to go about it.
