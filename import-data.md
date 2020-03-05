@@ -77,7 +77,7 @@ Full command using examples above:
 
 ```
 isabl import-data-from-yaml \
--fi system_id EST_EXPERIMENT_T01 \
+-fi system_id TEST_EXPERIMENT_T01 \
 --files-data /absolute/path/to/files_data.yaml \
 --commit
 ```
