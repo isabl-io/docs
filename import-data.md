@@ -51,10 +51,10 @@ The two main parameters to be specified when importing are:
 * **-fi:** an argument that takes a pair of values \(field, field value\) to identify an experiment. For example, if you had an experiment with a `system_id` of `TEST_EXPERIMENT_T01` , the argument would look like: 
 
   ```python
-  -fi system_id EST_EXPERIMENT_T01
+  -fi system_id TEST_EXPERIMENT_T01
   ```
 
-* **--files-data:** an argument that takes an absolute file path to the yaml file containing absolute files path and metadata. For example, if you had a yaml file `/absolute/path/to/files_data.yaml` with the following contents: 
+* **--files-data:** an argument that takes an absolute file path to the yaml file containing absolute file paths and metadata. For example, if you had a yaml file `/absolute/path/to/files_data.yaml` with the following contents: 
 
   {% code title="/absolute/path/to/files\_data.yaml" %}
   ```yaml
@@ -67,10 +67,10 @@ The two main parameters to be specified when importing are:
   ```
   {% endcode %}
 
-  the argument would look like 
+  the argument would look like:
 
   ```python
-  --files-data system_id /absolute/path/to/files_data.yaml
+  --files-data /absolute/path/to/files_data.yaml
   ```
 
 Full command using examples above:
@@ -78,7 +78,7 @@ Full command using examples above:
 ```
 isabl import-data-from-yaml \
 -fi system_id EST_EXPERIMENT_T01 \
---files-data system_id /absolute/path/to/files_data.yaml \
+--files-data /absolute/path/to/files_data.yaml \
 --commit
 ```
 
