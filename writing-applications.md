@@ -383,7 +383,7 @@ You can implement [**`SUBMIT_ANALYSES`**](isabl-settings.md#isabl-cli-settings) 
 
 ### Applications Run by Multiple Users
 
-Isabl applications can be run by multiple users in the same unix group. However, if applications are run by users different than the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****and are not [re-runnable](writing-applications.md#re-runnable-applications), then analyses will be set to `FINISHED` instead of `SUCCEEDED`. `isabl processed-finished` can be run by the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****to copy and own the results and set the permissions to _read-only_ whilst updating analyses status to `SUCCEEDED`. We recommend you add the following cron task in the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****profile using `crontab -e`: 
+Isabl applications can be run by multiple users in the same unix group. However, if applications are run by users different than the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****and are not [re-runnable](writing-applications.md#re-runnable-applications), then analyses will be set to `FINISHED` instead of `SUCCEEDED`. `isabl process-finished` can be run by the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****to copy and own the results and set the permissions to _read-only_ whilst updating analyses status to `SUCCEEDED`. We recommend you add the following cron task in the [**`ADMIN_USER`**](isabl-settings.md#isabl-cli-settings) ****profile using `crontab -e`: 
 
 {% code title="crontab -e" %}
 ```bash
