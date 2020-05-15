@@ -6,7 +6,9 @@ description: >-
 
 # Home
 
-Isabl is a plug-and-play data science framework designed to support automated processing and management of patient-centric digital assets and their metadata. Isabl's patient centric model enables advanced integrations with multimodal data types and linkage to other institutional information systems such as clinical databases and visualization interfaces. Have questions? Ask [here](https://gitter.im/isabl-io/community).
+Isabl is a plug-and-play data science framework designed to support the processing of multimodal patient-centric data. Have questions? Ask [here](https://gitter.im/isabl-io/community).
+
+Isabl has been developed by the [Elli Papaemmanuil's Lab](https://www.mskcc.org/research-areas/labs/elli-papaemmanuil).
 
 {% page-ref page="quick-start.md" %}
 
