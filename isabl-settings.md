@@ -28,10 +28,38 @@ Here is a detailed list of available configurations for Isabl API. To configure 
 | **FRONTEND\_URL** | _String_ | URL where the frontend is being deployed \(not required if frontend running in same host as backend\). |
 | **JIRA\_SETTINGS** | _Dictionary_ | Experimental feature to integrate JIRA with Isabl projects \(It can assign a different JIRA epic to each Isabl Group\). |
 | **REQUIRE\_ACCOUNT\_APPROVAL** | _Boolean_ | Disable new accounts and send out email to admins to require approval before new users can login. |
+| **S3\_BASE\_STORAGE\_DIRECTORIES** | _Dictionary_ | Support loading analyses results from a AWS s3 based "BASE\_STORAGE\_DIRECTORY".  Learn more [here](isabl-settings.md#loading-results-from-a-aws-s3-bucket). |
 
 Learn more about production deployment:
 
 {% page-ref page="production-deployment.md" %}
+
+### Loading results from a AWS S3 bucket
+
+If your Isabl CLI [**`BASE_STORAGE_DIRECTORY`**](isabl-settings.md#isabl-cli-settings) ****is located in a S3 bucket, you can enable rendering results through the website using the **`S3_BASE_STORAGE_DIRECTORIES`** setting**:**
+
+```python
+"S3_BASE_STORAGE_DIRECTORIES": {
+    "/base/path/in/output-file": {
+        "bucket": "an-S3-bucket-name",
+        "access_key": "The AWS Access Key",
+        "access_key": "The AWS Access Key",
+        "base_directory": "/base/path/in/s3/object",
+    }
+}
+```
+
+For example if an analysis output path is `/mnt/data/analyses/01/01/1/head_job.log` and and the s3 path to it is `s3://my-bucket/data/analyses/01/01/1/head_job.log` you should use this setting:
+
+```python
+"S3_BASE_STORAGE_DIRECTORIES": {
+    "/mnt/data/": {
+        "bucket": "my-bucket",
+        "base_directory": "/data/",
+        ...
+    }
+}
+```
 
 ## Isabl CLI Settings
 
