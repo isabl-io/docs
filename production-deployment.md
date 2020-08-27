@@ -102,6 +102,10 @@ Learn more about [Retrieving Data](retrieve-data.md) using `isabl-cli` to fetch 
 
 {% page-ref page="retrieve-data.md" %}
 
+{% hint style="success" %}
+**Pro tip:** use the `Can Download Results` permission to  configure what users can download analyses results in your Isabl instance.
+{% endhint %}
+
 ### Initialize Data Lake
 
 With the admin user run the following snippet in the [**`BASE_STORAGE_URL`**](isabl-settings.md#isabl-cli-settings):
