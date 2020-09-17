@@ -124,6 +124,7 @@ You can configure the `window.$isabl` with the following parameters:
 | **`lightTheme`** | `Object` | See [defaults](https://github.com/isabl-io/web/blob/master/src/utils/settings.js#L8) | Colors to customize the light theme. |
 | **`darkTheme`** | `Object` | See [defaults](https://github.com/isabl-io/web/blob/master/src/utils/settings.js#L20) | Colors to customize the dark theme. |
 | **`modelIcons`** | `Object` | `{}` | [Material Icon](https://material.io/resources/icons/?style=baseline) names to customize panel icons. |
+| **`distinctRecords`** | `Boolean` | `false` | By default, api queries don't remove duplicates as it impacts speed. Set `true` to avoid duplicate records. |
 
 ### Example of a custom UI configuration
 
