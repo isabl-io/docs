@@ -327,13 +327,13 @@ If you have permissions, you will be able to systematically alter instances in t
 
 ```python
 # create a disease
-ii.create_instance("diseases", name="Osteosarcoma", acrynom="OS")
+ii.api.create_instance("diseases", name="Osteosarcoma", acrynom="OS")
 
 # update an individual's gender
-ii.update_instance(individual.pk, gender="UNKNOWN")
+ii.api.update_instance(individual.pk, gender="UNKNOWN")
 
 # delete an analysis
-ii.delete_instance("analyses", analysis.pk)
+ii.api.delete_instance("analyses", analysis.pk)
 ```
 
 {% hint style="danger" %}
