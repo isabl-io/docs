@@ -35,7 +35,9 @@ Unique together constraints enable Isabl link new samples and experiments to exi
     </tr>
   </thead>
   <tbody></tbody>
-</table><table>
+</table>
+
+<table>
   <thead>
     <tr>
       <th style="text-align:left"><b>Samples</b>
@@ -50,7 +52,9 @@ Unique together constraints enable Isabl link new samples and experiments to exi
     </tr>
   </thead>
   <tbody></tbody>
-</table><table>
+</table>
+
+<table>
   <thead>
     <tr>
       <th style="text-align:left"><b>Experiments</b>
@@ -205,5 +209,9 @@ python manage.py create_default_groups
 
 {% hint style="info" %}
 These groups are **optional** and you can create your own using the Django Admin.
+{% endhint %}
+
+{% hint style="success" %}
+**Pro tip:** use the `Can Download Results` permission to  configure what users can download analyses results in your Isabl instance.
 {% endhint %}
 
