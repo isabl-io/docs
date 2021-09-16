@@ -36,7 +36,17 @@ RAW_DATA_FORMATS = [
 ]
 ```
 
-If you need to support more raw data formats, you will need to extend the [valid data format choices](isabl-settings.md#extra-choices-settings) and provide a new [data importer](isabl-settings.md#isabl-cli-settings). 
+If you need to support more raw data formats,  adding the **EXTRA\_RAW\_DATA\_FORMATS** both in the api and client settings, you can extend the [valid data format choices](isabl-settings.md#extra-choices-settings) in the backend, and provide a new format file validator in the [client settings](isabl-settings.md#isabl-cli-settings) or a new [data importer](isabl-settings.md#isabl-cli-settings). 
+
+**ie.** to support `MAF` format:
+
+```bash
+# In the api settings
+EXTRA_RAW_DATA_FORMATS = [("MAF", "MAF")]
+
+# In the cli client settings
+EXTRA_RAW_DATA_FORMATS = [("\\.maf(\\.gz)?$", "MAF")]
+```
 
 {% hint style="info" %}
 **Tip:** subclassing `isabl_cli.data.LocalDataImporter` and overwriting `RAW_DATA_INSPECTORS`might be enough to support new data formats.

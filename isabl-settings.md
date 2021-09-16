@@ -18,7 +18,7 @@ Here is a detailed list of available configurations for Isabl API. To configure 
 | :--- | :--- | :--- |
 | **EXTRA\_GENDERS** | _List_ | `Individual genders` as two-value tuples \(value, verbose name\). |
 | **EXTRA\_STATUS** | _List_  | `Analysis status` as two-value tuples \(value, verbose name\). |
-| **EXTRA\_RAW\_DATA\_FORMATS** | _List_ | Experiment `raw_data` formats. Learn how to support extra formats  [here](import-data.md#supported-data-formats). |
+| **EXTRA\_RAW\_DATA\_FORMATS** | _List_ | Experiment `raw_data` formats as two-value tuples \(value, verbose name\). Learn how to support extra formats  [here](import-data.md#supported-data-formats). |
 | **EXTRA\_SPECIES** | _List_ | Individual `species` as three-value tuples \(value, verbose name, system\_id modifier\). For example: `[("YEAST", "YEAST", "Y")]` |
 | **EXTRA\_SAMPLE\_CATEGORIES** | _List_ | Sample `categories` as three-value tuples \(value, verbose name, system\_id modifier\). For example`[("UNKNOWN", "UNKNOWN", "U")]` |
 | **EXTRA\_TECHNIQUE\_METHODS** | _List_ | Technique `methods`as three-value tuples \(value, verbose name, system\_id modifier\). For example:`[("SINGLE-CELL RNA", "SINGLE-CELL RNA", "scRNA")]` |
@@ -159,6 +159,7 @@ Once this is set, you can configure your client object settings with the followi
 | **ON\_SIGNAL\_FAILURE** | _Import Strings Array_ | Methods triggered when an signal fails. |
 | **SUBMIT\_ANALYSES** | _Import String_ | A function that will take a list tuples \(analysis, path to analysis script\) and submits them to a given compute architecture.  |
 | **SUBMIT\_CONFIGURATION** | Dictionary | A schema-less dictionary to set configurations that the **`SUBMIT_ANALYSES`** function may utilize. |
+| **EXTRA\_RAW\_DATA\_FORMATS** | Tuples Array | For every new supported format a tuple of `(regex validator, file_data_type)` i.e. To support Illumina ORA format: `["\\.ora?$", "ORA"]` |
 
 {% page-ref page="writing-applications.md" %}
 
