@@ -31,7 +31,7 @@ Make sure your installation doesn't require `sudo` to run `docker` and `docker-c
 Let's start by clone the demo:
 
 ```bash
-git clone https://github.com/isabl-io/demo.git --recurse-submodules && cd demo
+git clone https://github.com/papaemmelab/isabl-demo.git --recurse-submodules && cd demo
 ```
 
 Next, source a simple initiation profile:
@@ -56,7 +56,7 @@ docker volume rm isabl_demo_local_postgres_data
 
 ## Installation
 
-Build and run the application \(this might take a few minutes\):
+Build and run the application (this might take a few minutes):
 
 ```bash
 demo-compose build
@@ -72,7 +72,7 @@ demo-compose up -d
 You can type `demo-compose down` to stop the application.
 {% endhint %}
 
-Visit [http://localhost:8000/](http://localhost:8000/) and log in with `username=admin password=admin`!
+Visit [http://localhost:8000/](http://localhost:8000) and log in with `username=admin password=admin`!
 
 {% hint style="info" %}
 `demo-compose`, `demo-django`, and `demo-cli` are simple wrappers around `docker-compose` - check them out. The `isabl_demo` directory was bootstrapped using [cookiecutter-isabl](https://isabl-io.github.io/docs/#/api/settings), a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)! Many topics from their [guide](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#) will be relevant to your project.
@@ -82,11 +82,11 @@ Visit [http://localhost:8000/](http://localhost:8000/) and log in with `username
 
 Creating a project in Isabl is as simple as adding a title. You can also specify optional fields:
 
-![Hover over the menu and click in the + icon to add a new project.](.gitbook/assets/web_create_project.gif)
+![Hover over the menu and click in the + icon to add a new project.](.gitbook/assets/web\_create\_project.gif)
 
 ## Configure Isabl CLI
 
-We need to let `isabl-cli` know where can the API be reached, and what CLI settings we should use \(if you are using `demo-compose`, these variables are already set\):
+We need to let `isabl-cli` know where can the API be reached, and what CLI settings we should use (if you are using `demo-compose`, these variables are already set):
 
 ```bash
 # point to your API URL
@@ -136,7 +136,7 @@ open assets/metadata
 
 And drag the `demo_submission.xlsm` file into the submit samples form:
 
-![Click the + button in the project panel header to add new samples.](.gitbook/assets/web_submit_form%20%281%29.gif)
+![Click the + button in the project panel header to add new samples.](<.gitbook/assets/web\_submit\_form (1).gif>)
 
 We can also review metadata at the command line:
 
@@ -145,12 +145,12 @@ isabl get-metadata experiments --fx
 ```
 
 {% hint style="info" %}
-Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
+Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata (e.g. `tsv`).
 {% endhint %}
 
-For this particular demo, we wanted to create a _sample tree_ that showcased the flexibility of Isabl's data model. Our demo individual has two samples, one normal and one tumor. The tumor sample is further divided into two biological replicates \(or _aliquots_\), with two experiments conducted on the second aliquot:
+For this particular demo, we wanted to create a _sample tree_ that showcased the flexibility of Isabl's data model. Our demo individual has two samples, one normal and one tumor. The tumor sample is further divided into two biological replicates (or _aliquots_), with two experiments conducted on the second aliquot:
 
-![A data generation process tree that resulted in 4 sequencing experiments \(or ultimately bams\), produced from two samples of the same individual.](.gitbook/assets/image.png)
+![A data generation process tree that resulted in 4 sequencing experiments (or ultimately bams), produced from two samples of the same individual.](.gitbook/assets/image.png)
 
 ## RESTful API
 
@@ -238,7 +238,7 @@ isabl apps-grch37
 Learn more about customizing your instance with [Isabl Settings](isabl-settings.md).
 {% endhint %}
 
-First we'll run alignment \(pass `--commit` to deploy\):
+First we'll run alignment (pass `--commit` to deploy):
 
 ```bash
 isabl apps-grch37           `# apps are grouped by assembly ` \
@@ -262,11 +262,11 @@ We can also visualize aligned bams online:
 Insert `2:123,028-123,995` in the locus bar, that's were our test data has reads. Learn more about default BAMs in the [Writing Applications](writing-applications.md) guide.
 {% endhint %}
 
-![Although the BAM file is an output of the bwa-mem analysis, Isabl enables registering default bams to an experiment. Thus a link is available in the sample panel.](.gitbook/assets/web_visualize_data.gif)
+![Although the BAM file is an output of the bwa-mem analysis, Isabl enables registering default bams to an experiment. Thus a link is available in the sample panel.](.gitbook/assets/web\_visualize\_data.gif)
 
 ## Auto-merge Analyses
 
-Let's get some stats for our experiments with a quality control [application](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl_apps/apps/qc_data/apps.py#L20):
+Let's get some stats for our experiments with a quality control [application](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl\_apps/apps/qc\_data/apps.py#L20):
 
 ```bash
 isabl apps-grch37 qc-data-0.1.0 -fi identifier.icontains demo --commit
@@ -274,11 +274,11 @@ isabl apps-grch37 qc-data-0.1.0 -fi identifier.icontains demo --commit
 
 This quality control application has defined logic to merge results at a project and individual level. Upon completion of analyses execution, Isabl automatically runs the auto-merge logic:
 
-![A short message is displayed at the end of the run indicating merge analyses are being run.](.gitbook/assets/image%20%284%29.png)
+![A short message is displayed at the end of the run indicating merge analyses are being run.](<.gitbook/assets/image (4).png>)
 
 Isabl-web can render multiple types of results, in this case we will check at HTML reports. Results for our `qc-data` application are available at an _experiment_, _individual_, and _project_ level. In this example we are looking at the _project-level_ auto-merge analysis:
 
-![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web_project_level_analysis.gif)
+![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web\_project\_level\_analysis.gif)
 
 {% hint style="info" %}
 [Applications](writing-applications.md) can define any custom logic to merge analyses.
@@ -286,7 +286,7 @@ Isabl-web can render multiple types of results, in this case we will check at HT
 
 ## Multi-experiment Analyses
 
-Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example [this implementation of _Strelka_](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl_apps/apps/strelka/apps.py#L15) uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, let's try:
+Up until now we've run applications that are linked to one experiment only. However, analyses can be related to any number of _target_ and _reference_ experiments. For example [this implementation of _Strelka_](https://github.com/isabl-io/apps/blob/4f893b8995c110c1d685f49a04737533173907c4/isabl\_apps/apps/strelka/apps.py#L15) uses _tumor-normal_ pairs. Before you can run this command you will need to retrieve the system id of your experiments, let's try:
 
 ```bash
 isabl get-metadata experiments -f system_id
@@ -327,7 +327,7 @@ isabl get-outdirs -fi name STRELKA
 
 Lastly, lets check the indels VCFs through the web portal:
 
-![](.gitbook/assets/web_visualize_vcf.gif)
+![](.gitbook/assets/web\_visualize\_vcf.gif)
 
 ## Software Development Kit
 
@@ -351,7 +351,7 @@ for i in analyses:
     !ls {i.storage_url}/strelka
 ```
 
-The analysis objects are [`Munch`](https://github.com/Infinidat/munch), in other words they are dot-dicts \(like javascript\):
+The analysis objects are [`Munch`](https://github.com/Infinidat/munch), in other words they are dot-dicts (like javascript):
 
 ```python
 analysis = analyses[0]
@@ -370,13 +370,18 @@ print(target.keys())
 
 Learn about [CLI advanced configuration](https://github.com/isabl-io/docs/tree/c6cbd729fc1d9696332a3c78ea48aa4c7f409066/guides/cli/README.md#configuration) to customize functionality:
 
-{% page-ref page="isabl-settings.md" %}
+{% content-ref url="isabl-settings.md" %}
+[isabl-settings.md](isabl-settings.md)
+{% endcontent-ref %}
 
 Learn about writing applications:
 
-{% page-ref page="writing-applications.md" %}
+{% content-ref url="writing-applications.md" %}
+[writing-applications.md](writing-applications.md)
+{% endcontent-ref %}
 
 Ready for **production**? learn more about [deployment](https://github.com/isabl-io/docs/tree/c6cbd729fc1d9696332a3c78ea48aa4c7f409066/tutorials/deployment/README.md):
 
-{% page-ref page="production-deployment.md" %}
-
+{% content-ref url="production-deployment.md" %}
+[production-deployment.md](production-deployment.md)
+{% endcontent-ref %}
