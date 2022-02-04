@@ -31,8 +31,17 @@ Make sure your installation doesn't require `sudo` to run `docker` and `docker-c
 Let's start by clone the demo:
 
 ```bash
-git clone https://github.com/papaemmelab/isabl-demo.git --recurse-submodules && cd demo
+git clone https://github.com/papaemmelab/isabl_demo.git --recurse-submodules
+cd isabl-demo
 ```
+
+{% hint style="warning" %}
+Make sure the `git submodule` folders `isabl_api` and `isabl_cli` are not empty. If they are, probably the `--recurse-submodules` flag didn't work.&#x20;
+
+As a workaround, run:
+
+`git submodule update --recursive` --init
+{% endhint %}
 
 Next, source a simple initiation profile:
 
@@ -44,7 +53,7 @@ source .demo-profile
 If you are **redoing** the tutorial, we recommend to remove the demo directory and clone it again:
 
 ```bash
-chmod -R u+w demo && rm -rf demo
+chmod -R u+w isabl_demo && rm -rf isabl_demo
 ```
 
 Also remove the Docker volume:
@@ -55,6 +64,10 @@ docker volume rm isabl_demo_local_postgres_data
 {% endhint %}
 
 ## Installation
+
+{% hint style="warning" %}
+This installation relies on docker private images. Please make sure with the _isabl team admins_ that you have proper access to them.
+{% endhint %}
 
 Build and run the application (this might take a few minutes):
 
@@ -73,6 +86,10 @@ You can type `demo-compose down` to stop the application.
 {% endhint %}
 
 Visit [http://localhost:8000/](http://localhost:8000) and log in with `username=admin password=admin`!
+
+{% hint style="warning" %}
+If credentials to login fail, run manually `demo-django createsuperuser` to create one!
+{% endhint %}
 
 {% hint style="info" %}
 `demo-compose`, `demo-django`, and `demo-cli` are simple wrappers around `docker-compose` - check them out. The `isabl_demo` directory was bootstrapped using [cookiecutter-isabl](https://isabl-io.github.io/docs/#/api/settings), a proud fork of [cookiecutter-django](https://github.com/pydanny/cookiecutter-django)! Many topics from their [guide](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html#) will be relevant to your project.
