@@ -1,5 +1,5 @@
 ---
-description: "\U0001F913 The ultimate guide for data analysts using Isabl!"
+description: 🤓 The ultimate guide for data analysts using Isabl!
 ---
 
 # Retrieving Data
@@ -8,19 +8,19 @@ description: "\U0001F913 The ultimate guide for data analysts using Isabl!"
 
 **Filters** enable you to subset the data of your interest. For example you can use filters to retrieve all the BAM files of a given project, or get all VCFs from a given variant calling application. Filters are _field-value_ pairs and can be used both in the Command Line and within Python. Check out this examples:
 
-{% code title="\# A request to the API" %}
+{% code title="# A request to the API" %}
 ```bash
 curl http://{my-isabl-instance}/api/v1/experiments?sample__identifier={the-sample-id}
 ```
 {% endcode %}
 
-{% code title="\# Using Isabl CLI" %}
+{% code title="# Using Isabl CLI" %}
 ```bash
 isabl get-outdirs -fi application.name BWA_MEM -fi status SUCCEEDED
 ```
 {% endcode %}
 
-{% code title="\# Using Isabl SDK" %}
+{% code title="# Using Isabl SDK" %}
 ```python
 import isabl_cli as ii
 samples = ii.get_instances('samples', individual__species="HUMAN")
@@ -28,7 +28,7 @@ samples = ii.get_instances('samples', individual__species="HUMAN")
 {% endcode %}
 
 {% hint style="info" %}
-Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` \(e.g. `samples__disease__acronym=AML`, or a dot in the Command Line `application.name=PINDEL`\)
+Note that fields can _traverse_ the relational model. To do so concatenate the fields with `__` (e.g. `samples__disease__acronym=AML`, or a dot in the Command Line `application.name=PINDEL`)
 {% endhint %}
 
 ### Filters Modifiers
@@ -38,44 +38,44 @@ As indicated in the previous _hint_, filter fields can traverse database relatio
 {% tabs %}
 {% tab title="Related Filters" %}
 ```python
-{related_filter}__{related_field}="query"
+{related_field}__{related_filter}="query"
 ```
 
 Here is a quick representation of Isabl's relational model, hence related filters:
 
-![](.gitbook/assets/image%20%288%29.png)
+![](<.gitbook/assets/image (8).png>)
 {% endtab %}
 
 {% tab title="Lookup Types" %}
 Furthermore, all query parameters in this API support advanced lookup types:
 
-| Lookup Type | Description | Example |
-| :--- | :--- | :--- |
-| **`!`** | Negate any query | `name!=isabel` |
-| **`[i]exact`** | Exact match | `name__exact=isabl`  `name__iexact=IsAbL` |
-| **`[i]contains`** | Value contains query | `name__contains=isa`  `name__icontains=iSa` |
+| Lookup Type         | Description             | Example                                           |
+| ------------------- | ----------------------- | ------------------------------------------------- |
+| **`!`**             | Negate any query        | `name!=isabel`                                    |
+| **`[i]exact`**      | Exact match             | `name__exact=isabl`  `name__iexact=IsAbL`         |
+| **`[i]contains`**   | Value contains query    | `name__contains=isa`  `name__icontains=iSa`       |
 | **`[i]startswith`** | Value starts with query | `name__startswith=isab`  `name__istartswith=iSab` |
-| **`[i]endswith`** | Value starts with query | `name__endswith=bl`  `name__iendswith=bL` |
-| **`in`** | Comma separated query | `name__in=isabl,besuhof` |
-| **`isnull`** | Value is null | `name__isnull=true` |
-| **`regex`** | Use regex pattern | `name__regex=isabl` |
-| **`gt`** | Greater than | `total__gt=1` |
-| **`gte`** | Greater or equal | `total__gte=1` |
-| **`lt`** | Less than | `total__lt=1` |
-| **`lte`** | Less than or equal | `total__lte=1` |
+| **`[i]endswith`**   | Value starts with query | `name__endswith=bl`  `name__iendswith=bL`         |
+| **`in`**            | Comma separated query   | `name__in=isabl,besuhof`                          |
+| **`isnull`**        | Value is null           | `name__isnull=true`                               |
+| **`regex`**         | Use regex pattern       | `name__regex=isabl`                               |
+| **`gt`**            | Greater than            | `total__gt=1`                                     |
+| **`gte`**           | Greater or equal        | `total__gte=1`                                    |
+| **`lt`**            | Less than               | `total__lt=1`                                     |
+| **`lte`**           | Less than or equal      | `total__lte=1`                                    |
 {% endtab %}
 
 {% tab title="Datetime Lookups" %}
 Moreover, _Datetime_ query parameters support extra lookups:
 
-| Lookup Type | Description | Example |
-| :--- | :--- | :--- |
-| \`\` | No lookup, `ISO` format required | `created=` |
-| **`date`** | Filter by date `YYYY-MM-DD`. | `created__date=2016-06-04`  `created__date__gt=2016-06-04` |
-| **`day`** | Filter by day `DD` | `created__day=04` |
-| **`month`** | Filter by month `MM` | `created__month=06` |
-| **`year`** | Filter by year `YYYY` | `created__year=2016` |
-| **`time`** | Filter by time `HH-MM-SS` | `created__time=21:00:51` |
+| Lookup Type | Description                      | Example                                                    |
+| ----------- | -------------------------------- | ---------------------------------------------------------- |
+| \`\`        | No lookup, `ISO` format required | `created=`                                                 |
+| **`date`**  | Filter by date `YYYY-MM-DD`.     | `created__date=2016-06-04`  `created__date__gt=2016-06-04` |
+| **`day`**   | Filter by day `DD`               | `created__day=04`                                          |
+| **`month`** | Filter by month `MM`             | `created__month=06`                                        |
+| **`year`**  | Filter by year `YYYY`            | `created__year=2016`                                       |
+| **`time`**  | Filter by time `HH-MM-SS`        | `created__time=21:00:51`                                   |
 {% endtab %}
 
 {% tab title="Full Relational Model" %}
@@ -84,7 +84,7 @@ Moreover, _Datetime_ query parameters support extra lookups:
 {% endtabs %}
 
 {% hint style="info" %}
-To get a full description of all available filters please visit Isabl's Redoc API documentation at [https://isabl.io/redoc](https://isabl.io/redoc) or  [https://isabl.mskcc.org/api/v1 ](https://isabl.mskcc.org/api/v1/)\(replacing `isabl.mskcc.org` with your own host\). Another useful way to explore the relational model is by using [`isabl get-metadata`](retrieve-data.md#dynamically-explore-metadata)`.`
+To get a full description of all available filters please visit Isabl's Redoc API documentation at [https://isabl.io/redoc](https://isabl.io/redoc) or  [https://isabl.mskcc.org/api/v1 ](https://isabl.mskcc.org/api/v1/)(replacing `isabl.mskcc.org` with your own host). Another useful way to explore the relational model is by using [`isabl get-metadata`](retrieve-data.md#dynamically-explore-metadata)`.`
 {% endhint %}
 
 ### Common Filters
@@ -115,19 +115,16 @@ experiments = ii.experiments(has_bam_for="GRCh37")
 
 ### Performance Filters
 
-The following filters can be used to \(quite dramatically\) improve the performance for some queries:
+The following filters can be used to (quite dramatically) improve the performance for some queries:
 
 | Filter | Description | Usage |
-| :--- | :--- | :--- |
+| ------ | ----------- | ----- |
 
-
-| &lt;/table&gt; | **`distinct`** | If you set distinct to _false_, the each result within the query won't be guaranteed to be unique, yet the response will be faster. | `distinct=false` |
-| :--- | :--- | :--- | :--- |
-
+| **`distinct`** | If you set distinct to _false_, the each result within the query won't be guaranteed to be unique, yet the response will be faster. | `distinct=false` |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 
 | **`paginator`** | By activating the _cursor_ pagination, you would be able to traverse queries results, but you won't know the total number of results. | `paginator=cursor` |
-| :--- | :--- | :--- |
-
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 
 {% hint style="info" %}
 `paginator=cursor` is still experimental, please [report an issue](https://github.com/isabl-io/api/issues/new/choose) if you have trouble.
@@ -135,19 +132,19 @@ The following filters can be used to \(quite dramatically\) improve the performa
 
 ## Isabl Command Line Client
 
-Filters in the command line are usually provided using the `-fi` or `--filters` flags. Relations or lookups can be provided using double underscores or dots \(e.g. `application.name` or `application__name`\). Here is a list of Isabl commands available to retrieve information:
+Filters in the command line are usually provided using the `-fi` or `--filters` flags. Relations or lookups can be provided using double underscores or dots (e.g. `application.name` or `application__name`). Here is a list of Isabl commands available to retrieve information:
 
-| Command | Description | Example |
-| :--- | :--- | :--- |
-| **`get-count`** | Get count of database instances given a particular query. For example, how many failed analyses are in the system? | `isabl get-count analyses -fi status FAILED` |
-| **`get-metadata`** | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` \(i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)\). | `isabl get-metadata samples -fi category TUMOR -f disease` |
-| **`get-data`** | This command will retrieved the _raw_ data linked to experiments as imported in Isabl \(e.g. BAM, FASTQ, CRAM\). Use `--verbose` to see what experiments have _**missing**_ data. | `isabl get-data -fi projects.pk.in 102,103` |
-| **`get-bams`** | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37` |
-| **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources. | `isabl get-reference GRCh37` |
-| **`get-bed`** | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`. | `isabl get-bed HEMEPACT --assembly GRCh37` |
-| **`get-paths`** | Retrieve the storage directory for any instance in the database. Use [`--pattern`](retrieve-data.md#retrieving-application-results) to retrieve files within those directories. | `isabl get-paths projects 102` |
-| **`get-outdirs`** | This command is a short cut of `isabl get-paths analyses`. Learn more about retrieving results [here](retrieve-data.md#retrieving-application-results). | `isabl get-outdirs -fi name PINDEL -fi status SUCCEEDED` |
-| **`get-results`** | Retrieve analyses results produced by applications. Use [`--app-results`](retrieve-data.md#retrieving-application-results)to list all available choices for a given application. | `isabl get-results -fi application.pk 1 -r command_script` |
+| Command             | Description                                                                                                                                                                                                                                                | Example                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **`get-count`**     | Get count of database instances given a particular query. For example, how many failed analyses are in the system?                                                                                                                                         | `isabl get-count analyses -fi status FAILED`               |
+| **`get-metadata`**  | Retrieve instances metadata in multiple formats. To limit the number of fields you are interested in use `-f` (i.e. [`--fields`](retrieve-data.md#dynamically-explore-metadata)).                                                                          | `isabl get-metadata samples -fi category TUMOR -f disease` |
+| **`get-data`**      | This command will retrieved the _raw_ data linked to experiments as imported in Isabl (e.g. BAM, FASTQ, CRAM). Use `--verbose` to see what experiments have _**missing**_ data.                                                                            | `isabl get-data -fi projects.pk.in 102,103`                |
+| **`get-bams`**      | Get the _official_ bam registered for a given list of experiments. Use `--assembly`if there are BAMs available for different versions of the genome. Use [`has_bam_for`](retrieve-data.md#has-bam-file) to filter those experiments with a registered BAM. | `isabl get-bams -fi has_bam_for GRCh37`                    |
+| **`get-reference`** | Isabl supports the linkage of auxiliary resources to the _assembly_ instances. [By default](retrieve-data.md#assembly-resources)`get-reference` gives you the path to the reference FASTA, however you can retrieve other linked resources.                | `isabl get-reference GRCh37`                               |
+| **`get-bed`**       | Retrieve a BED file linked to a particular sequencing technique. By default, the _targets_ BED file is returned, to get the _baits_ BED use `--bed-type`.                                                                                                  | `isabl get-bed HEMEPACT --assembly GRCh37`                 |
+| **`get-paths`**     | Retrieve the storage directory for any instance in the database. Use [`--pattern`](retrieve-data.md#retrieving-application-results) to retrieve files within those directories.                                                                            | `isabl get-paths projects 102`                             |
+| **`get-outdirs`**   | This command is a short cut of `isabl get-paths analyses`. Learn more about retrieving results [here](retrieve-data.md#retrieving-application-results).                                                                                                    | `isabl get-outdirs -fi name PINDEL -fi status SUCCEEDED`   |
+| **`get-results`**   | Retrieve analyses results produced by applications. Use [`--app-results`](retrieve-data.md#retrieving-application-results)to list all available choices for a given application.                                                                           | `isabl get-results -fi application.pk 1 -r command_script` |
 
 ### Dynamically Explore Metadata
 
@@ -157,10 +154,10 @@ Another useful way to explore the relational model is by using `isabl get-metada
 isabl get-metadata experiments --fx
 ```
 
-![](.gitbook/assets/cli_metadata.slow.gif)
+![](.gitbook/assets/cli\_metadata.slow.gif)
 
 {% hint style="info" %}
-Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata \(e.g. `tsv`\).
+Expand and navigate with arrow keys, press e to _expand all_ and E to minimize. Learn more at [`fx` documentation](https://github.com/antonmedv/fx/blob/master/docs.md#interactive-mode). Use `--help` to learn about other ways to visualize metadata (e.g. `tsv`).
 {% endhint %}
 
 Furthermore, you can limit the amount of information you are retrieving by passing the list of fields you are interested in:
@@ -237,7 +234,7 @@ import isabl_cli as ii  # ii stands for `interactive isabl` 😎
 {% endcode %}
 
 {% hint style="info" %}
-If you are using `ipython`, use `?` to get help on a method \(e.g. `ii.get_instances?`\)
+If you are using `ipython`, use `?` to get help on a method (e.g. `ii.get_instances?`)
 {% endhint %}
 
 ### Getting Instances
@@ -256,7 +253,7 @@ assembly = ii.Assembly("GRCh37")
 ```
 
 {% hint style="info" %}
-These instances are [`Munch`](https://github.com/Infinidat/munch), in other words they are dot-dicts \(like javascript\). So you can do both `analysis["status"]` or `analysis.status`.
+These instances are [`Munch`](https://github.com/Infinidat/munch), in other words they are dot-dicts (like javascript). So you can do both `analysis["status"]` or `analysis.status`.
 {% endhint %}
 
 A more general way to retrieve _any_ object in the database is using `get_instance`:
@@ -344,17 +341,17 @@ _With great power, comes..._ yeah you know how it goes. Just be careful.
 
 Here are other useful utilities available in `isabl-cli`:
 
-| Method | Description |
-| :--- | :--- |
-| `ii.api.chunks` | Given a list of elements, return a list of chunks of `n` elements from the original list. |
-| `ii.api.api_request` | Perform an authenticated request to Isabl API. |
-| `ii.api.retry_request` | Retry an HTTP request multiple times with a delay between each failure. |
+| Method                 | Description                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------------- |
+| `ii.api.chunks`        | Given a list of elements, return a list of chunks of `n` elements from the original list. |
+| `ii.api.api_request`   | Perform an authenticated request to Isabl API.                                            |
+| `ii.api.retry_request` | Retry an HTTP request multiple times with a delay between each failure.                   |
 
 ## **Isabl Web**
 
 Isabl Web is a great tool to retrieve information and understand the state of affairs within the system. Simply type something in the search bar to retrieve instances across multiple schemas:
 
-![](.gitbook/assets/web_small_search%20%281%29.gif)
+![](<.gitbook/assets/web\_small\_search (1).gif>)
 
 Multiple panels will be stacked horizontally as you request more information:
 
@@ -364,29 +361,28 @@ Multiple panels will be stacked horizontally as you request more information:
 
 The projects detail panel conveys all assets and stakeholders linked to a particular project:
 
-![](.gitbook/assets/edit_project.gif)
+![](.gitbook/assets/edit\_project.gif)
 
 _Live Tables_ are directly wired to the API and will enable you to search and filter on specific columns. For the later, simply click in the column name:
 
-![Directly searching on the sample Identifier column.](.gitbook/assets/image%20%286%29.png)
+![Directly searching on the sample Identifier column.](<.gitbook/assets/image (6).png>)
 
 ### **The Samples View**
 
 The _samples tree_ panel provides access to all assets generated on a given individual.
 
-![A data generation process tree that resulted in 4 experiments \(or ultimately bams\), produced from two samples of the same individual.](.gitbook/assets/image.png)
+![A data generation process tree that resulted in 4 experiments (or ultimately bams), produced from two samples of the same individual.](.gitbook/assets/image.png)
 
 By clicking on a given node in the tree, you can retrieve more metadata, filter out available analyses on that instance, and even get access to BAM files:
 
-![Although the BAM file is an output of the bwa-mem analysis, Isabl enables registering default bams to an experiment. Thus a link is available in the sample panel.](.gitbook/assets/web_visualize_data.gif)
+![Although the BAM file is an output of the bwa-mem analysis, Isabl enables registering default bams to an experiment. Thus a link is available in the sample panel.](.gitbook/assets/web\_visualize\_data.gif)
 
 ### Analyses Results
 
 We can retrieve different types of results for all analyses generated by Isabl. For example accessing a project level quality control report:
 
-![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web_project_level_analysis.gif)
+![A project level Quality Control report. Can you find the Experiment and Individual-level reports? ](.gitbook/assets/web\_project\_level\_analysis.gif)
 
 Similarly we can retrieve other types of results such as a VCF:
 
-![](.gitbook/assets/web_visualize_vcf.gif)
-
+![](.gitbook/assets/web\_visualize\_vcf.gif)
