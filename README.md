@@ -54,7 +54,7 @@ Isabl has been developed by the [Elli Papaemmanuil's Lab](https://www.mskcc.org/
 * [Benjamin Greenbaum's Lab](https://www.mskcc.org/research-areas/labs/benjamin-greenbaum) at Memorial Sloan Kettering.&#x20;
 * [Cristina Curtis' Lab](https://med.stanford.edu/curtislab.html) at Stanford Medicine.
 
-... And many more groups at Weill Cornell, California State University, University of Oviedo (Spain), are currently testing it as a potential fit!
+... And many other groups at Weill Cornell, California State University, University of Oviedo (Spain), are currently testing it as a potential fit!
 
 ## Infrastructure
 
