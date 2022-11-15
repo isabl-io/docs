@@ -1,5 +1,5 @@
 ---
-description: "\U0001F3F7 Create Individuals, Samples, and Experiments before importing data."
+description: 🏷 Create Individuals, Samples, and Experiments before importing data.
 ---
 
 # Registering Metadata
@@ -17,64 +17,21 @@ description: "\U0001F3F7 Create Individuals, Samples, and Experiments before imp
 Unique together constraints enable Isabl link new samples and experiments to existing records in the database. The following fields are enforced to be unique together across the entire system:
 
 | Database Schema | Unique Together Fields |
-| :--- | :--- |
+| --------------- | ---------------------- |
 
+| **Individual** | <ul><li>Center</li><li>Species</li><li>Identifier</li></ul> |
+| -------------- | ----------------------------------------------------------- |
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Individual</b>
-      </th>
-      <th style="text-align:left">
-        <ul>
-          <li>Center</li>
-          <li>Species</li>
-          <li>Identifier</li>
-        </ul>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+| **Samples**  | <ul><li>Individual</li><li>Sample Class</li><li>Identifier</li></ul> |
+| ------------ | -------------------------------------------------------------------- |
+| **Aliquots** | <ul><li>Sample</li><li>Identifier</li></ul>                          |
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Samples</b>
-      </th>
-      <th style="text-align:left">
-        <ul>
-          <li>Individual</li>
-          <li>Sample Class</li>
-          <li>Identifier</li>
-        </ul>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Experiments</b>
-      </th>
-      <th style="text-align:left">
-        <ul>
-          <li>Sample</li>
-          <li>Aliquot ID</li>
-          <li>Technique</li>
-          <li>Identifier</li>
-        </ul>
-      </th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
+| **Experiments** | <ul><li>Sample</li><li>Aliquot ID</li><li>Technique</li><li>Identifier</li></ul> |
+| --------------- | -------------------------------------------------------------------------------- |
 {% endtab %}
 
 {% tab title="Database Diagram" %}
-![](https://docs.google.com/drawings/d/e/2PACX-1vSwWHBNAC_xh7IjDKaXnh0c4PN0cg1RopPG0_s9jHS2Jg1Zg4P3o4b0qU9tJ-5dQQhH9bTht4p3etGH/pub?w=2512&h=3263)
+![](https://docs.google.com/drawings/d/e/2PACX-1vSwWHBNAC\_xh7IjDKaXnh0c4PN0cg1RopPG0\_s9jHS2Jg1Zg4P3o4b0qU9tJ-5dQQhH9bTht4p3etGH/pub?w=2512\&h=3263)
 {% endtab %}
 {% endtabs %}
 
@@ -91,7 +48,7 @@ Isabl offer different mechanisms for metadata registration.
 {% hint style="warning" %}
 Only users with the proper permissions or _superusers_ can create or modify models in the database, by using any of the methods for metadata registration.
 
-When using the web interface, available buttons such as **Create New Submission \(+\)** may be hidden depending of your user role. If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
+When using the web interface, available buttons such as **Create New Submission (+)** may be hidden depending of your user role. If you're not seeing this feature, or your getting _permission denied_ using the API, please contact your `isabl` administrators.
 {% endhint %}
 
 ### Adding Extra Choices
@@ -117,7 +74,7 @@ Note that this feature is limited to create only new _Individuals_, _Samples_ an
 
 By clicking in **Create New Submission** button in the top right menu of the user, or by clicking in **Add Batch Samples** in the top right button of the Project view.
 
-![](https://docs.google.com/drawings/d/e/2PACX-1vTnj1KCwWgfTPLqedUc13XX6wCNshQGDWi-VA8gmh7oXX6tDzNXQGfVzHAXGmaAJfXcskFTPrNEfW9o/pub?w=1276&h=267)
+![](https://docs.google.com/drawings/d/e/2PACX-1vTnj1KCwWgfTPLqedUc13XX6wCNshQGDWi-VA8gmh7oXX6tDzNXQGfVzHAXGmaAJfXcskFTPrNEfW9o/pub?w=1276\&h=267)
 
 It will open a modal where you can download the latest _Submission_ form by clicking **GET FORM.** By latest, it means it will be updated with the available custom fields, and available choices added to options like: center, diseases, platforms and techniques.
 
@@ -125,15 +82,15 @@ It will open a modal where you can download the latest _Submission_ form by clic
 When prompted to allow _macros_, say yes. This will enable you to toggle between optional and required columns.
 {% endhint %}
 
-![Metadata can be registered using Excel Submission forms.](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK_xSbSFLgMnAFP44OPVvxE_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=2256&h=498)
+![Metadata can be registered using Excel Submission forms.](https://docs.google.com/drawings/d/e/2PACX-1vQ3WHDsObpa2x9vLV4vORr6HeK\_xSbSFLgMnAFP44OPVvxE\_ABIoSX1NcwQgf-hf42nimp8gPWVfb-t/pub?w=2256\&h=498)
 
-After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created \(i.e. _1 Individual, 2 Samples, 4 Experiments_\) or errors in the submission form fields \(i.e. _Error: individual gender FMALE is not a valid choice_\) guides you in the submission process, before you can commit it.
+After the submission is created it can be uploaded through the web interface and a preliminary summary from the metadata submitted will be shown. This Information about the number of models that will be created (i.e. _1 Individual, 2 Samples, 4 Experiments_) or errors in the submission form fields (i.e. _Error: individual gender FMALE is not a valid choice_) guides you in the submission process, before you can commit it.
 
 {% hint style="success" %}
 After uploading the submission file, if you don't get any validation errors and your summary looks correct, hit the **Commit Submission** button to register the submission and make definitive changes in the database.
 {% endhint %}
 
-![](.gitbook/assets/web_submit_form%20%281%29.gif)
+![](<.gitbook/assets/web\_submit\_form (1).gif>)
 
 After committing your _Submission,_ your new available samples should've been created by now, and you can visualize in the _Sample Tree_ the relationship between the new models you just registered.
 
@@ -171,7 +128,7 @@ individual = ii.create_instance(
 ```
 {% endcode %}
 
-You can also make http requests directly to the API \(you can create a new token from the admin site\):
+You can also make http requests directly to the API (you can create a new token from the admin site):
 
 {% code title="A request to the API" %}
 ```bash
@@ -195,13 +152,13 @@ curl \
 
 Isabl offers an optional configuration of groups that you can adopt:
 
-| Group | Permissions |
-| :--- | :--- |
-| **Managers** | Can create, update, and delete Custom Fields, Individuals, Centers, Diseases, Experiments, Techniques, Platforms, Projects, and Submissions. |
-| **Analysts** | Can create, update, and delete Custom Fields, Applications, Analyses, and Assemblies. They can also download analyses results. |
-| **Engineers** | Engineers have the same permissions of both managers and analysts. |
+| Group         | Permissions                                                                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Managers**  | Can create, update, and delete Custom Fields, Individuals, Centers, Diseases, Experiments, Techniques, Platforms, Projects, and Submissions. |
+| **Analysts**  | Can create, update, and delete Custom Fields, Applications, Analyses, and Assemblies. They can also download analyses results.               |
+| **Engineers** | Engineers have the same permissions of both managers and analysts.                                                                           |
 
- In order to create these groups run the following command:
+&#x20;In order to create these groups run the following command:
 
 ```bash
 python manage.py create_default_groups
@@ -214,4 +171,3 @@ These groups are **optional** and you can create your own using the Django Admin
 {% hint style="success" %}
 **Pro tip:** use the `Can Download Results` permission to  configure what users can download analyses results in your Isabl instance.
 {% endhint %}
-
