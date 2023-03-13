@@ -26,8 +26,9 @@ Unique together constraints enable Isabl link new samples and experiments to exi
 | ------------ | -------------------------------------------------------------------- |
 | **Aliquots** | <ul><li>Sample</li><li>Identifier</li></ul>                          |
 
-| **Experiments** | <ul><li>Sample</li><li>Aliquot ID</li><li>Technique</li><li>Identifier</li></ul> |
-| --------------- | -------------------------------------------------------------------------------- |
+| **Experiments**  | <ul><li>Sample</li><li>Aliquot ID</li><li>Technique</li><li>Identifier</li></ul> |
+| ---------------- | -------------------------------------------------------------------------------- |
+| **Applications** | <ul><li>Name</li><li>Version</li><li>Species</li><li>Assembly</li></ul>          |
 {% endtab %}
 
 {% tab title="Database Diagram" %}
